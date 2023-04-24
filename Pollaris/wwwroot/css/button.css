@@ -1,0 +1,99 @@
+﻿.button-bar-1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 15%;
+    padding-top: 10px; 
+}
+
+.button-bar-2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    height: 15%;
+    padding-top: 10px;
+}
+
+.button-bar-3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 15%;
+    padding-top: 10px;
+}
+
+.room-dashboard-set-button {
+    width: 90%;
+    height: 75px;
+    background-color: #1B264F;
+    margin: 4%;
+}
+
+.btn-small {
+    height: 50px; 
+    width: 100px; 
+    margin: 10px; 
+    font-size: 18px; 
+}
+
+.btn-large {
+    height: 100px; 
+    width: 400px; 
+    margin: 20px;
+}
+
+.btn-wide {
+    width: 400px;
+}
+
+.btn-blue-white {
+    width: 200px;
+    background-color: #1B264F;
+    border: 2px white solid;
+}
+
+.btn-blue-small {
+    width: 300px;
+    height: 80px;
+    font-size: 24px;
+    color: white;
+    background-color: #1B264F;
+    font-weight: initial;
+}
+
+.btn-blue-tiny {
+    width: 120px;
+    height: 60px;
+    background-color: #1B264F;
+    border: 2px white solid; 
+    color: white; 
+    font-size: 24px;
+    font-weight: initial; 
+}
+
+.chosen-button {
+    background-color: #FB3640;
+    border: 0px; 
+}
+
+.btn-green {
+    width: 200px;
+    background-color: #386150;
+}
+
+#btn-change-set-name {
+    width: 400px;
+    margin-left: 50px;
+    height: 75%;
+    align-self: center;
+}
+
+.btn-delete {
+    align-self: center;
+    justify-self: center;
+}
+
+.img-btn-delete {
+    width: 50px;
+    height: 50px;
+}

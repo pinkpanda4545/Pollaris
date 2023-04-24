@@ -1,0 +1,64 @@
+﻿@model Pollaris.Models.AnswerQuestionInfo
+
+<html>
+
+<body>
+        @if (Model.Question != null)
+        {
+            <div id="question-header">
+                <h3 class="question-header-small">Question @Model.CurrQuestion / @Model.SetSize</h3>
+                <h3 class="question-header-big">@Model.Question.Question</h3>
+            </div>
+
+            <div class="answer-question-body">
+                @if (Model.Question.Type == "MC")
+                {
+                    <grid class="grid-mc">
+                        @foreach (var option in Model.Question.Options)
+                        {
+                        <div id="mc-option-@option" class="div-option" onclick="chooseMC('mc-option-@option')">@option</div>
+                        }
+                    </grid>
+                } else if (Model.Question.Type == "TF")
+                {
+                    <div class="div-tf-container">
+                        <div id="div-true" class="div-tf" onclick="chooseTF(true)">True</div> 
+                        <div id="div-false" class="div-tf" onclick="chooseTF(false)">False</div>
+                    </div>
+                } else if (Model.Question.Type == "R")
+                {
+                    <grid class="grid-ranking">
+                        @foreach (var option in Model.Question.Options)
+                        {
+                            <div id="ranking-@option" class="div-option" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)">@option</div>
+                        }
+                    </grid>
+                } else if (Model.Question.Type == "SA")
+                {
+                    <textarea id="div-sa" placeholder="Enter your answer here."></textarea>
+                } else
+                {
+                    //ERROR!!!
+                }
+            </div>
+        }
+        else
+        {
+            <div id="question-header">
+                <h3 class="question-header-big">Loading...</h3>
+            </div>
+
+            <div class="answer-question-body"></div>
+        }
+
+        <div class="button-bar-3">
+            <button onclick="exitQuestionSet(@Model.UserId)">EXIT</button>
+            @if (Model.Question != null)
+            {
+                <button onclick="answerQuestionSubmit()">Submit</button>
+            }
+        </div>
+
+</body>
+
+</html>

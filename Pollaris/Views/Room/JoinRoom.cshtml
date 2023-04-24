@@ -1,0 +1,25 @@
+﻿@model Pollaris.Models.UserId
+<!DOCTYPE html>
+
+<html>
+<body>
+    <navbar>
+        <div class="green-bar"></div>
+        <div class="navbar-body" style="justify-content: space-between !important">
+            <h1>Join Room</h1>
+        </div>
+    </navbar>
+
+    <div class="room-body">
+        <form id="join-room-form">
+            <p id="room-instruction">Please enter the 8 digit code provided by your instructor.</p>
+            <input type="text" id="join-room-code" class="input-blue-white" placeholder="Code"/><br/>
+            <button type="reset" onclick="joinRoomSubmit(@Model.Id)">Join Room</button>
+        </form>
+    </div>
+
+    <div class="button-bar-1">
+        <button onclick="joinRoomExit(@Model.Id)">Exit</button>
+    </div>
+</body>
+</html>

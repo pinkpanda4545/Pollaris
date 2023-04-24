@@ -1,0 +1,22 @@
+﻿@model Pollaris.Models.UserId
+<!DOCTYPE html>
+
+<html>
+<body>
+    <div class="opening-page">
+        <partial name="ChangePassword.cshtml"/>
+        <img id="photo" src="/images/profile-photo.jpg"/>
+        <a class="link" href="#" onclick="changeImage()">Change Image</a>
+        <button class="btn-large" onclick="changePassword()">Change Password</button>
+
+        <form id="edit-profile-form">
+            <input type="text" id="first-name" class="input-blue-white" placeholder="First Name"/>
+            <input type="text" id="last-name" class="input-blue-white" placeholder="Last Name"/>
+            <div>
+                <button type="reset" class="btn-small" onclick="editProfileCancel(@Model.Id)">Cancel</button>
+                <button type="reset" class="btn-small" onclick="editProfileSave(@Model.Id)">Save</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

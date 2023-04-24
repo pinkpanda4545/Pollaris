@@ -1,0 +1,39 @@
+﻿<Properties StartupConfiguration="{BA3C812C-A457-46A4-8540-FA753C0820B5}|Default">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Pollaris PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/RoomController.cs">
+    <Files>
+      <File FileName="Views/Room/CreateRoom.cshtml" />
+      <File FileName="wwwroot/css/room.css" />
+      <File FileName="wwwroot/js/room.js" />
+      <File FileName="Controllers/RoomController.cs" Line="14" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Pollaris" expanded="True">
+            <Node name="Pollaris" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="RoomController.cs" selected="True" />
+              </Node>
+              <Node name="Views" expanded="True">
+                <Node name="Dashboard" expanded="True" />
+                <Node name="Home" expanded="True" />
+                <Node name="Room" expanded="True" />
+              </Node>
+              <Node name="wwwroot" expanded="True">
+                <Node name="css" expanded="True" />
+                <Node name="js" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+</Properties>

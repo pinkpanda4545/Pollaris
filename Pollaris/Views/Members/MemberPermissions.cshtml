@@ -1,0 +1,38 @@
+﻿@model Pollaris.Models.MemberPermissionsInfo
+<!DOCTYPE html>
+
+<html>
+<body>
+    <navbar>
+        <div class="green-bar"></div>
+        <div class="navbar-body">
+            <h1>Members</h1>
+        </div>
+    </navbar>
+
+    <div class="page">
+        <div id="member-info">
+            <img class="member-profile-photo" src="@Model.Member.ProfilePhoto" />
+            <h1 id="member-info-name">@Model.Member.FirstName @Model.Member.LastName</h1>
+        </div>
+
+        <div id="permissions-bar">
+            <button onclick="makeMemberTA()">Make TA</button>
+            @if (Model.Member.Role == "TA")
+            {
+                <button onclick="removeTA()">Remove TA</button>
+            }
+            else
+            {
+                <button disabled style="background-color: grey">Remove TA</button>
+            }
+            <button onclick="kick()">Kick</button>
+        </div>
+    </div>
+
+    <div class="button-bar-1">
+        <button onclick="roomMembers(@Model.UserId, @Model.RoomId)">Exit</button>
+    </div>
+    
+</body>
+</html>

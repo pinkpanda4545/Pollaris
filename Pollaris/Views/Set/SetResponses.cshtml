@@ -1,0 +1,44 @@
+﻿@model Pollaris.Models.SetResponsesInfo
+
+<html>
+<body>
+    <div id="set-responses-header">
+        <div class="question-header">
+            <h3 class="question-header-small">Current Question (@(@Model.Questions.FindIndex(x => x.IsActive) + 1)/@Model.Questions.Count())</h3>
+            <h3 class="question-header-big">@Model.Questions.Where(x => x.IsActive).First().Question</h3>
+        </div>
+        <div class="question-header">
+            @if (Model.Questions.FindIndex(x => x.IsActive) < Model.Questions.Count() - 1)
+            {
+                <h3 class="question-header-small">Next Question (@(@Model.Questions.FindIndex(x => x.IsActive) + 2)/@Model.Questions.Count())</h3>
+                <h3 class="question-header-big">@Model.Questions[Model.Questions.FindIndex(x => x.IsActive) + 1].Question</h3>
+            }
+        </div>
+    </div>
+
+    <div id="set-responses-body">
+        <h2 style="text-align: center">Student Responses</h2>
+        <grid id="set-responses-grid">
+            @foreach (var response in Model.Responses)
+            {
+                <div class="student-response">@response.Response</div>
+            }
+        </grid>
+    </div>
+
+    <div class="button-bar-3">
+        <button onclick="exitAndChangeStatus(@Model.UserId, @Model.RoomId, @Model.SetId)">Exit</button>
+        @if (Model.Questions.FindIndex(x => x.IsActive) < Model.Questions.Count() - 1)
+        {
+            <button type="reset" onclick="changeQuestionAndReset(@Model.UserId,
+                    @Model.RoomId, @Model.SetId, @Model.Questions.FindIndex(x => x.IsActive))">
+                Next
+            </button>
+        }
+        else
+        {
+            <button onclick="finishSetAndClose(@Model.UserId, @Model.RoomId, @Model.SetId)">Finish</button>
+        }
+    </div>
+</body>
+</html>

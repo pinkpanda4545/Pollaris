@@ -1,0 +1,49 @@
+/* _content/Pollaris/Views/Shared/_Layout.cshtml.rz.scp.css */
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand[b-ii8usxofmp] {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+a[b-ii8usxofmp] {
+  color: #0077cc;
+}
+
+.btn-primary[b-ii8usxofmp] {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active[b-ii8usxofmp], .nav-pills .show > .nav-link[b-ii8usxofmp] {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.border-top[b-ii8usxofmp] {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom[b-ii8usxofmp] {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow[b-ii8usxofmp] {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy[b-ii8usxofmp] {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+.footer[b-ii8usxofmp] {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
+}

@@ -1,0 +1,87 @@
+﻿@model Pollaris.Models.EditQuestionInfo
+
+<html>
+<body>
+    <div id="edit-question-header">
+        <h2 style="padding-bottom: 20px;">QUESTION @Model.Question.Type</h2>
+        <div id="edit-question-question">
+            <textarea id="txtarea-edit-question">@Model.Question.Question</textarea>
+            <div id="grid-yes-no">
+                <p class="p-edit-question">Graded?</p>
+                @if (Model.Question.IsGraded)
+                {
+                    <button id="graded-yes" class="btn-blue-tiny chosen-button">YES</button>
+                    <button id="graded-no" class="btn-blue-tiny">NO</button>
+                } else
+                {
+                    <button id="graded-yes" class="btn-blue-tiny">YES</button>
+                    <button id="graded-no" class="btn-blue-tiny chosen-button">NO</button>
+                }
+                <p class="p-edit-question">Anonymous?</p>
+                @if (Model.Question.IsAnonymous)
+                {
+                    <button id="anonymous-yes" class="btn-blue-tiny chosen-button">YES</button>
+                    <button id="anonymous-no" class="btn-blue-tiny">NO</button>
+                } else
+                {
+                    <button id="anonymous-yes" class="btn-blue-tiny">YES</button>
+                    <button id="anonymous-no" class="btn-blue-tiny chosen-button">NO</button>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div id="edit-question-body">
+        @if (Model.Question.Type != "SA")
+        {
+            <div id="edit-question-options">
+                <h2 id="h2-options">OPTIONS</h2>
+                @if (Model.Question.Type != "TF")
+                {
+                    <button class="btn-small btn-wide">Add Option</button>
+                }
+                @if (Model.Question.Type == "R" && Model.Question.IsGraded)
+                {
+                    <p id="p-options">The order of the following options indicates the correct ranking order for grading.</p>
+                } else if (Model.Question.IsGraded)
+                {
+                    <div id="div-options">
+                        <div class="red-circle"></div>
+                        <p style="margin: 0px">Indicates Correct Answer</p>
+                    </div>
+                }
+            </div>
+            <div id="edit-question-grid">
+                @{int i = 1;} 
+                @foreach (var option in Model.Question.Options)
+                {
+                    <div class="list-number">@i</div>
+                    <div class="question-name-bar">@option</div>
+                    @if (Model.Question.Type != "R") //AND THIS OPTION IS "CORRECT"
+                    {
+                        <div class="empty-circle"></div>
+                    } else
+                    {
+                        <div></div>
+                    }
+                    @if (Model.Question.Type != "TF")
+                    {
+                        <div class="btn-delete">
+                            <img class="img-btn-delete" src="/images/copy.png" />
+                        </div>
+                    } else
+                    {
+                        <div></div>
+                    }
+                    i++;
+                }
+            </div>
+        }
+    </div>
+
+    <div class="button-bar-2">
+        <button class="btn-blue-white" onclick="returnToEditSet(@Model.UserId, @Model.RoomId, @Model.SetId)">Cancel</button>
+        <button class="btn-green" onclick="saveQuestionEdits()">Save</button>
+    </div>
+</body>
+</html>

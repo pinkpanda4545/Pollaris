@@ -1,0 +1,59 @@
+﻿@model Pollaris.Models.DashboardInfo
+
+<!DOCTYPE html>
+<html>
+<body>
+    <navbar>
+        <div class="green-bar"></div>
+        <div class="navbar-body" style="justify-content: space-between !important">
+            <h1>Dashboard</h1><img class="navbar-photo" src="/images/profile-photo.jpg"/>
+        </div>
+    </navbar>
+    <div class="dashboard-page">
+        <div class="dashboard-subheader" style="justify-content: space-between !important">
+            <h2>MY CLASSES</h2>
+            <a href="#" id="edit-profile-link" class="link" onclick="openEditProfile(@Model.UserId)">Edit Profile</a>
+        </div>
+        <grid class="grid-container">
+            @foreach (var room in Model.Rooms)
+            {
+                @if (room.UserType == "Instructor")
+                {
+                    <div class="room-icon" onclick="openRoomDashboard(@Model.UserId, @room.Id, '@room.Name', '@room.UserType')">
+                        <div class="room-icon-header" style="height:80%">
+                            <h3 class="room-icon-name">@room.Name</h3>
+                            <div class="instructor-icon">
+                                <img style="height: 80%" src="/images/star.png" />
+                            </div>
+                        </div>
+                        <div class="room-icon-instructor" style="height:20%"></div>
+                    </div>
+                }
+                else if (room.UserType == "TA")
+                {
+                    <div class="room-icon" onclick="openRoomDashboard(@Model.UserId, @room.Id, '@room.Name', '@room.UserType')">
+                        <div class="room-icon-header">
+                            <h3 class="room-icon-name">@room.Name</h3>
+                            <h3 class="ta-icon">TA</h3>
+                        </div>
+                        <div class="room-icon-instructor">INSTRUCTOR: @room.Instructor</div>
+                    </div>
+                }
+                else if (room.UserType == "Student")
+                {
+                    <div class="room-icon" onclick="openStudentAnswerPage(@Model.UserId, @room.Id)">
+                        <div class="room-icon-header">
+                            <h3 class="room-icon-name" style="width:100%">@room.Name</h3>
+                        </div>
+                        <div class="room-icon-instructor">INSTRUCTOR: @room.Instructor</div>
+                    </div>
+                }
+            }
+        </grid>
+    </div>
+    <div class="button-bar-2">
+        <button onclick="joinRoom(@Model.UserId)">Join Room</button>
+        <button onclick="createRoom(@Model.UserId)">Create Room</button>
+    </div>
+</body>
+</html>

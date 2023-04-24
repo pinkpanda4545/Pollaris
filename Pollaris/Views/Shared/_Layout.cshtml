@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Pollaris</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/Pollaris.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/button.css" />
+    <link rel="stylesheet" href="~/css/sign-in.css"/>
+    <link rel="stylesheet" href="~/css/dashboard.css"/>
+    <link rel="stylesheet" href="~/css/room.css" />
+    <link rel="stylesheet" href="~/css/members.css" />
+    <link rel="stylesheet" href="~/css/set.css" />
+    <link rel="stylesheet" href="~/css/question.css" />
+</head>
+<body>
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/sign-in.js"></script>
+    <script src="~/js/dashboard.js"></script>
+    <script src="~/js/room.js"></script>
+    <script src="~/js/members.js"></script>
+    <script src="~/js/set.js"></script>
+    <script src="~/js/question.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

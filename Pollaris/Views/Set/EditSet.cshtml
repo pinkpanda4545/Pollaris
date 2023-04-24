@@ -1,0 +1,43 @@
+﻿@model Pollaris.Models.EditSetInfo
+
+<html>
+    <body>
+        <navbar style="margin-top: 0px">
+            <div class="green-bar"></div>
+            <div class="navbar-body">
+                <h1>[ROOM NAME] - Set Name: @Model.SetName</h1>
+                <button id="btn-change-set-name">Change Name</button>
+            </div>
+        </navbar>
+
+        <div id="edit-set-body">
+            <h2 style="margin-left: 25px">QUESTIONS</h2>
+            <div id="questions-list">
+            @if (Model.Questions != null)
+            {
+                int i = 1;
+                @foreach (var question in Model.Questions)
+                {
+                    <div class="list-number">@i</div>
+                    <div class="question-name-bar">@question.Question</div>
+                    <div class="question-type">@question.Type</div>
+                    <button class="btn-small">EDIT</button>
+                    <div class="btn-delete">
+                        <img class="img-btn-delete" src="/images/copy.png" />
+                    </div>            
+                    i++;
+                }
+            }
+            </div>
+        </div>
+
+        <div class="button-bar-3">
+                <button onclick="exitToRoomDashboard(@Model.UserId, @Model.RoomId)">Exit</button>
+                <div style="display: flex; flex-direction: row">
+                    <button class="btn-wide" onclick="openCreateQuestion(@Model.UserId, @Model.RoomId, @Model.SetId)">Add Question</button>
+                    <button class="btn-blue-white" onclick="cancelSetEdits()">Cancel</button>
+                    <button class="btn-green" onclick="saveSetEdits(@Model.UserId, @Model.RoomId, @Model.SetId)">Save</button>
+                </div>
+        </div>
+    </body>
+</html>

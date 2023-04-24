@@ -1,0 +1,28 @@
+﻿@model Pollaris.Models.MemberListInfo
+
+<html>
+<body>
+    <navbar>
+        <div class="green-bar"></div>
+        <div class="navbar-body">
+            <h1>Members</h1>
+        </div>
+    </navbar>
+
+    <div id="members-list-body">
+        <grid id="grid-members-list">
+            @foreach (var member in @Model.Users)
+            {
+                <div class="single-member" onclick="goToMemberPermissions(@Model.UserId, @Model.RoomId, @member.Id)">
+                    <img class="member-profile-photo" src="@member.ProfilePhoto" />
+                    <h2>@member.FirstName @member.LastName</h2>
+                </div>
+            }
+        </grid>
+    </div>
+
+    <div class="button-bar-1">
+        <button onclick="returnToRoomDashboard(@Model.UserId, @Model.RoomId)">Exit</button>
+    </div>
+</body>
+</html>

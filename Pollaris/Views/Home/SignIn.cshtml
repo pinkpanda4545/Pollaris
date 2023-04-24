@@ -1,0 +1,20 @@
+﻿@model Pollaris.Models.SignInInfo
+<!DOCTYPE html>
+
+<html>
+<body>
+    <div class="opening-page">
+        <img class="logo" src="/images/logo.png" />
+
+        <form id="sign-in-form">
+            <input type="text" id="email" class="input-blue-white" placeholder="Email" /><br />
+            <input type="text" id="password" class="input-blue-white" placeholder="Password" /><br />
+            <button type="reset" class="btn-small" onclick="signInSubmit()">Sign In</button>
+        </form>
+
+        <p><b>Don't have an account? Sign up
+           <a asp-action="SignUp" asp-controller="Home">here</a>.
+         </b></p>
+    </div>
+</body>
+</html>
