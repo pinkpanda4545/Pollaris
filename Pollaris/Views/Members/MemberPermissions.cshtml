@@ -1,6 +1,4 @@
 ﻿@model Pollaris.Models.MemberPermissionsInfo
-<!DOCTYPE html>
-
 <html>
 <body>
     <navbar>
@@ -17,22 +15,21 @@
         </div>
 
         <div id="permissions-bar">
-            <button onclick="makeMemberTA()">Make TA</button>
+            <button onclick="makeMemberTA(@Model.UserId, @Model.RoomId, @Model.Member.Id)">Make TA</button>
             @if (Model.Member.Role == "TA")
             {
-                <button onclick="removeTA()">Remove TA</button>
+                <button onclick="removeTA(@Model.UserId, @Model.RoomId, @Model.Member.Id)">Remove TA</button>
             }
             else
             {
-                <button disabled style="background-color: grey">Remove TA</button>
+                <button disabled class="grey">Remove TA</button>
             }
-            <button onclick="kick()">Kick</button>
+            <button onclick="kick(@Model.UserId, @Model.RoomId, @Model.Member.Id)">Kick</button>
         </div>
     </div>
 
     <div class="button-bar-1">
-        <button onclick="roomMembers(@Model.UserId, @Model.RoomId)">Exit</button>
+        <button onclick="openMemberList(@Model.UserId, @Model.RoomId)">Exit</button>
     </div>
-    
 </body>
 </html>

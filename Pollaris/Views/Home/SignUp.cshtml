@@ -1,23 +1,20 @@
 ﻿@model Pollaris.Models.SignUpInfo
-<!DOCTYPE html>
-
 <html>
 <body>
     <div class="opening-page">
         <img class="logo" src="/images/logo.png" />
-        <form>
+        <form style="border:@Model.GetBorder()">
             <input type="text" id="first-name" class="input-blue-white" placeholder="First Name" /><br />
             <input type="text" id="last-name" class="input-blue-white" placeholder="Last Name" /><br />
             <input type="text" id="email" class="input-blue-white" placeholder="Email" /><br />
             <input type="text" id="password" class="input-blue-white" placeholder="Password" /><br />
             <button type="reset" class="btn-small" onclick="signUpSubmit()">Sign Up</button>
         </form>
-        <p>
-            <b>
-                Already have an account? Sign in
-                <a asp-action="SignIn" asp-controller="Home">here</a>.
-            </b>
-        </p>
+        <p class="invalid-creation" style="display:@Model.GetEmailDisplay()">There is already a user with this email in the database. Please use a different email or <b>Sign In</b> below.</p>
+        <p class="invalid-creation" style="display:@Model.GetValidDisplay()">Failed to create user. Please try again or <b>Sign In</b> below.</p>
+        <p><b>Already have an account? Sign in
+           <a asp-action="SignIn" asp-controller="Home">here</a>.
+        </b></p>
     </div>
 </body>
 </html>

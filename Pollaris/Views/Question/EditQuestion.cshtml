@@ -1,31 +1,30 @@
 ﻿@model Pollaris.Models.EditQuestionInfo
-
 <html>
 <body>
     <div id="edit-question-header">
-        <h2 style="padding-bottom: 20px;">QUESTION @Model.Question.Type</h2>
+        <h2 class="pb-lg-3">QUESTION</h2>
         <div id="edit-question-question">
             <textarea id="txtarea-edit-question">@Model.Question.Question</textarea>
             <div id="grid-yes-no">
                 <p class="p-edit-question">Graded?</p>
                 @if (Model.Question.IsGraded)
                 {
-                    <button id="graded-yes" class="btn-blue-tiny chosen-button">YES</button>
-                    <button id="graded-no" class="btn-blue-tiny">NO</button>
+                    <button id="graded-yes" class="btn-blue-tiny chosen-button" onclick="chooseButton(this)">YES</button>
+                    <button id="graded-no" class="btn-blue-tiny" onclick="chooseButton(this)">NO</button>
                 } else
                 {
-                    <button id="graded-yes" class="btn-blue-tiny">YES</button>
-                    <button id="graded-no" class="btn-blue-tiny chosen-button">NO</button>
+                    <button id="graded-yes" class="btn-blue-tiny" onclick="chooseButton(this)">YES</button>
+                    <button id="graded-no" class="btn-blue-tiny chosen-button" onclick="chooseButton(this)">NO</button>
                 }
                 <p class="p-edit-question">Anonymous?</p>
                 @if (Model.Question.IsAnonymous)
                 {
-                    <button id="anonymous-yes" class="btn-blue-tiny chosen-button">YES</button>
-                    <button id="anonymous-no" class="btn-blue-tiny">NO</button>
+                    <button id="anonymous-yes" class="btn-blue-tiny chosen-button" onclick="chooseButton(this)">YES</button>
+                    <button id="anonymous-no" class="btn-blue-tiny" onclick="chooseButton(this)">NO</button>
                 } else
                 {
-                    <button id="anonymous-yes" class="btn-blue-tiny">YES</button>
-                    <button id="anonymous-no" class="btn-blue-tiny chosen-button">NO</button>
+                    <button id="anonymous-yes" class="btn-blue-tiny" onclick="chooseButton(this)">YES</button>
+                    <button id="anonymous-no" class="btn-blue-tiny chosen-button" onclick="chooseButton(this)">NO</button>
                 }
             </div>
         </div>
@@ -38,7 +37,10 @@
                 <h2 id="h2-options">OPTIONS</h2>
                 @if (Model.Question.Type != "TF")
                 {
-                    <button class="btn-small btn-wide">Add Option</button>
+                    <button id="btn-add-option" class="btn-small" onclick="addOption('@Model.Question.Type')">Add Option</button>
+                } else
+                {
+                    <div></div>
                 }
                 @if (Model.Question.Type == "R" && Model.Question.IsGraded)
                 {
@@ -47,40 +49,46 @@
                 {
                     <div id="div-options">
                         <div class="red-circle"></div>
-                        <p style="margin: 0px">Indicates Correct Answer</p>
+                        <p class="m-0">Indicates Correct Answer</p>
                     </div>
                 }
             </div>
-            <div id="edit-question-grid">
+            <div id="edit-question-grid" style="grid-template-rows:repeat(@Model.Question.Options.Count(), 100px)">
                 @{int i = 1;} 
-                @foreach (var option in Model.Question.Options)
+                @if (Model.Question.Options != null)
                 {
-                    <div class="list-number">@i</div>
-                    <div class="question-name-bar">@option</div>
-                    @if (Model.Question.Type != "R") //AND THIS OPTION IS "CORRECT"
+                    @foreach (var option in Model.Question.Options)
                     {
-                        <div class="empty-circle"></div>
-                    } else
-                    {
-                        <div></div>
+                        <div id ="ln-@option.Id" class="list-number">@i</div>
+                        <textarea id="qnb-@option.Id" class="question-name-bar">@option.Name</textarea>
+                        @if (Model.Question.Type != "R")
+                        {
+                            <div id="circle-@option.Id" class="@option.GetRed()" onclick="redCircle(this)"></div>
+                        }
+                        else
+                        {
+                            <div id="circle-@option.Id"></div>
+                        }
+                        @if (Model.Question.Type != "TF")
+                        {
+                            <div id="bd-@option.Id" class="btn-delete" onclick="deleteOption(@option.Id)">
+                                <img class="img-btn-delete" src="/images/trash.png" />
+                            </div>
+                        }
+                        else
+                        {
+                            <div id="bd-@option.Id"></div>
+                        }
+                        i++;
                     }
-                    @if (Model.Question.Type != "TF")
-                    {
-                        <div class="btn-delete">
-                            <img class="img-btn-delete" src="/images/copy.png" />
-                        </div>
-                    } else
-                    {
-                        <div></div>
-                    }
-                    i++;
                 }
+                
             </div>
         }
     </div>
 
-    <div class="button-bar-2">
-        <button class="btn-blue-white" onclick="returnToEditSet(@Model.UserId, @Model.RoomId, @Model.SetId)">Cancel</button>
+    <div class="button-bar-3">
+        <button onclick="openEditSet(@Model.UserId, @Model.RoomId, @Model.SetId)">Exit</button>
         <button class="btn-green" onclick="saveQuestionEdits()">Save</button>
     </div>
 </body>

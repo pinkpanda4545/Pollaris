@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "65PDBEukYrugZWKiZbxTh5ULPGxmxx0yod/JBzMEuoZ1Oxx8Sr6ADSCSMw0gF1fRgg6XjPyV4JuXMGGefFWzNQ==",
+  "dgSpecHash": "/jWtrsguEGJHadtVHJw9SvYY3tyCQFG8zXQlUkDBlkYrbHdSTWsISUDENATaQAR/kSMmoW2spOt5tO70KswIBA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\pinkp\\OneDrive - University of Nebraska-Lincoln\\Semester 4 (Spring 2023)\\Software Engineering IV\\pollaris-v4\\Pollaris\\Pollaris.csproj",
+  "projectFilePath": "C:\\Users\\pinkp\\OneDrive - University of Nebraska-Lincoln\\Semester 4 (Spring 2023)\\Software Engineering IV\\Pollaris\\Pollaris\\Pollaris.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pinkp\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\pinkp\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

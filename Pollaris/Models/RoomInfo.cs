@@ -7,6 +7,7 @@
             Name = name;
             Instructor = instructor;
             Id = id;
+            Code = "A45-BH9";
             UserType = userType;
             Sets = new List<SetInfo>(); 
         }
@@ -16,6 +17,7 @@
             Name = name;
             Instructor = instructor;
             Id = id;
+            Code = "A45-BH9";
             UserType = userType;
             Sets = sets;
         }
@@ -24,6 +26,7 @@
         public string Instructor { get; set; }
         public int Id { get; set; }
         public string UserType { get; set; }
+        public string Code { get; set; }
         public List<SetInfo> Sets { get; set; }
     }
 }

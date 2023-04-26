@@ -13,3 +13,11 @@
     margin-right: 50px;
 }
 
+#invalid-login {
+    padding: 40px;
+    color: red;
+}
+
+.invalid-creation {
+    color: red;
+}

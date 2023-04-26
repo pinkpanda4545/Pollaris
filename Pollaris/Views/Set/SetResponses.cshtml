@@ -1,5 +1,4 @@
 ﻿@model Pollaris.Models.SetResponsesInfo
-
 <html>
 <body>
     <div id="set-responses-header">
@@ -17,11 +16,14 @@
     </div>
 
     <div id="set-responses-body">
-        <h2 style="text-align: center">Student Responses</h2>
+        <h2 class="text-center">Student Responses</h2>
         <grid id="set-responses-grid">
-            @foreach (var response in Model.Responses)
+            @if (Model.Responses != null)
             {
-                <div class="student-response">@response.Response</div>
+                @foreach (var response in Model.Responses)
+                {
+                    <div class="student-response">@response.Response</div>
+                }
             }
         </grid>
     </div>

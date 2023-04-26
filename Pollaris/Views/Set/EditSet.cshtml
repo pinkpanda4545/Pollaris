@@ -1,41 +1,55 @@
 ﻿@model Pollaris.Models.EditSetInfo
-
 <html>
     <body>
-        <navbar style="margin-top: 0px">
+        <navbar>
             <div class="green-bar"></div>
             <div class="navbar-body">
-                <h1>[ROOM NAME] - Set Name: @Model.SetName</h1>
-                <button id="btn-change-set-name">Change Name</button>
-            </div>
+                <h1 id="h1-set-name">@Model.RoomName - @Model.SetName</h1>
+                <textarea id="txtarea-change-set-name"></textarea>
+            <button id="btn-change-name" class="btn-change-set-name" onclick="changeName('@Model.RoomName', '@Model.SetName')">Change Name</button>
+            <button id="btn-submit-name" class="btn-change-set-name" onclick="submitNewName('@Model.RoomName')">Submit</button>
+        </div>
         </navbar>
 
         <div id="edit-set-body">
-            <h2 style="margin-left: 25px">QUESTIONS</h2>
-            <div id="questions-list">
+            <div id="delete-set-popup">
+                <p class="p-delete-set">Are you sure you want to delete this set?</p>
+                <p class="p-delete-set">This will permanently remove the set and all questions within.</p>
+                <div class="d-flex flex-row justify-content-center">
+                    <button type="reset" onclick="closeDeleteSetPopup()">Cancel</button>
+                    <button onclick="deleteSet(@Model.UserId, @Model.RoomId, @Model.SetId)">Delete Set</button>
+                </div>
+            </div>
+            <div id="edit-set-body-subheader">
+                <h2 class="h2-left">QUESTIONS</h2>
+                <button class="btn-medium" onclick="deleteSetPopup()">Delete Set</button>
+            </div>
             @if (Model.Questions != null)
             {
-                int i = 1;
-                @foreach (var question in Model.Questions)
-                {
-                    <div class="list-number">@i</div>
-                    <div class="question-name-bar">@question.Question</div>
-                    <div class="question-type">@question.Type</div>
-                    <button class="btn-small">EDIT</button>
-                    <div class="btn-delete">
-                        <img class="img-btn-delete" src="/images/copy.png" />
-                    </div>            
-                    i++;
-                }
+                <div id="questions-list" style="grid-template-rows:repeat(@Model.Questions.Count(), 100px)">
+                    @if (Model.Questions != null)
+                    {
+                        int i = 1;
+                        @foreach (var question in Model.Questions)
+                        {
+                            <div id="ln-@question.Id" class="list-number">@i</div>
+                            <div id="qnb-@question.Id" class="question-name-bar">@question.Question</div>
+                            <div id="qt-@question.Id" class="question-type">@question.Type</div>
+                            <button id="bs-@question.Id" class="btn-small m-0" onclick="openEditQuestion(@Model.UserId, @Model.RoomId, @Model.SetId, @question.Id)">EDIT</button>
+                            <div id="bd-@question.Id" class="btn-delete" onclick="deleteQuestionLocal(@question.Id)">
+                                <img class="img-btn-delete" src="/images/trash.png" />
+                            </div>
+                            i++;
+                        }
+                    }
+                </div>
             }
-            </div>
         </div>
 
         <div class="button-bar-3">
-                <button onclick="exitToRoomDashboard(@Model.UserId, @Model.RoomId)">Exit</button>
-                <div style="display: flex; flex-direction: row">
+                <button onclick="openRoomDashboard(@Model.UserId, @Model.RoomId)">Exit</button>
+                <div class="d-flex flex-row">
                     <button class="btn-wide" onclick="openCreateQuestion(@Model.UserId, @Model.RoomId, @Model.SetId)">Add Question</button>
-                    <button class="btn-blue-white" onclick="cancelSetEdits()">Cancel</button>
                     <button class="btn-green" onclick="saveSetEdits(@Model.UserId, @Model.RoomId, @Model.SetId)">Save</button>
                 </div>
         </div>

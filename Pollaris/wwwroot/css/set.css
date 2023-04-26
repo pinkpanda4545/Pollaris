@@ -1,13 +1,16 @@
 ﻿#edit-set-body {
     height: 70%;
     padding: 20px;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between;
 }
 
 #questions-list {
     width: 100%;
-    height: 60vh;
+    height: 58vh;
     display: grid;
-    grid-template-columns: 100px 75% 3% 5% auto;
+    grid-template-columns: 100px auto 40px 100px 80px;
     grid-column-gap: 10px;
     grid-row-gap: 20px;
     align-items: center;
@@ -16,7 +19,7 @@
 
 .list-number {
     width: 80%;
-    height: 90%;
+    height: 90px;
     align-self: center;
     background-color: #386150;
     border-radius: 20px; 
@@ -29,7 +32,7 @@
 }
 
 .question-name-bar {
-    height: 75%;
+    height: 75px;
     background-color: #D9D9D9;
     border-radius: 10px;
     color: #1B264F;
@@ -43,10 +46,43 @@
 
 .question-type {
     color: white;
-    padding: 10px;
     align-self: center;
     font-size: 24px;
     text-align: center;
+}
+
+#btn-delete-set {
+    align-self: flex-end;
+}
+
+#edit-set-body-subheader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.h2-left {
+    margin-left: 25px;
+}
+
+#delete-set-popup {
+    height: 50vh;
+    width: 30vw;
+    display: none;
+    flex-direction: column;
+    justify-content: space-around; 
+    position: fixed;
+    top: 25vh;
+    left: 35vw;
+    background-color: #1b264f; 
+    border: 5px black solid; 
+}
+
+.p-delete-set {
+    padding: 10px 40px;
+    font-size: 36px;
+    text-align: center;
+    color: white;
 }
 
 
@@ -99,4 +135,19 @@
     grid-row-gap: 15px;
     justify-items: center;
     overflow-y: scroll;
+}
+
+#h1-set-name {
+    font-size: 48px;
+}
+
+#txtarea-change-set-name {
+    height: 75%;
+    margin-left: 20px;
+    display: none;
+    font-size: 36px;
+}
+
+#btn-submit-name {
+    display: none; 
 }

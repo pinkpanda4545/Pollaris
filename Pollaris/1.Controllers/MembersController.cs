@@ -7,6 +7,23 @@ namespace Pollaris.Controllers
 {
     public class MembersController : Controller
     {
+        [HttpPost]
+        [Route("/Members/SaveProfileInformation")]
+        public IActionResult SaveProfileInformation(string firstName, string lastName)
+        {
+            //Save the first and last name to the database. 
+            return new JsonResult(true); 
+        }
+
+        [HttpPost]
+        [Route("/Members/ValidateAndSavePassword")]
+        public IActionResult ValidateAndSavePassword(int userId, string oldPassword, string newPassword, string newPassword2)
+        {
+            //Validate that the password matches the user id
+            //Validate that the newPassword and newPassword2 are the same
+            //Save it to the database
+            return new JsonResult(true);
+        }
 
         // Will take in information to edit profile and saves in database
         // Return true if successful, else false

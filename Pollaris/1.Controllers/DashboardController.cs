@@ -14,23 +14,24 @@ namespace Pollaris.Controllers
         {
             RoomManager rM = new RoomManager(); 
             List<RoomInfo> rooms = rM.GetRooms(userId);
-            DashboardInfo dbModel = new DashboardInfo(userId, rooms); 
-            return View(dbModel);
+
+            DashboardInfo model = new DashboardInfo(userId, rooms); 
+            return View(model);
         }
 
         [HttpGet]
         [Route("/Dashboard/RoomDashboard")]
-        public IActionResult RoomDashboard(int userId, int roomId, string roomName)
+        public IActionResult RoomDashboard(int userId, int roomId)
         {
-            //ROOM NAME SHOULD NOT BE A PARAMETER. WHEN THE DB IS SETUP, IT SHOULD COME FROM THAT
+            //Need to put RoomName and UserType in the model!!
             RoomManager rM = new RoomManager();
             SetManager sM = new SetManager(); 
             List<SetInfo> sets = sM.GetSets(roomId);
-            RoomInfo room = rM.GetRoomFromId(roomId, roomName);
+            RoomInfo room = rM.GetRoomFromId(roomId);
             room.Sets = sets;
-            RoomDashboardInfo roomDashboardModel = new RoomDashboardInfo(userId, room); 
 
-            return View(roomDashboardModel);
+            RoomDashboardInfo model = new RoomDashboardInfo(userId, room); 
+            return View(model);
         }
     }
 }

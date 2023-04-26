@@ -1,11 +1,9 @@
 ﻿@model Pollaris.Models.UserId
-<!DOCTYPE html>
-
 <html>
 <body>
     <navbar>
         <div class="green-bar"></div>
-        <div class="navbar-body" style="justify-content: space-between !important">
+        <div class="navbar-body justify-content-between">
             <h1>Join Room</h1>
         </div>
     </navbar>
@@ -19,7 +17,7 @@
     </div>
 
     <div class="button-bar-1">
-        <button onclick="joinRoomExit(@Model.Id)">Exit</button>
+        <button onclick="openUserDashboard(@Model.Id)">Exit</button>
     </div>
 </body>
 </html>

@@ -1,8 +1,5 @@
 ﻿@model Pollaris.Models.UserId
-<!DOCTYPE html>
-
 <html>
-
 <body>
     <navbar>
         <div class="green-bar"></div>
@@ -14,16 +11,12 @@
     <div class="room-body">
         <form>
             <input type="text" id="name" class="create-room-input" placeholder="Room Name" /><br />
-            <div class="copy-button-adjustment">
-                <input type="text" id="code" class="create-room-input" placeholder="Room Code" style="margin-left: 110px"/>
-                <img id="copy-button" onclick="copyClipboard()" src="/images/copy.png" />
-            </div><br />
             <button type="reset" onclick="createRoomSubmit(@Model.Id)">Create Room</button>
         </form>
     </div>
 
     <div class="button-bar-1">
-        <button onclick="exitCreateRoom(@Model.Id)">Exit</button>
+        <button onclick="openUserDashboard(@Model.Id)">Exit</button>
     </div>
 </body>
 </html>

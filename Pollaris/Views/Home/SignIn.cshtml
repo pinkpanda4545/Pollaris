@@ -1,17 +1,14 @@
 ﻿@model Pollaris.Models.SignInInfo
-<!DOCTYPE html>
-
 <html>
 <body>
     <div class="opening-page">
         <img class="logo" src="/images/logo.png" />
-
-        <form id="sign-in-form">
+        <form id="sign-in-form" style="border:@Model.GetBorder()">
             <input type="text" id="email" class="input-blue-white" placeholder="Email" /><br />
             <input type="text" id="password" class="input-blue-white" placeholder="Password" /><br />
             <button type="reset" class="btn-small" onclick="signInSubmit()">Sign In</button>
         </form>
-
+        <div id="invalid-login" style="display:@Model.GetDisplay()">Invalid Email/Password combination. Please try again or <b>Sign Up</b> below.</div>
         <p><b>Don't have an account? Sign up
            <a asp-action="SignUp" asp-controller="Home">here</a>.
          </b></p>

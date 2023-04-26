@@ -40,7 +40,7 @@ h3 {
 }
 
 form {
-    margin: 25px;
+    padding: 25px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -123,4 +123,20 @@ navbar {
     border-color: white;
     background-color: #1b264f;
     font-size: 18px;
+}
+
+.grey {
+    background-color: #757575 !important;
+}
+
+.light-green {
+    background-color: #98CBB4 !important;
+}
+
+.dark-green {
+    background-color: #386150 !important;
+}
+
+.red {
+    background-color: #FB3640 !important;
 }

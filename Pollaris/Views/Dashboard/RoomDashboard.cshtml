@@ -4,8 +4,8 @@
 <body>
     <navbar>
         <div class="green-bar"></div>
-        <div class="navbar-body" style="justify-content: space-between !important">
-            <h1>Room Dashboard</h1><h3>@Model.Room.Name</h3>
+        <div class="navbar-body justify-content-between">
+            <h1>@Model.Room.Name</h1><h3>Join Code: @Model.Room.Code</h3>
         </div>
     </navbar>
 
@@ -17,38 +17,38 @@
             @foreach (var set in Model.Room.Sets)
             {
                 <div class="room-dashboard-set">
-                    <h3 style="margin-top: 20px">@Html.DisplayFor(modelItem => set.Name)</h3>
+                    <h3 class="mt-lg-4">@Html.DisplayFor(modelItem => set.Name)</h3>
                     @if (set.Status == "Launch")
                     {
                         if (Model.Room.UserType == "TA")
                         {
-                            <button disabled class="room-dashboard-set-button" style="background-color: #757575">Launch</button>
+                            <button disabled class="room-dashboard-set-button grey">Launch</button>
                         }
                         else
                         {
-                            <button class="room-dashboard-set-button" style="background-color: #386150" onclick="openSetResponses(@Model.UserId, @Model.Room.Id, @set.Id)">Launch</button>
+                            <button class="room-dashboard-set-button dark-green" onclick="launchSet(@Model.UserId, @Model.Room.Id, @set.Id)">Launch</button>
                         }
                     }
-                    else if (set.Status == "Continue" || set.Status == "Reset")
+                    else if (set.Status == "Continue")
                     {
-                        <button class="room-dashboard-set-button" style="background-color: #FB3640">@set.Status</button>
+                        <button class="room-dashboard-set-button red" onclick="continueSet(@Model.UserId, @Model.Room.Id, @set.Id)">@set.Status</button>
                     }
-                    else
+                    else if (set.Status == "Reset")
                     {
-                        //Error
+                        <button class="room-dashboard-set-button red" onclick="resetSet(@Model.UserId, @Model.Room.Id, @set.Id)">@set.Status</button>
                     }
-                    <button class="room-dashboard-set-button" onclick="editSet(@Model.UserId, @Model.Room.Id, @set.Id, '@set.Name')">Edit</button>
-                    <button class="room-dashboard-set-button" onclick="">Export</button>
+                    <button class="room-dashboard-set-button" onclick="openEditSet(@Model.UserId, @Model.Room.Id, @set.Id)">Edit</button>
+                    <button class="room-dashboard-set-button" onclick="exportCSV(@Model.UserId, @Model.Room.Id, @set.Id)">Export</button>
                 </div>
             }
         </grid>
     </div>
 
     <div class="button-bar-3">
-        <button onclick="returnToUserDashboard(@Model.UserId)">Exit</button>
+        <button onclick="openUserDashboard(@Model.UserId)">Exit</button>
         <div>
-            <button onclick="">Create Set</button>
-            <button onclick="roomMembers(@Model.UserId, @Model.Room.Id)">Members</button>
+            <button onclick="createSet(@Model.UserId, @Model.Room.Id)">Create Set</button>
+            <button onclick="openMemberList(@Model.UserId, @Model.Room.Id)">Members</button>
         </div>
     </div>
 </body>
