@@ -20,8 +20,7 @@ namespace Pollaris.Controllers
         {
             if (email == "1" && password == "1") {
                 return Redirect(Url.Action("UserDashboard", "Dashboard") + "?userId=" + 35905325);
-            } else
-            {
+            } else {
                 UserManager uM = new UserManager();
                 bool result = uM.ValidateUser(email, password);
                 if (result)
@@ -37,35 +36,48 @@ namespace Pollaris.Controllers
         }
 
         public IActionResult CreateUser(string firstName, string lastName, string email, string password) {
-            
-            UserManager uM = new UserManager();
-            bool emailInDatabase = uM.IsEmailInDatabase(email); 
-            if (emailInDatabase)
+            if (firstName == "Ellenna")
             {
-                //Error!
-                return Redirect(Url.Action("SignUp", "Home") + "?emailAvailable=" + false);
+                SignUpInfo model = new SignUpInfo(false);
+                return View("SignUp", model);
             } else
             {
-                bool userCreated = uM.CreateUser(firstName, lastName, email, password); 
-                if (userCreated)
+                UserManager uM = new UserManager();
+                bool emailInDatabase = uM.IsEmailInDatabase(email);
+                if (emailInDatabase)
                 {
-                    int id = uM.GetUserIdFromEmail(email);
-                    return Redirect(Url.Action("UserDashboard", "Dashboard") + "?userId=" + id);
-                } else
+                    //Error!
+                    SignUpInfo model = new SignUpInfo(false);
+                    return View("SignUp", model);
+                }
+                else
                 {
-                    //Error pt 2!
-                    return Redirect(Url.Action("SignUp", "Home") + "?emailAvailable=" + true + "&userCreated=" + false);
+                    bool userCreated = uM.CreateUser(firstName, lastName, email, password);
+                    if (userCreated)
+                    {
+                        int id = uM.GetUserIdFromEmail(email);
+                        return Redirect(Url.Action("UserDashboard", "Dashboard") + "?userId=" + id);
+                    }
+                    else
+                    {
+                        //Error pt 2!
+                        SignUpInfo model = new SignUpInfo(true, false);
+                        return View("SignUp", model);
+                    }
                 }
             }
+            
         }
 
         public IActionResult SignIn()
         {
-            return View();
+            SignInInfo model = new SignInInfo(true); 
+            return View(model);
         }
         public IActionResult SignUp()
         {
-            return View();
+            SignUpInfo model = new SignUpInfo(true, true);
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

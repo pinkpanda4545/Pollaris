@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\pinkp\\OneDrive - University of Nebraska-Lincoln\\Semester 4 (Spring 2023)\\Software Engineering IV\\pollaris-v4\\Pollaris\\Pollaris.csproj": {}
+    "C:\\Users\\pinkp\\OneDrive - University of Nebraska-Lincoln\\Semester 4 (Spring 2023)\\Software Engineering IV\\Pollaris\\Pollaris\\Pollaris.csproj": {}
   },
   "projects": {
-    "C:\\Users\\pinkp\\OneDrive - University of Nebraska-Lincoln\\Semester 4 (Spring 2023)\\Software Engineering IV\\pollaris-v4\\Pollaris\\Pollaris.csproj": {
+    "C:\\Users\\pinkp\\OneDrive - University of Nebraska-Lincoln\\Semester 4 (Spring 2023)\\Software Engineering IV\\Pollaris\\Pollaris\\Pollaris.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pinkp\\OneDrive - University of Nebraska-Lincoln\\Semester 4 (Spring 2023)\\Software Engineering IV\\pollaris-v4\\Pollaris\\Pollaris.csproj",
+        "projectUniqueName": "C:\\Users\\pinkp\\OneDrive - University of Nebraska-Lincoln\\Semester 4 (Spring 2023)\\Software Engineering IV\\Pollaris\\Pollaris\\Pollaris.csproj",
         "projectName": "Pollaris",
-        "projectPath": "C:\\Users\\pinkp\\OneDrive - University of Nebraska-Lincoln\\Semester 4 (Spring 2023)\\Software Engineering IV\\pollaris-v4\\Pollaris\\Pollaris.csproj",
+        "projectPath": "C:\\Users\\pinkp\\OneDrive - University of Nebraska-Lincoln\\Semester 4 (Spring 2023)\\Software Engineering IV\\Pollaris\\Pollaris\\Pollaris.csproj",
         "packagesPath": "C:\\Users\\pinkp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pinkp\\OneDrive - University of Nebraska-Lincoln\\Semester 4 (Spring 2023)\\Software Engineering IV\\pollaris-v4\\Pollaris\\obj\\",
+        "outputPath": "C:\\Users\\pinkp\\OneDrive - University of Nebraska-Lincoln\\Semester 4 (Spring 2023)\\Software Engineering IV\\Pollaris\\Pollaris\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

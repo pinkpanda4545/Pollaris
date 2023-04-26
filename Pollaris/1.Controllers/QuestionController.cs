@@ -33,16 +33,24 @@ namespace Pollaris.Controllers
             question.IsGraded = true;
             if (type != "SA")
             {
-                List<string> options = new List<string> { "A", "B", "C", "D" };
+                List<OptionInfo> options = new List<OptionInfo>();
+                options.Add(new OptionInfo(1, "A", false));
+                options.Add(new OptionInfo(2,"B", false));
+                options.Add(new OptionInfo(3, "C", true));
+                options.Add(new OptionInfo(4, "D", false));
                 question.Options = options;
             }
             EditQuestionInfo model = new EditQuestionInfo(userId, roomId, setId, question);
          
             return View("EditQuestion", model);
         }
+
         public IActionResult EditQuestion(int userId, int roomId, int setId, int questionId)
         {
-            return View();
+            QuestionManager qM = new QuestionManager();
+            QuestionInfo question = qM.GetQuestionFromId(questionId); 
+            EditQuestionInfo model = new EditQuestionInfo(userId, roomId, setId, question);
+            return View(model);
         }
 
     }

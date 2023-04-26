@@ -20,10 +20,9 @@ namespace Pollaris.Managers
 
             return rooms;
         }
-        public RoomInfo GetRoomFromId(int roomId, string roomName)
+        public RoomInfo GetRoomFromId(int roomId)
         {
-            //ROOM NAME SHOULD NOT BE A PARAM!!
-            return new RoomInfo(roomName, "ABC", roomId, "Student");
+            return new RoomInfo("Room Name Here", "ABC", roomId, "Student");
         }
     }
 }

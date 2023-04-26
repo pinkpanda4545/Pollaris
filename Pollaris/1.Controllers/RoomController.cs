@@ -14,11 +14,12 @@ namespace Pollaris.Controllers
             return Redirect(Url.Action("UserDashboard", "Dashboard") + "?userId=" + userId); 
         }
 
-        public IActionResult CreateRoomSubmit(int userId, string roomName, string roomCode)
+        public IActionResult CreateRoomSubmit(int userId, string roomName)
 
         {
             //go make the room in the sql
             //make the userId the instructor
+            //roomCode generation
 
             return Redirect(Url.Action("UserDashboard", "Dashboard") + "?userId=" + userId);
         }

@@ -10,7 +10,7 @@
 
     <div id="create-question-body">
         <div id="create-question-box">
-            <h3 style="padding: 60px">What type of question would you like to create?</h3>
+            <h3 class="p-lg-5">What type of question would you like to create?</h3>
             <grid id="grid-create-question">
                 <button class="btn-blue-small" onclick="createQuestion(@Model.UserId, @Model.RoomId, @Model.SetId, 'MC')">Multiple Choice</button>
                 <button class="btn-blue-small" onclick="createQuestion(@Model.UserId, @Model.RoomId, @Model.SetId, 'TF')">True/False</button>
@@ -21,7 +21,7 @@
     </div>
 
     <div class="button-bar-1">
-        <button class="btn-exit" onclick="returnToEditSet(@Model.UserId, @Model.RoomId, @Model.SetId)">Exit</button>
+        <button class="btn-exit" onclick="openEditSet(@Model.UserId, @Model.RoomId, @Model.SetId)">Exit</button>
     </div>
 </body>
 </html>

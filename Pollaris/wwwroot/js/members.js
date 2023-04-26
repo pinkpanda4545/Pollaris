@@ -1,4 +1,5 @@
-﻿function changePassword() {
+﻿//Edit Profile
+function changePassword() {
     $("#change-password-popup").css("display", "flex");
 }
 
@@ -10,10 +11,6 @@ function changeImage() {
 
 }
 
-function editProfileCancel(userId) {
-    window.location = "/Dashboard/UserDashboard?userId=" + userId;
-}
-
 function editProfileSave(userId) {
     firstName = $("#edit-profile-first-name").val();
     lastName = $("#edit-profile-last-name").val();
@@ -21,33 +18,58 @@ function editProfileSave(userId) {
     var datastring = { firstName: firstName, lastName: lastName };
 
     $.ajax({
-        url: "/Members/EditProfile",
+        url: "/Members/SaveProfileInformation",
         method: "POST",
         data: datastring
     })
         .done(function (result) {
             if (result) {
-                window.location = "/Dashboard/UserDashboard";
+                window.location = "/Dashboard/UserDashboard?userId=" + userId;
             }
         })
         .fail(function () {
-            alert('ERROR - members.js, editProfileSave');
+            alert('ERROR - members.js, saveProfileInformation');
         });
 }
 
+function savePassword(userId) { 
+    oldPassword = $("#old-password").val();
+    newPassword = $("#new-password").val();
+    newPasswordRepeat = $("#new-password-repeat").val();
 
-function goToMemberPermissions(userId, roomId, memberId) {
+    var datastring = { userId: userId, oldPassword: oldPassword, newPassword: newPassword, newPassword2: newPasswordRepeat };
+
+    $.ajax({
+        url: "/Members/ValidateAndSavePassword",
+        method: "POST",
+        data: datastring
+    })
+        .done(function (result) {
+            if (result) {
+                closeChangePassword(); 
+            }
+        })
+        .fail(function () {
+            alert('ERROR - members.js, savePassword');
+        });
+}
+
+//MemberList
+
+function openMemberPermissions(userId, roomId, memberId) {
     window.location = "/Members/MemberPermissions?userId=" + userId + "&roomId=" + roomId + "&memberId=" + memberId;
 }
 
-function makeMemberTA() {
+//MemberPermissions
+
+function makeMemberTA(userId, roomId, memberId) {
     //member controller
 }
 
-function removeTA() {
+function removeTA(userId, roomId, memberId) {
     //member controller
 }
 
-function kick() {
+function kick(userId, roomId, memberId) {
     //member controller
 }

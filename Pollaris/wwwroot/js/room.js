@@ -1,21 +1,13 @@
-﻿// called when user pressed JoinRoom 
+﻿//JoinRoom 
 function joinRoomSubmit(userId) {
     roomCode = $("#join-room-code").val();
     window.location = "/Room/JoinRoomSubmit?userId=" + userId + "&roomCode=" + roomCode; 
 }
 
-function joinRoomExit(userId) {
-    window.location = "/Dashboard/UserDashboard?userId=" + userId;
-}
-
+//Create Room
 function createRoomSubmit(userId) {
     roomName = $("#name").val();
-    roomCode = $("#code").val();
-    window.location = "/Room/CreateRoomSubmit?userId=" + userId + "&roomName=" + roomName + "&roomCode=" + roomCode;
-}
-
-function exitCreateRoom(userId) {
-    window.location = "/Dashboard/UserDashboard?userId=" + userId;
+    window.location = "/Room/CreateRoomSubmit?userId=" + userId + "&roomName=" + roomName;
 }
 
 function copyClipboard() {

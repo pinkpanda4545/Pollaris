@@ -2,7 +2,7 @@
 {
     public class QuestionInfo
     {
-        public QuestionInfo(int id, string question, string type, List<string> options, bool isActive)
+        public QuestionInfo(int id, string question, string type, List<OptionInfo> options, bool isActive)
         {
             Id = id;
             Question = question;
@@ -11,7 +11,7 @@
             Options = options; 
         }
 
-        public QuestionInfo(int id, string question, string type, List<string> options) 
+        public QuestionInfo(int id, string question, string type, List<OptionInfo> options) 
         { 
             Id = id;
             Question = question;
@@ -42,6 +42,6 @@
         public bool IsActive { get; set; }
         public bool IsGraded { get; set; }
         public bool IsAnonymous { get; set; }
-        public List<string>? Options { get; set; }
+        public List<OptionInfo>? Options { get; set; }
     }
 }
