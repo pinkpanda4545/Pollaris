@@ -53,5 +53,31 @@ namespace Pollaris.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        [Route("/Question/SubmitStudentAnswer")]
+        public bool SubmitStudentAnswer(int userId, int roomId, int setId, int questionId, List<string> answers)
+        {
+            UserManager uM = new UserManager(); 
+            if (uM.ValidateStudentUser(userId, roomId))
+            {
+                QuestionManager qM = new QuestionManager();
+                QuestionInfo question = qM.GetQuestionFromIds(roomId, setId, questionId);
+                if (question == null) return false;
+                return qM.SubmitAnswer(userId, roomId, setId, question, answers);
+            }
+            return false; 
+
+            //Tests: 
+            //QuestionId == question.Id
+            //UserId != room.OwnerId
+            //if userId == room.OwnerId, this returns false
+            //answers != null
+            //answer.Count > 0
+            //userId, roomId, setId != null
+            //userId, roomId, setId in database
+            //setId in room.Sets.id
+            //questionId in set.Questions.id
+            //if question can't be found, this returns false
+        }
     }
 }

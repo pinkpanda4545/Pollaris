@@ -11,13 +11,37 @@ function chooseTF(bool) {
 }
 
 function chooseMC(optionName) {
-    $("#" + optionName).parent().children().removeClass("dark-greenn");
+    $("#" + optionName).parent().children().removeClass("dark-green");
     $("#" + optionName).addClass("dark-green");  
 }
 
-function answerQuestionSubmit() {
-    //Take all the information and do something with it. 
-    //Switch questions when done. 
+function answerQuestionSubmit(userId, roomId, setId, questionId, questionType) {
+    answers = []
+    if (questionType == "MC") {
+        answers = $("#grid-mc").children(".dark-green").val();
+    } else if (questionType == "TF") {
+        answers = $("#div-tf-container").children(".dark-green").val();
+    } else if (questionType == "R") {
+        answers = $("#grid-ranking").children().val(); 
+    } else {
+        answers = $("#div-sa").val();
+    }
+
+    var datastring = { userId: userId, roomId: roomId, setId: setId, questionId: questionId, answers: answers };
+
+    $.ajax({
+        url: "/Question/SubmitStudentAnswer",
+        method: "POST",
+        data: datastring
+    })
+        .done(function (result) {
+            if (result) {
+                //????
+            }
+        })
+        .fail(function () {
+            alert('ERROR - question.js, answerQuestionSubmit');
+        });
 }
 
 function allowDrop(ev) {

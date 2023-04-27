@@ -1,4 +1,6 @@
-﻿using Pollaris.Models;
+﻿using Microsoft.Extensions.Options;
+using Pollaris._3.Accessors;
+using Pollaris.Models;
 using System.Diagnostics;
 
 namespace Pollaris.Managers
@@ -16,8 +18,8 @@ namespace Pollaris.Managers
             options.Add(new OptionInfo(4, "D", false));
 
             List<OptionInfo> options2 = new List<OptionInfo>();
-            options.Add(new OptionInfo(1, "True", false));
-            options.Add(new OptionInfo(2, "False", true));
+            options2.Add(new OptionInfo(1, "True", false));
+            options2.Add(new OptionInfo(2, "False", true));
 
             List<QuestionInfo> questions = new List<QuestionInfo>();
             questions.Add(new QuestionInfo(1, "Describe how your day is going.", "SA"));
@@ -53,8 +55,8 @@ namespace Pollaris.Managers
             options.Add(new OptionInfo(4, "D", false));
 
             List<OptionInfo> options2 = new List<OptionInfo>();
-            options.Add(new OptionInfo(1, "True", false));
-            options.Add(new OptionInfo(2, "False", true));
+            options2.Add(new OptionInfo(1, "True", false));
+            options2.Add(new OptionInfo(2, "False", true));
 
             List<QuestionInfo> questions = new List<QuestionInfo>();
             questions.Add(new QuestionInfo(1, "Describe how your day is going.", "SA", true));
@@ -99,8 +101,46 @@ namespace Pollaris.Managers
             options.Add(new OptionInfo(2, "B", true));
             options.Add(new OptionInfo(3, "C", false));
             options.Add(new OptionInfo(4, "D", false));
-            QuestionInfo q = new QuestionInfo(questionId, "Dummy SA question here.", "MC", options);
+            QuestionInfo q = new QuestionInfo(questionId, "Dummy question here.", "MC", options);
             return q; 
+        }
+
+        public QuestionInfo GetQuestionFromIds(int roomId, int setId, int questionId)
+        {
+            List<OptionInfo> options = new List<OptionInfo>();
+            options.Add(new OptionInfo(1, "A", false));
+            options.Add(new OptionInfo(2, "B", true));
+            options.Add(new OptionInfo(3, "C", false));
+            options.Add(new OptionInfo(4, "D", false));
+            QuestionInfo q = new QuestionInfo(questionId, "Dummy question here.", "MC", options);
+            return q; 
+        }
+
+        public bool SubmitAnswer(int userId, int roomId, int setId, QuestionInfo question, List<string> answers)
+        {
+            SQLAccessor sql = new SQLAccessor(); 
+            if (question.IsGraded)
+            {
+                List<string> correctAnswers = sql.GetAnswers(roomId, setId, question.Id);
+                if (correctAnswers == answers)
+                {
+                    //student answered correctly
+                    sql.SubmitStudentAnswer(userId, roomId, setId, question.Id, true);
+                    return true;
+                }
+                else
+                {
+                    //student answered incorrectly
+                    sql.SubmitStudentAnswer(userId, roomId, setId, question.Id, false);
+                    return false;
+                }
+            }
+            else
+            {
+                //not graded
+                sql.SubmitStudentAnswer(userId, roomId, setId, question.Id); 
+                return true;
+            }
         }
     }
 }

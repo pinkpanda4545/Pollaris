@@ -12,6 +12,16 @@
             Sets = new List<SetInfo>(); 
         }
 
+        public RoomInfo(int id, string name, int ownerId, string code)
+        {
+            Id = id; 
+            Name = name;
+            Instructor = ownerId.ToString();
+            UserType = "Instructor";
+            Code = code;
+            Sets = new List<SetInfo>();
+        }
+
         public RoomInfo(string name, string instructor, int id, string userType, List<SetInfo> sets)
         {
             Name = name;

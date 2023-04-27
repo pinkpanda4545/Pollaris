@@ -63,5 +63,20 @@ namespace Pollaris.Managers
         {
             return new UserInfo(6, "M", "Ryan", "Bockmon", "/images/profile-photo.jpg");
         }
+
+        public bool ValidateStudentUser(int userId, int roomId)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            RoomInfo room = sql.GetRoomFromId(roomId);
+
+            if (room.Id == userId) return false;
+
+            List<UserInfo> users = GetUsersInRoom(roomId); 
+            foreach (var member in users)
+            {
+                if (member.Id == userId) return true; 
+            }
+            return false; 
+        }
     }
 }

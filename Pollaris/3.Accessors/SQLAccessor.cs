@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using Pollaris.Models;
+using System.Data.SqlClient;
 
 namespace Pollaris._3.Accessors
 {
@@ -57,6 +58,26 @@ namespace Pollaris._3.Accessors
             command.Parameters.AddWithValue("@email", email);
 
             return (int)command.ExecuteScalar();
+        }
+
+        public RoomInfo GetRoomFromId(int id)
+        {
+            return new RoomInfo(id, "room name here", 1001, "ABC-123");
+        }
+
+        public List<String> GetAnswers(int roomId, int setId, int questionId)
+        {
+            return new List<String> { "A", "B", "C", "D" };
+        }
+
+        public void SubmitStudentAnswer(int userId, int roomId, int setId, int questionId, bool correct)
+        {
+
+        }
+
+        public void SubmitStudentAnswer(int userId, int roomId, int setId, int questionId)
+        {
+
         }
     }
 }
