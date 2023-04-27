@@ -2,8 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\Pollaris",
-    "\\Pollaris\\2.Managers",
-    "\\Pollaris\\3.Accessors",
+    "\\PollarisTest",
+    "\\Pollaris\\1.Controllers",
     "\\Pollaris\\Views",
     "\\Pollaris\\Views\\Dashboard",
     "\\Pollaris\\Views\\Home",
@@ -11,6 +11,6 @@
     "\\Pollaris\\wwwroot\\css",
     "\\Pollaris\\wwwroot\\js"
   ],
-  "SelectedNode": "\\Pollaris\\Pollaris.sln",
+  "SelectedNode": "\\Pollaris\\1.Controllers\\QuestionController.cs",
   "PreviewInSolutionExplorer": false
 }

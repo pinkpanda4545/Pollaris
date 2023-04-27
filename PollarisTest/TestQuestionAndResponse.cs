@@ -7,12 +7,12 @@ namespace NUnitPollarisTest
     public class TestQuestionAndResponse
     {
 
-        private QuestionManager qM;
+        private QuestionController controller;
 
         [SetUp]
         public void Setup()
         {
-            qM = new QuestionManager();
+            controller = new QuestionController();
         }
 
 
@@ -26,7 +26,6 @@ namespace NUnitPollarisTest
             int questionID = 1;
             List<string> answers = new List<string>();
             answers.Add("good");
-            QuestionController controller = new QuestionController();
             bool result = controller.SubmitStudentAnswer(userId, roomId, setId, questionID, answers);
 
             // Test
@@ -43,7 +42,6 @@ namespace NUnitPollarisTest
             int questionID = 1;
             List<string> answers = new List<string>();
             answers.Add("bad");
-            QuestionController controller = new QuestionController();
             bool result = controller.SubmitStudentAnswer(userId, roomId, setId, questionID, answers);
 
             // Test
@@ -60,7 +58,6 @@ namespace NUnitPollarisTest
             int questionID = 2;
             List<string> answers = new List<string>();
             answers.Add("B");
-            QuestionController controller = new QuestionController();
             bool result = controller.SubmitStudentAnswer(userId, roomId, setId, questionID, answers);
 
             // Test
@@ -77,7 +74,6 @@ namespace NUnitPollarisTest
             int questionID = 2;
             List<string> answers = new List<string>();
             answers.Add("A");
-            QuestionController controller = new QuestionController();
             bool result = controller.SubmitStudentAnswer(userId, roomId, setId, questionID, answers);
 
             // Test
@@ -94,7 +90,6 @@ namespace NUnitPollarisTest
             int questionID = 3;
             List<string> answers = new List<string>();
             answers.Add("False");
-            QuestionController controller = new QuestionController();
             bool result = controller.SubmitStudentAnswer(userId, roomId, setId, questionID, answers);
 
             // Test
@@ -111,7 +106,6 @@ namespace NUnitPollarisTest
             int questionID = 3;
             List<string> answers = new List<string>();
             answers.Add("True");
-            QuestionController controller = new QuestionController();
             bool result = controller.SubmitStudentAnswer(userId, roomId, setId, questionID, answers);
 
             // Test
@@ -131,7 +125,6 @@ namespace NUnitPollarisTest
             answers.Add("B");
             answers.Add("C");
             answers.Add("D");
-            QuestionController controller = new QuestionController();
             bool result = controller.SubmitStudentAnswer(userId, roomId, setId, questionID, answers);
 
             // Test
@@ -151,7 +144,6 @@ namespace NUnitPollarisTest
             answers.Add("B");
             answers.Add("C");
             answers.Add("A");
-            QuestionController controller = new QuestionController();
             bool result = controller.SubmitStudentAnswer(userId, roomId, setId, questionID, answers);
 
             // Test
@@ -168,7 +160,6 @@ namespace NUnitPollarisTest
             int questionID = 5;
             List<string> answers = new List<string>();
             answers.Add("D");
-            QuestionController controller = new QuestionController();
             bool result = controller.SubmitStudentAnswer(userId, roomId, setId, questionID, answers);
 
             // Test
@@ -185,7 +176,6 @@ namespace NUnitPollarisTest
             int questionID = 1;
             List<string> answers = new List<string>();
             answers.Add(null);
-            QuestionController controller = new QuestionController();
             bool result = controller.SubmitStudentAnswer(userId, roomId, setId, questionID, answers);
 
             // Test
@@ -202,7 +192,6 @@ namespace NUnitPollarisTest
             int questionID = 1;
             List<string> answers = new List<string>();
             answers.Add("A");
-            QuestionController controller = new QuestionController();
             bool result = controller.SubmitStudentAnswer(userId, roomId, setId, questionID, answers);
 
             // Test
