@@ -62,15 +62,13 @@ namespace Pollaris.Controllers
             {
                 QuestionManager qM = new QuestionManager();
                 QuestionInfo question = qM.GetQuestionFromIds(roomId, setId, questionId);
-                if (question == null) return false;
+                if (question == null || answers == null) return false;
                 return qM.SubmitAnswer(userId, roomId, setId, question, answers);
             }
             return false; 
 
             //Tests: 
-            //QuestionId == question.Id
             //UserId != room.OwnerId
-            //if userId == room.OwnerId, this returns false
             //answers != null
             //answer.Count > 0
             //userId, roomId, setId != null
