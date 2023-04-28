@@ -63,7 +63,7 @@ namespace Pollaris.Managers
             questions.Add(new QuestionInfo(2, "What is the color of the sun?", "MC", options));
             questions.Add(new QuestionInfo(3, "There are 7 continents on this planet.", "TF", options2));
             questions.Add(new QuestionInfo(4, "Rank the following options from the most time intensive to the least time intensive.", "R", options));
-            questions.Add(null);
+            
             staticQuestions = questions;
             return questions;
         }

@@ -183,36 +183,120 @@ namespace NUnitPollarisTest
         }
 
         [Test]
-        public void TestWhenUserIdIsTheSameAsRoomID()
-        {
-            // Setup/Execute
-            int userId = 1;
-            int roomId = 1;
-            int setId = 1;
-            int questionID = 1;
-            List<string> answers = new List<string>();
-            answers.Add("A");
-            bool result = controller.SubmitStudentAnswer(userId, roomId, setId, questionID, answers);
-
-            // Test
-            Assert.IsFalse(result, "The method did not return false when the room owner id and user id are the same.");
-        }
-
-        [Test]
         public void TestQuestionIdIsSetProperly()
         {
             // Setup/Execute
+            int roomId = 1;
+            int setId = 1;
             int questionId = 1;
-            List<OptionInfo> options = new List<OptionInfo>();
-            options.Add(new OptionInfo(1, "A", false));
-            options.Add(new OptionInfo(2, "B", true));
-            options.Add(new OptionInfo(3, "C", false));
-            options.Add(new OptionInfo(4, "D", false));
-            QuestionInfo question = new QuestionInfo(questionId, "Dummy question here.", "MC", options);
+            QuestionManager qM = new QuestionManager();
+            QuestionInfo question = qM.GetQuestionFromIds(roomId, setId, questionId);
             bool result = questionId == question.Id;
 
             // Test
             Assert.IsTrue(result, "The ID was not saved properly");
         }
+
+        [Test]
+        public void TestQuestionIsNotNull()
+        {
+            // Setup/Execute
+            int roomId = 1;
+            int setId = 1;
+            int questionId = 1;
+            QuestionManager qM = new QuestionManager();
+            QuestionInfo question = qM.GetQuestionFromIds(roomId, setId, questionId);
+            bool result = question != null; 
+
+            // Test
+            Assert.IsTrue(result, "The question returned was null");
+        }
+
+        [Test]
+        public void TestAnswersEmpty()
+        {
+            // Setup/Execute
+            int userId = 1; 
+            int roomId = 1;
+            int setId = 1;
+            int questionId = 1;
+            List<string> answers = new List<string>();
+            bool result = controller.SubmitStudentAnswer(userId, roomId, setId, questionId, answers);
+
+            // Test
+            Assert.IsFalse(result, "The method did not return false for empty answers.");
+        }
+
+        [Test]
+        public void TestAnswersNull()
+        {
+            // Setup/Execute
+            int userId = 1;
+            int roomId = 1;
+            int setId = 1;
+            int questionId = 1;
+            bool result = controller.SubmitStudentAnswer(userId, roomId, setId, questionId, null);
+
+            // Test
+            Assert.IsFalse(result, "The method did not return false for null answers.");
+        }
+
+        [Test]
+        public void TestValidateStudentUserReturnsFalseIfUserIdEqualsRoomOwnerId()
+        {
+            // Setup/Execute
+            int userId = 1001;
+            int roomId = 1;
+
+            UserManager uM = new UserManager();
+            bool result = uM.ValidateStudentUser(userId, roomId);
+
+            // Test
+            Assert.IsFalse(result, "The method did not return false when the user is the room's instructor.");
+        }
+
+        [Test]
+        public void TestValidateStudentUserReturnsTrueIfUserIdDoesntEqualRoomOwnerId()
+        {
+            // Setup/Execute
+            int userId = 1;
+            int roomId = 1;
+
+            UserManager uM = new UserManager();
+            bool result = uM.ValidateStudentUser(userId, roomId);
+
+            // Test
+            Assert.IsTrue(result, "The method did not return true when the user isn't the room's instructor.");
+        }
+
+        [Test]
+        public void TestValidateStudentUserReturnsTrueIfUserIdIsInRoomMembers()
+        {
+            // Setup/Execute
+            int userId = 1;
+            int roomId = 1;
+
+            UserManager uM = new UserManager();
+            bool result = uM.ValidateStudentUser(userId, roomId);
+
+            // Test
+            Assert.IsTrue(result, "The method did not return true when the user is in the room's member list.");
+        }
+
+        [Test]
+        public void TestValidateStudentUserReturnsFalseIfUserIdIsntInRoomMembers()
+        {
+            // Setup/Execute
+            int userId = 6;
+            int roomId = 1;
+
+            UserManager uM = new UserManager();
+            bool result = uM.ValidateStudentUser(userId, roomId);
+
+            // Test
+            Assert.IsFalse(result, "The method did not return false when the user isn't in the room's member list.");
+        }
+
+
     }
 }

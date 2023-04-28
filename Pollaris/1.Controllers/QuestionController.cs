@@ -57,6 +57,7 @@ namespace Pollaris.Controllers
         [Route("/Question/SubmitStudentAnswer")]
         public bool SubmitStudentAnswer(int userId, int roomId, int setId, int questionId, List<string> answers)
         {
+            if (answers == null || answers.Count < 1) return false; 
             UserManager uM = new UserManager(); 
             if (uM.ValidateStudentUser(userId, roomId))
             {
@@ -66,16 +67,6 @@ namespace Pollaris.Controllers
                 return qM.SubmitAnswer(userId, roomId, setId, question, answers);
             }
             return false; 
-
-            //Tests: 
-            //UserId != room.OwnerId
-            //answers != null
-            //answer.Count > 0
-            //userId, roomId, setId != null
-            //userId, roomId, setId in database
-            //setId in room.Sets.id
-            //questionId in set.Questions.id
-            //if question can't be found, this returns false
         }
     }
 }

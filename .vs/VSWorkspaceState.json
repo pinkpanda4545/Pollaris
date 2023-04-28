@@ -2,8 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\Pollaris",
-    "\\PollarisTest",
     "\\Pollaris\\1.Controllers",
+    "\\Pollaris\\2.Managers",
     "\\Pollaris\\Views",
     "\\Pollaris\\Views\\Dashboard",
     "\\Pollaris\\Views\\Home",

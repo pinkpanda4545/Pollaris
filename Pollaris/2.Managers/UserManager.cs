@@ -58,7 +58,7 @@ namespace Pollaris.Managers
             result.Add(new UserInfo(5, "M", "Justin", "Firestone", "/images/profile-photo.jpg"));
             return result;
         }
-
+         
         public UserInfo GetUserFromId(int memberId)
         {
             return new UserInfo(6, "M", "Ryan", "Bockmon", "/images/profile-photo.jpg");
@@ -69,7 +69,7 @@ namespace Pollaris.Managers
             SQLAccessor sql = new SQLAccessor();
             RoomInfo room = sql.GetRoomFromId(roomId);
 
-            if (room.Id == userId) return false;
+            if (room.InstructorId == userId) return false;
 
             List<UserInfo> users = GetUsersInRoom(roomId); 
             foreach (var member in users)
