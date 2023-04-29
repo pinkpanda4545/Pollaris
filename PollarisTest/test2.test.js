@@ -1,7 +1,5 @@
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
-
-
 const dom = new JSDOM('<!DOCTYPE html><html><body></body></html>');
 const window = dom.window;
 const $ = require('jquery')(window);
