@@ -14,7 +14,7 @@
                 <grid class="grid-mc">
                     @foreach (var option in Model.Question.Options)
                     {
-                        <div id="mc-option-@option" class="div-option" onclick="chooseMC('mc-option-@option')">@option</div>
+                        <div id="mc-option-@option.Id" class="div-option" onclick="chooseMC('mc-option-@option.Id')">@option.Name</div>
                     }
                 </grid>
             }
@@ -30,7 +30,7 @@
                 <grid class="grid-ranking">
                     @foreach (var option in Model.Question.Options)
                     {
-                        <div id="ranking-@option" class="div-option" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)">@option</div>
+                        <div id="ranking-@option.Id" class="div-option" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)">@option.Name</div>
                     }
                 </grid>
             }
@@ -52,7 +52,7 @@
         <button onclick="openUserDashboard(@Model.UserId)">Exit</button>
         @if (Model.Question != null)
         {
-            <button onclick="answerQuestionSubmit()">Submit</button>
+            <button onclick="answerQuestionSubmit(@Model.UserId, @Model.RoomId, @Model.SetId, @Model.Question.Id, '@Model.Question.Type')">Submit</button>
         }
     </div>
 </body>

@@ -1,4 +1,6 @@
-﻿using Pollaris.Models;
+﻿using Microsoft.Extensions.Options;
+using Pollaris._3.Accessors;
+using Pollaris.Models;
 using System.Diagnostics;
 
 namespace Pollaris.Managers
@@ -16,15 +18,15 @@ namespace Pollaris.Managers
             options.Add(new OptionInfo(4, "D", false));
 
             List<OptionInfo> options2 = new List<OptionInfo>();
-            options.Add(new OptionInfo(1, "True", false));
-            options.Add(new OptionInfo(2, "False", true));
+            options2.Add(new OptionInfo(1, "True", false));
+            options2.Add(new OptionInfo(2, "False", true));
 
             List<QuestionInfo> questions = new List<QuestionInfo>();
             questions.Add(new QuestionInfo(1, "Describe how your day is going.", "SA"));
             questions.Add(new QuestionInfo(2, "What is the color of the sun?", "MC", options));
             questions.Add(new QuestionInfo(3, "There are 7 continents on this planet.", "TF", options2));
             questions.Add(new QuestionInfo(4, "Rank the following options from the most time intensive to the least time intensive.", "R", options));
-            questions.Add(new QuestionInfo(5, "What is the meaning of life?", "SA"));
+            questions.Add(null);
             switch (roomId)
             {
                 case 3:
@@ -53,15 +55,15 @@ namespace Pollaris.Managers
             options.Add(new OptionInfo(4, "D", false));
 
             List<OptionInfo> options2 = new List<OptionInfo>();
-            options.Add(new OptionInfo(1, "True", false));
-            options.Add(new OptionInfo(2, "False", true));
+            options2.Add(new OptionInfo(1, "True", false));
+            options2.Add(new OptionInfo(2, "False", true));
 
             List<QuestionInfo> questions = new List<QuestionInfo>();
             questions.Add(new QuestionInfo(1, "Describe how your day is going.", "SA", true));
             questions.Add(new QuestionInfo(2, "What is the color of the sun?", "MC", options));
             questions.Add(new QuestionInfo(3, "There are 7 continents on this planet.", "TF", options2));
             questions.Add(new QuestionInfo(4, "Rank the following options from the most time intensive to the least time intensive.", "R", options));
-            questions.Add(new QuestionInfo(5, "What is the meaning of life?", "SA"));
+            
             staticQuestions = questions;
             return questions;
         }
@@ -99,8 +101,37 @@ namespace Pollaris.Managers
             options.Add(new OptionInfo(2, "B", true));
             options.Add(new OptionInfo(3, "C", false));
             options.Add(new OptionInfo(4, "D", false));
-            QuestionInfo q = new QuestionInfo(questionId, "Dummy SA question here.", "MC", options);
-            return q; 
+            QuestionInfo q = new QuestionInfo(questionId, "Dummy question here.", "MC", options);
+            return q;
+        }
+
+        public QuestionInfo GetQuestionFromIds(int roomId, int setId, int questionId)
+        {
+            List<OptionInfo> options = new List<OptionInfo>();
+            options.Add(new OptionInfo(1, "A", false));
+            options.Add(new OptionInfo(2, "B", true));
+            options.Add(new OptionInfo(3, "C", false));
+            options.Add(new OptionInfo(4, "D", false));
+            QuestionInfo q = new QuestionInfo(questionId, "Dummy question here.", "MC", options);
+            return q;
+        }
+
+        public bool SubmitAnswer(int userId, int roomId, int setId, QuestionInfo question, List<string> answers)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            List<string> correctAnswers = sql.GetAnswers(roomId, setId, question.Id);
+            if (correctAnswers.SequenceEqual(answers))
+            {
+                //student answered correctly
+                sql.SubmitStudentAnswer(userId, roomId, setId, question.Id, true);
+                return true;
+            }
+            else
+            {
+                //student answered incorrectly
+                sql.SubmitStudentAnswer(userId, roomId, setId, question.Id, false);
+                return false;
+            }
         }
     }
 }

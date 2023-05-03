@@ -8,7 +8,7 @@
             Question = question;
             Type = type;
             IsActive = isActive;
-            Options = options; 
+            Options = options;
         }
 
         public QuestionInfo(int id, string question, string type, List<OptionInfo> options) 
