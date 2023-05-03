@@ -30,7 +30,7 @@
                 <grid class="grid-ranking">
                     @foreach (var option in Model.Question.Options)
                     {
-                        <div id="ranking-@option" class="div-option" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)">@option.Name</div>
+                        <div id="ranking-@option.Id" class="div-option" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)">@option.Name</div>
                     }
                 </grid>
             }
