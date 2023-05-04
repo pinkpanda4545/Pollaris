@@ -36,37 +36,29 @@ namespace Pollaris.Controllers
         }
 
         public IActionResult CreateUser(string firstName, string lastName, string email, string password) {
-            if (firstName == "Ellenna")
+            UserManager uM = new UserManager();
+            bool emailInDatabase = uM.IsEmailInDatabase(email);
+            if (emailInDatabase)
             {
+                //Error!
                 SignUpInfo model = new SignUpInfo(false);
                 return View("SignUp", model);
-            } else
+            }
+            else
             {
-                UserManager uM = new UserManager();
-                bool emailInDatabase = uM.IsEmailInDatabase(email);
-                if (emailInDatabase)
+                bool userCreated = uM.CreateUser(firstName, lastName, email, password);
+                if (userCreated)
                 {
-                    //Error!
-                    SignUpInfo model = new SignUpInfo(false);
-                    return View("SignUp", model);
+                    int id = uM.GetUserIdFromEmail(email);
+                    return Redirect(Url.Action("UserDashboard", "Dashboard") + "?userId=" + id);
                 }
                 else
                 {
-                    bool userCreated = uM.CreateUser(firstName, lastName, email, password);
-                    if (userCreated)
-                    {
-                        int id = uM.GetUserIdFromEmail(email);
-                        return Redirect(Url.Action("UserDashboard", "Dashboard") + "?userId=" + id);
-                    }
-                    else
-                    {
-                        //Error pt 2!
-                        SignUpInfo model = new SignUpInfo(true, false);
-                        return View("SignUp", model);
-                    }
+                    //Error pt 2!
+                    SignUpInfo model = new SignUpInfo(true, false);
+                    return View("SignUp", model);
                 }
             }
-            
         }
 
         public IActionResult SignIn()

@@ -1,3 +1,5 @@
+using Microsoft.Data.SqlClient;
+using Pollaris._3.Accessors;
 using Pollaris.Controllers;
 using Pollaris.Managers;
 using Pollaris.Models;
@@ -297,6 +299,40 @@ namespace NUnitPollarisTest
             Assert.IsFalse(result, "The method did not return false when the user isn't in the room's member list.");
         }
 
+        [Test]
+        public void TestSQLGetUsersFromIds()
+        {
+            int id = 5;
+            SQLAccessor sql = new SQLAccessor();
+            UserInfo? result = sql.GetUserFromId(id);
+            Console.WriteLine(result);
+            Assert.IsTrue(result != null);
+        }
 
+        [Test]
+        public void TestStuff()
+        {
+            string connectionString = "Data Source=tcp:pollarissql.database.windows.net,1433;Initial Catalog=Pollaris;User Id=sqladmin;Password=iajdfij#29dfkjb(fj; Column Encryption Setting=enabled";
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(connectionString);
+            builder.ColumnEncryptionSetting = SqlConnectionColumnEncryptionSetting.Enabled;
+
+            SqlConnection connection = new SqlConnection(builder.ConnectionString);
+            string query = "SELECT email FROM Users WHERE user_id = @userId";
+            connection.Open();
+            SqlCommand command = new(query, connection);
+            // Add parameters
+            command.Parameters.AddWithValue("@userId", 1);
+            // Execute          
+            SqlDataReader reader = command.ExecuteReader();
+            string email = "";
+            while (reader.Read())
+            {
+                email = reader.GetString(0);
+            }
+            bool result = String.Equals(email, "tanphan3103@gmail.com");
+
+            // Test
+            Assert.IsTrue(result);
+        }
     }
 }
