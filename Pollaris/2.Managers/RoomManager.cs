@@ -51,5 +51,23 @@ namespace Pollaris.Managers
             }
             return room; 
         }
+
+        public int ValidateRoomCode(string roomCode)
+        {
+            return 0;
+        }
+
+        public bool PutUserInRoom(int userId, int roomId)
+        {
+            return false; 
+        }
+
+        public bool CreateRoom(int userId, string roomName) 
+        {
+            //go make the room in the sql
+            //make the userId the instructor
+            //roomCode generation
+            return false; 
+        }
     }
 }

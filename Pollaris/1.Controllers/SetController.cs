@@ -11,8 +11,13 @@ namespace Pollaris.Controllers
             //Create new set in the SQL. 
             //Return the setId. 
             string roomName = "[ROOM NAME]";
-            int setId = 12345; 
-            EditSetInfo model = new EditSetInfo(userId, roomId, roomName, setId);
+            int setId = 12345;
+
+            RoomManager rM = new RoomManager();
+            SetManager sM = new SetManager();
+            RoomInfo room = GetRoomFromId(roomId);
+            SetInfo set = CreateSet(roomId); 
+            EditSetInfo model = new EditSetInfo(userId, roomId, room.Name, set.Id);
             return View("EditSet", model);
         }
 

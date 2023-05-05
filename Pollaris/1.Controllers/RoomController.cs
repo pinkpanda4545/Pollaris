@@ -10,6 +10,13 @@ namespace Pollaris.Controllers
 
         {
             //go make a connection between user and room in the sql
+            RoomManager rM = new RoomManager();
+            int roomId = rM.ValidateRoomCode(roomCode); 
+            if (roomId == 0) 
+            {
+                return JoinRoom(userId, false);
+            }
+            bool result = rM.PutUserInRoom(userId, roomId);
             //return true if connection successfully made. 
             return Redirect(Url.Action("UserDashboard", "Dashboard") + "?userId=" + userId); 
         }
@@ -17,10 +24,8 @@ namespace Pollaris.Controllers
         public IActionResult CreateRoomSubmit(int userId, string roomName)
 
         {
-            //go make the room in the sql
-            //make the userId the instructor
-            //roomCode generation
-
+            RoomManager rM = new RoomManager();
+            bool result = rM.CreateRoom(userId, roomName);
             return Redirect(Url.Action("UserDashboard", "Dashboard") + "?userId=" + userId);
         }
 
@@ -33,6 +38,12 @@ namespace Pollaris.Controllers
         public IActionResult JoinRoom(int userId)
         {
             UserId id = new UserId(userId); 
+            return View(id);
+        }
+
+        public IActionResult JoinRoom(int userId, bool valid)
+        {
+            UserId id = new UserId(userId, valid);
             return View(id);
         }
     }

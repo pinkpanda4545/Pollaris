@@ -10,14 +10,14 @@ namespace Pollaris.Controllers
         {
             SetManager sM = new SetManager();
             QuestionManager qM = new QuestionManager();
-            List<SetInfo> continueSets = sM.GetContinueSets(roomId);
-            SetInfo? activeSet = sM.GetActiveSet(continueSets);
-            activeSet.Questions = qM.GetQuestionsFromSetId(activeSet.Id, roomId); //TAKE OUT THIS LINE WHEN CONNECTED
+            List<SetInfo> sets = sM.GetSets(roomId);
+            SetInfo activeSet = sM.GetActiveSet(sets);
+            activeSet.Questions = qM.GetQuestionsFromSetId(activeSet.Id); 
             int setSize = activeSet.Questions.Count;
             QuestionInfo? activeQuestion = qM.GetActiveQuestionFromSet(activeSet);
             int? questionIndex = qM.GetActiveQuestionIndex(activeSet.Id, roomId) + 1;
 
-            AnswerQuestionInfo model = new AnswerQuestionInfo(userId, roomId, activeSet.Id, setSize, activeQuestion,  questionIndex);
+            AnswerQuestionInfo model = new AnswerQuestionInfo(userId, roomId, activeSet.Id, setSize, activeQuestion, questionIndex);
             return View(model);
         }
         public IActionResult CreateQuestion(int userId, int roomId, int setId)
@@ -27,19 +27,8 @@ namespace Pollaris.Controllers
         }
         public IActionResult CreateThenEditQuestion(int userId, int roomId, int setId, string type)
         {
-            //Go create a new question in the set and return that here. 
-            //For now, I'll put in a dummy question
-            QuestionInfo question = new QuestionInfo(1, "Enter your question here.", type);
-            question.IsGraded = true;
-            if (type != "SA")
-            {
-                List<OptionInfo> options = new List<OptionInfo>();
-                options.Add(new OptionInfo(1, "A", false));
-                options.Add(new OptionInfo(2,"B", false));
-                options.Add(new OptionInfo(3, "C", true));
-                options.Add(new OptionInfo(4, "D", false));
-                question.Options = options;
-            }
+            QuestionManager qM = new QuestionManager();
+            QuestionInfo question = qM.CreateQuestion(type);
             EditQuestionInfo model = new EditQuestionInfo(userId, roomId, setId, question);
          
             return View("EditQuestion", model);
@@ -62,7 +51,7 @@ namespace Pollaris.Controllers
             if (uM.ValidateStudentUser(userId, roomId))
             {
                 QuestionManager qM = new QuestionManager();
-                QuestionInfo question = qM.GetQuestionFromIds(roomId, setId, questionId);
+                QuestionInfo question = qM.GetQuestionFromId(questionId);
                 if (question == null || answers == null) return false;
                 return qM.SubmitAnswer(userId, roomId, setId, question, answers);
             }

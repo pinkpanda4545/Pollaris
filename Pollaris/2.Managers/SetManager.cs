@@ -1,4 +1,5 @@
-﻿using Pollaris.Models;
+﻿using Pollaris._3.Accessors;
+using Pollaris.Models;
 
 namespace Pollaris.Managers
 {
@@ -6,23 +7,26 @@ namespace Pollaris.Managers
     { 
         public List<SetInfo> GetSets(int roomId)
         {
-            //Should these return with the list of questions attached? 
-            //Or would that be a separate call to add them? 
-            List<SetInfo> result = new List<SetInfo>();
-            result.Add(new SetInfo(1, "1/2/03", "Launch", false));
-            result.Add(new SetInfo(2, "9/2/03", "Continue", true));
-            result.Add(new SetInfo(3, "Entrepreneurship Competition", "Reset", false));
-            result.Add(new SetInfo(4, "This Is Multiple Words", "Continue", false));
-            result.Add(new SetInfo(5, "Wise Words", "Launch", false));
+            SQLAccessor sql = new SQLAccessor();
+            List<int> ids = sql.GetSetIdsFromRoomId(roomId);
+            List<SetInfo> result = sql.GetSetsFromIds(ids);
             return result;
         }
 
         public List<SetInfo> GetContinueSets(int roomId)
         {
+            SQLAccessor sql = new SQLAccessor();
+            List<int> ids = sql.GetSetIdsFromRoomId(roomId);
+            List<SetInfo> result = sql.GetSetsFromIds(ids);
             // only returns sets that have a status of "continue"
             List<SetInfo> result = new List<SetInfo>();
-            result.Add(new SetInfo(1, "1/2/03", "Continue", false));
-            result.Add(new SetInfo(2, "9/2/03", "Continue", true));
+            foreach (SetInfo set in sets)
+            {
+                if (set.Status == "C")
+                {
+                    result.Add(set);
+                }
+            }
             return result;
         }
 

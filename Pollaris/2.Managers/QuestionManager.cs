@@ -61,17 +61,17 @@ namespace Pollaris.Managers
         public bool SubmitAnswer(int userId, int roomId, int setId, QuestionInfo question, List<string> answers)
         {
             SQLAccessor sql = new SQLAccessor();
-            List<string> correctAnswers = sql.GetAnswers(roomId, setId, question.Id);
+            List<string> correctAnswers = sql.GetAnswersFromQuestionId(question.Id);
             if (correctAnswers.SequenceEqual(answers))
             {
                 //student answered correctly
-                sql.SubmitStudentAnswer(userId, roomId, setId, question.Id, true);
+                sql.SubmitStudentAnswer(userId, question.Id, true);
                 return true;
             }
             else
             {
                 //student answered incorrectly
-                sql.SubmitStudentAnswer(userId, roomId, setId, question.Id, false);
+                sql.SubmitStudentAnswer(userId, question.Id, false);
                 return false;
             }
         }

@@ -218,7 +218,7 @@ namespace Pollaris._3.Accessors
             return result;
         }
 
-        public List<String> GetAnswers(int roomId, int setId, int questionId)
+        public List<String> GetAnswers(int questionId)
         {
             switch (questionId)
             {
@@ -234,7 +234,7 @@ namespace Pollaris._3.Accessors
             return new List<String> { "A", "B", "C", "D" };
         }
 
-        public void SubmitStudentAnswer(int userId, int roomId, int setId, int questionId, bool correct)
+        public void SubmitStudentAnswer(int userId, int questionId, bool correct)
         {
 
         }

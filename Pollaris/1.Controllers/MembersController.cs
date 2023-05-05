@@ -11,7 +11,7 @@ namespace Pollaris.Controllers
         [Route("/Members/SaveProfileInformation")]
         public IActionResult SaveProfileInformation(string firstName, string lastName)
         {
-            //Save the first and last name to the database. 
+            //Save the first and last name and photo (if changed) to the database. 
             return new JsonResult(true); 
         }
 
@@ -25,8 +25,6 @@ namespace Pollaris.Controllers
             return new JsonResult(true);
         }
 
-        // Will take in information to edit profile and saves in database
-        // Return true if successful, else false
         public IActionResult EditProfile(int userId)
         {
             UserId id = new UserId(userId);
