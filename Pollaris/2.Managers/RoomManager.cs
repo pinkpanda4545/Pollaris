@@ -53,6 +53,18 @@ namespace Pollaris.Managers
             return room; 
         }
 
+        public string GetRoomNameFromId(int roomId)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            RoomInfo? room = sql.GetRoomFromId(roomId); 
+            if ( room != null )
+            {
+                return room.Name; 
+            } else
+            {
+                return "";
+            }
+        }
         public int ValidateRoomCode(string roomCode)
         {
             SQLAccessor sql = new SQLAccessor();

@@ -10,15 +10,14 @@ namespace Pollaris.Managers
         public bool ValidateUser(string email, string password)
         {
             SQLAccessor sql = new SQLAccessor();
-            bool result = sql.GetReaderForSignInValidation(email, password);
+            bool result = sql.SignInValidation(email, password);
             return result;
-
         }
 
         public bool IsEmailInDatabase(string email)
         {
             SQLAccessor sql = new SQLAccessor();
-            bool result = sql.GetReaderToCheckIfEmailInDatabase(email);
+            bool result = sql.CheckIfEmailInDatabase(email);
             return result;
         }
 

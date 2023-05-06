@@ -18,7 +18,7 @@ namespace Pollaris._3.Accessors
 
 
         //USER MANAGER
-        public bool GetReaderForSignInValidation(string email, string password)
+        public bool SignInValidation(string email, string password)
         {
             SqlConnection connection = getConnection();
             string query = "SELECT user_id, password FROM Users WHERE email = @email AND password = @password";
@@ -33,7 +33,7 @@ namespace Pollaris._3.Accessors
             return result;
         }
 
-        public bool GetReaderToCheckIfEmailInDatabase(string email)
+        public bool CheckIfEmailInDatabase(string email)
         {
             SqlConnection connection = getConnection();
             // Create Query
@@ -264,7 +264,7 @@ namespace Pollaris._3.Accessors
 
         public bool CreateRoom(string roomName, string roomCode, int instructorId, string instructorName)
         {
-
+            return false; 
         }
 
         //QUESTION MANAGER
@@ -282,6 +282,7 @@ namespace Pollaris._3.Accessors
         public QuestionInfo CreateQuestion(string type)
         {
             //Type == "MC", "SA", "TF", or "R" (i think)
+            return null;
         }
 
         public void SetQuestionConnection(int setId, int questionId)
