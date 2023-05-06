@@ -29,7 +29,6 @@ namespace Pollaris.Controllers
             List<SetInfo> sets = sM.GetSets(roomId);
             RoomInfo room = rM.GetRoomFromId(roomId);
             room.Sets = sets;
-
             RoomDashboardInfo model = new RoomDashboardInfo(userId, room); 
             return View(model);
         }

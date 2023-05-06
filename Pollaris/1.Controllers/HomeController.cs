@@ -19,18 +19,18 @@ namespace Pollaris.Controllers
         public IActionResult ValidateUser(string email, string password)
         {
             if (email == "1" && password == "1") {
-                return Redirect(Url.Action("UserDashboard", "Dashboard") + "?userId=" + 35905325);
+                return Redirect("/Dashboard/UserDashboard?userId=" + 35905325);
             } else {
                 UserManager uM = new UserManager();
                 bool result = uM.ValidateUser(email, password);
                 if (result)
                 {
                     int userId = uM.GetUserIdFromEmail(email);
-                    return Redirect(Url.Action("UserDashboard", "Dashboard") + "?userId=" + userId);
+                    return Redirect("/Dashboard/UserDashboard?userId=" + userId);
                 }
                 else
                 {
-                    return Redirect(Url.Action("SignIn", "Home") + "?valid=" + result);
+                    return Redirect("/Home/SignIn?valid=" + result);
                 }
             }
         }
@@ -50,7 +50,7 @@ namespace Pollaris.Controllers
                 if (userCreated)
                 {
                     int id = uM.GetUserIdFromEmail(email);
-                    return Redirect(Url.Action("UserDashboard", "Dashboard") + "?userId=" + id);
+                    return Redirect("/Dashboard/UserDashboard?userId=" + id);
                 }
                 else
                 {

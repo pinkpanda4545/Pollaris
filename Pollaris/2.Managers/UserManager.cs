@@ -10,7 +10,7 @@ namespace Pollaris.Managers
         public bool ValidateUser(string email, string password)
         {
             SQLAccessor sql = new SQLAccessor();
-            bool result = sql.getReaderForSignInValidation(email, password);
+            bool result = sql.GetReaderForSignInValidation(email, password);
             return result;
 
         }
@@ -18,14 +18,14 @@ namespace Pollaris.Managers
         public bool IsEmailInDatabase(string email)
         {
             SQLAccessor sql = new SQLAccessor();
-            bool result = sql.getReaderToCheckIfEmailInDatabase(email);
+            bool result = sql.GetReaderToCheckIfEmailInDatabase(email);
             return result;
         }
 
         public bool CreateUser(string firstName, string lastName, string email, string password)
         {
             SQLAccessor sql = new SQLAccessor();
-            int rowsAffected = sql.signUpValidation(firstName, lastName, email, password);
+            int rowsAffected = sql.SignUpValidation(firstName, lastName, email, password);
             if (rowsAffected > 0) return true; 
             return false;
         }
@@ -33,7 +33,7 @@ namespace Pollaris.Managers
         public int GetUserIdFromEmail(string email)
         {
             SQLAccessor sql = new SQLAccessor();
-            int result = sql.getUserIdFromEmail(email);
+            int result = sql.GetUserIdFromEmail(email);
             return result;
         }
 
@@ -65,6 +65,31 @@ namespace Pollaris.Managers
                 if (id == userId) return true; 
             }
             return false; 
+        }
+
+        public bool ChangePassword(int userId, string oldPassword, string newPassword, string newPassword2)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            if (newPassword != newPassword2) return false; 
+            if (newPassword == oldPassword) return false;
+            string? currPassword = sql.GetPasswordFromUserId(userId);
+            if (currPassword == null) return false; 
+            if (currPassword != oldPassword) return false;
+            bool result = sql.ChangePassword(userId, newPassword);
+            return result;
+        }
+
+        public bool SaveProfileInfo(int userId, string firstName, string lastName)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            bool result = sql.SaveProfileInfo(userId, firstName, lastName);
+            return result;
+        }
+
+        public string GetUserNameFromId(int userId) 
+        {
+            SQLAccessor sql = new SQLAccessor();
+            return sql.GetUserNameFromId(userId); 
         }
     }
 }

@@ -21,12 +21,6 @@ namespace Pollaris.Managers
             return questions; 
         }
 
-        public void ChangeActiveQuestion(int questionId)
-        {
-            SQLAccessor sql = new SQLAccessor();
-            sql.ChangeActiveQuestion(questionId); 
-        }
-
         public int? GetActiveQuestionIndex(int setId, int roomId)
         {
             SQLAccessor sql = new SQLAccessor(); 
@@ -65,15 +59,48 @@ namespace Pollaris.Managers
             if (correctAnswers.SequenceEqual(answers))
             {
                 //student answered correctly
-                sql.SubmitStudentAnswer(userId, question.Id, true);
+                sql.SubmitStudentAnswer(userId, question.Id, answers);
                 return true;
             }
             else
             {
                 //student answered incorrectly
-                sql.SubmitStudentAnswer(userId, question.Id, false);
+                sql.SubmitStudentAnswer(userId, question.Id, answers);
                 return false;
             }
+        }
+
+        public QuestionInfo CreateQuestion(int setId, string type)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            QuestionInfo question = sql.CreateQuestion(type);
+            sql.SetQuestionConnection(setId, question.Id);
+            return question;
+        }
+
+        public QuestionInfo ChangeActiveQuestion(int setId)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            List<int> ids = sql.GetQuestionIdsFromSetId(setId);
+            List<QuestionInfo> questions = sql.GetQuestionsFromIds(ids);
+            int activeQuestionId = questions.Where(x => x.IsActive).First().Id;
+            int nextQuestionId = 0;
+            int nextQuestionIndex = -1;
+            for (int i = 0; i < questions.Count; i++)
+            {
+                if (questions[i].IsActive)
+                {
+                    nextQuestionId = questions[i + 1].Id;
+                    nextQuestionIndex = i;
+                }
+            }
+            sql.ChangeActiveQuestion(activeQuestionId, nextQuestionId);
+            return questions[nextQuestionIndex];
+        }
+
+        public void SaveQuestionEdits(int questionId)
+        {
+
         }
     }
 }

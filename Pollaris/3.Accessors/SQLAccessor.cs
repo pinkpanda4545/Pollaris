@@ -16,7 +16,9 @@ namespace Pollaris._3.Accessors
             return new SqlConnection(builder.ConnectionString);
         }
 
-        public bool getReaderForSignInValidation(string email, string password)
+
+        //USER MANAGER
+        public bool GetReaderForSignInValidation(string email, string password)
         {
             SqlConnection connection = getConnection();
             string query = "SELECT user_id, password FROM Users WHERE email = @email AND password = @password";
@@ -31,7 +33,7 @@ namespace Pollaris._3.Accessors
             return result;
         }
 
-        public bool getReaderToCheckIfEmailInDatabase(string email)
+        public bool GetReaderToCheckIfEmailInDatabase(string email)
         {
             SqlConnection connection = getConnection();
             // Create Query
@@ -46,7 +48,7 @@ namespace Pollaris._3.Accessors
             return result;
         }
 
-        public int signUpValidation(string firstName, string lastName, string email, string password)
+        public int SignUpValidation(string firstName, string lastName, string email, string password)
         {
             SqlConnection connection = getConnection();
             // Create Query
@@ -64,7 +66,7 @@ namespace Pollaris._3.Accessors
             return result;
         }
 
-        public int getUserIdFromEmail(string email)
+        public int GetUserIdFromEmail(string email)
         {
             SqlConnection connection = getConnection();
             string query = "SELECT user_id FROM Users WHERE email = @email;";
@@ -75,6 +77,16 @@ namespace Pollaris._3.Accessors
             int result = (int)command.ExecuteScalar();
             connection.Close();
             return result;
+        }
+
+        public string? GetPasswordFromUserId(int userId)
+        {
+            return null; 
+        }
+
+        public bool ChangePassword(int userId, string newPassword)
+        {
+            return false; 
         }
 
         public List<int> GetMembersFromRoomId(int roomId)
@@ -147,6 +159,18 @@ namespace Pollaris._3.Accessors
             return result;
         }
 
+        public bool SaveProfileInfo(int userId, string firstName, string lastName)
+        {
+            return false; 
+        }
+
+        public string GetUserNameFromId(int userId)
+        {
+            return "";
+        }
+
+
+        //ROOM MANAGER (mostly)
         public RoomInfo? GetRoomFromId(int id)
         {
             SqlConnection connection = getConnection();
@@ -218,25 +242,150 @@ namespace Pollaris._3.Accessors
             return result;
         }
 
-        public List<String> GetAnswers(int questionId)
+        public int ValidateRoomCode(string roomCode)
         {
-            switch (questionId)
-            {
-                case 1:
-                    return new List<String> {"good"};
-                case 2:
-                    return new List<String> {"B"};
-                case 3:
-                    return new List<String> {"False"};
-                case 4:
-                    return new List<String> { "A", "B", "C", "D" };
-            }
-            return new List<String> { "A", "B", "C", "D" };
+            //return 0 if reader.HasRows == false
+            //return roomId otherwise
+            return 0;
         }
 
-        public void SubmitStudentAnswer(int userId, int questionId, bool correct)
+        public bool UserRoomConnection(int userId, int roomId)
+        {
+            return false; 
+        }
+
+        public bool CodeNotAvailable(string newCode)
+        {
+            //check Rooms table for the code
+            //return true if the code is in the table
+            //return false if the code is NOT in the table
+            return false; 
+        }
+
+        public bool CreateRoom(string roomName, string roomCode, int instructorId, string instructorName)
         {
 
+        }
+
+        //QUESTION MANAGER
+
+        public List<int> GetQuestionIdsFromSetId(int setId)
+        {
+            return new List<int>();
+        }
+
+        public List<QuestionInfo> GetQuestionsFromIds(List<int> questionIds)
+        {
+            return new List<QuestionInfo>(); 
+        }
+
+        public QuestionInfo CreateQuestion(string type)
+        {
+            //Type == "MC", "SA", "TF", or "R" (i think)
+        }
+
+        public void SetQuestionConnection(int setId, int questionId)
+        {
+
+        }
+
+        public List<int> GetOptionIdsFromQuestionId(int questionId)
+        {
+            return new List<int>();
+        }
+
+        public List<OptionInfo> GetOptionsFromIds(List<int> optionsIds)
+        {
+            return new List<OptionInfo>();
+        }
+
+        public bool ChangeActiveQuestion(int currActiveId, int nextActiveId)
+        {
+            //deactivate currActive, active nextActive
+            return true;
+        }
+
+        public QuestionInfo? GetQuestionFromId(int questionId)
+        {
+            return null; 
+        }
+
+        public List<String> GetAnswersFromQuestionId(int questionId)
+        {
+            return new List<String>();
+        }
+
+        public void SubmitStudentAnswer(int userId, int questionId, List<string> answer)
+        {
+
+        }
+
+
+        //RESPONSES MANAGER
+
+        public List<int> GetResponseIdsFromQuestionId(int questionId)
+        {
+            return new List<int>(); 
+        }
+
+        public List<StudentResponseInfo> GetResponsesFromIds(List<int> responseIds)
+        {
+            return new List<StudentResponseInfo>();
+        }
+
+
+        //SET MANAGER
+
+        public List<int> GetSetIdsFromRoomId(int roomId)
+        {
+            return new List<int>(); 
+        }
+
+        public List<SetInfo> GetSetsFromIds(List<int> setIds)
+        {
+            return new List<SetInfo>();
+        }
+
+        public SetInfo CreateSet(int roomId)
+        {
+            return null;
+        }
+
+        public void DeleteSet(int setId)
+        {
+
+        }
+
+        public void RemoveSetFromRoom(int roomId, int setId)
+        {
+
+        }
+
+        public SetInfo? GetSetFromId(int setId)
+        {
+            return null;
+        }
+
+        public int GetRoomIdFromSetId(int setId)
+        {
+            //use Room Sets connection table
+            return 0; 
+        }
+
+        public int GetActiveSetIdFromRoomId(int roomId)
+        {
+            //find active set
+            return 0; 
+        }
+
+        public void ChangeActiveSet(int activeSetId, int newSetId)
+        {
+
+        }
+
+        public void ChangeStatus(int setId, string newStatus)
+        {
+            //newStatus == "C" or "R"
         }
     }
 }

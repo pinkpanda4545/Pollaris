@@ -15,7 +15,7 @@ function editProfileSave(userId) {
     firstName = $("#edit-profile-first-name").val();
     lastName = $("#edit-profile-last-name").val();
 
-    var datastring = { firstName: firstName, lastName: lastName };
+    var datastring = { userId: userId, firstName: firstName, lastName: lastName };
 
     $.ajax({
         url: "/Members/SaveProfileInformation",

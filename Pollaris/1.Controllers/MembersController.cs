@@ -9,10 +9,12 @@ namespace Pollaris.Controllers
     {
         [HttpPost]
         [Route("/Members/SaveProfileInformation")]
-        public IActionResult SaveProfileInformation(string firstName, string lastName)
+        public IActionResult SaveProfileInformation(int userId, string firstName, string lastName)
         {
             //Save the first and last name and photo (if changed) to the database. 
-            return new JsonResult(true); 
+            UserManager uM = new UserManager();
+            bool result = uM.SaveProfileInfo(userId,firstName, lastName); 
+            return new JsonResult(result); 
         }
 
         [HttpPost]
@@ -22,6 +24,8 @@ namespace Pollaris.Controllers
             //Validate that the password matches the user id
             //Validate that the newPassword and newPassword2 are the same
             //Save it to the database
+            UserManager uM = new UserManager();
+            bool result = uM.ChangePassword(userId, oldPassword, newPassword, newPassword2);
             return new JsonResult(true);
         }
 
@@ -32,16 +36,9 @@ namespace Pollaris.Controllers
         }
         public IActionResult MemberList(int userId, int roomId)
         {
-            //1. Using the roomId, search the SQL table for all the connections
-            //2. Take all the userIds and get all user info from the SQL (2nd call)
-            //  -- You'll need the photo, name, and id
-
-            //Note: you probably don't need userId for this at all since it's the same id as the room's instructor
-
             UserManager uM = new UserManager();
             List<UserInfo> userList = uM.GetUsersInRoom(roomId);
             MemberListInfo model = new MemberListInfo(userId, roomId, userList);
-
             return View(model);
         }
 

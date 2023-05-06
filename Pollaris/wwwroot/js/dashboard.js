@@ -37,15 +37,15 @@ function openMemberList(userId, roomId) {
 }
 
 function launchSet(userId, roomId, setId) {
-    window.location = "/Set/LaunchSet?userId=" + userId + "&roomId=" + roomId + "&setId=" + setId;
+    window.location = "/Set/SetResponses?userId=" + userId + "&roomId=" + roomId + "&setId=" + setId + "&newStatus=C";
 }
 
 function continueSet(userId, roomId, setId) {
-    window.location = "/Set/ContinueSet?userId=" + userId + "&roomId=" + roomId + "&setId=" + setId;
+    window.location = "/Set/SetResponses?userId=" + userId + "&roomId=" + roomId + "&setId=" + setId + "&newStatus=C";
 }
 
 function resetSet(userId, roomId, setId) {
-    window.location = "/Set/ResetSet?userId=" + userId + "&roomId=" + roomId + "&setId=" + setId;
+    window.location = "/Set/SetResponses?userId=" + userId + "&roomId=" + roomId + "&setId=" + setId + "&newStatus=C";
 }
 
 function exportCSV(userId, roomId, setId) {

@@ -13,23 +13,6 @@ namespace Pollaris.Managers
             return result;
         }
 
-        public List<SetInfo> GetContinueSets(int roomId)
-        {
-            SQLAccessor sql = new SQLAccessor();
-            List<int> ids = sql.GetSetIdsFromRoomId(roomId);
-            List<SetInfo> result = sql.GetSetsFromIds(ids);
-            // only returns sets that have a status of "continue"
-            List<SetInfo> result = new List<SetInfo>();
-            foreach (SetInfo set in sets)
-            {
-                if (set.Status == "C")
-                {
-                    result.Add(set);
-                }
-            }
-            return result;
-        }
-
         public SetInfo? GetActiveSet(List<SetInfo> sets)
         {
             foreach (SetInfo set in sets)
@@ -39,5 +22,45 @@ namespace Pollaris.Managers
 
             return null;
         }
+
+        public SetInfo CreateSet(int roomId)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            SetInfo set = sql.CreateSet(roomId); 
+            return set;
+        }
+
+        public void SaveSetEdits(int setId)
+        {
+
+        }
+
+        public void DeleteSet(int roomId, int setId)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            sql.DeleteSet(setId);
+            sql.RemoveSetFromRoom(roomId, setId); 
+        }
+
+        public string GetSetNameFromId(int setId)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            SetInfo? set = sql.GetSetFromId(setId);
+            if (set != null)
+            {
+                return set.Name; 
+            }
+            return "";
+        }
+
+        public void ChangeStatus(int setId, string newStatus)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            int roomId = sql.GetRoomIdFromSetId(setId);
+            int activeSetId = sql.GetActiveSetIdFromRoomId(roomId);
+            sql.ChangeActiveSet(activeSetId, setId);
+            sql.ChangeStatus(setId, newStatus);
+        }
+
     }
 }

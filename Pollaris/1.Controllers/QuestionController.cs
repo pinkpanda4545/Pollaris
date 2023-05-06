@@ -28,7 +28,7 @@ namespace Pollaris.Controllers
         public IActionResult CreateThenEditQuestion(int userId, int roomId, int setId, string type)
         {
             QuestionManager qM = new QuestionManager();
-            QuestionInfo question = qM.CreateQuestion(type);
+            QuestionInfo question = qM.CreateQuestion(setId, type);
             EditQuestionInfo model = new EditQuestionInfo(userId, roomId, setId, question);
          
             return View("EditQuestion", model);
@@ -56,6 +56,14 @@ namespace Pollaris.Controllers
                 return qM.SubmitAnswer(userId, roomId, setId, question, answers);
             }
             return false; 
+        }
+
+        public IActionResult SaveQuestionEdits(int userId, int roomId, int setId, int questionId)
+        {
+            QuestionManager qM = new QuestionManager();
+            qM.SaveQuestionEdits(questionId); 
+            //Return to EditSet
+            return Redirect("/Set/EditSet?userId=" + userId + "&roomId=" + roomId + "&setId=" + setId); 
         }
     }
 }

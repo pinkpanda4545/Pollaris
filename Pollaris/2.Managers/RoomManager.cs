@@ -5,6 +5,7 @@ namespace Pollaris.Managers
 {
     public class RoomManager
     {
+        private static string codeCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         public List<RoomInfo> GetRooms(int userId)
         {
             SQLAccessor sql = new SQLAccessor();
@@ -54,20 +55,43 @@ namespace Pollaris.Managers
 
         public int ValidateRoomCode(string roomCode)
         {
-            return 0;
+            SQLAccessor sql = new SQLAccessor();
+             return sql.ValidateRoomCode(roomCode);
         }
 
         public bool PutUserInRoom(int userId, int roomId)
         {
-            return false; 
+            SQLAccessor sql = new SQLAccessor();
+            List<int> ids = sql.GetMembersFromRoomId(roomId);
+            if (ids.Contains(userId)) return false;
+            return sql.UserRoomConnection(userId, roomId); 
         }
 
-        public bool CreateRoom(int userId, string roomName) 
+        public bool CreateRoom(int userId, string userName, string roomName) 
         {
-            //go make the room in the sql
-            //make the userId the instructor
-            //roomCode generation
-            return false; 
+            SQLAccessor sql = new SQLAccessor();
+            string newCode = RandomRoomCode();
+            while (sql.CodeNotAvailable(newCode))
+            {
+                newCode = RandomRoomCode();
+            }
+            return sql.CreateRoom(roomName, newCode, userId, userName);
+        }
+
+        public string RandomRoomCode()
+        {
+            Random rand = new Random();
+            string code = "";
+            for (int i = 0; i < 3; i++)
+            {
+                code += codeCharacters[rand.Next(0, 36)];
+            }
+            code += "-";
+            for (int i = 0; i < 3; i++)
+            {
+                code += codeCharacters[rand.Next(0, 36)];
+            }
+            return code; 
         }
     }
 }
