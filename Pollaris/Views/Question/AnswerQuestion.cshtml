@@ -16,27 +16,40 @@
                     <grid class="grid-mc">
                         @foreach (var option in Model.Question.Options)
                         {
-                        <div id="mc-option-@option" class="div-option" onclick="chooseMC('mc-option-@option')">@option</div>
+                            <div id="mc-option-@option" class="div-option" onclick="chooseMC('mc-option-@option')">@option</div>
                         }
                     </grid>
-                } else if (Model.Question.Type == "TF")
+                }
+                else if (Model.Question.Type == "TF")
                 {
                     <div class="div-tf-container">
-                        <div id="div-true" class="div-tf" onclick="chooseTF(true)">True</div> 
+                        <div id="div-true" class="div-tf" onclick="chooseTF(true)">True</div>
                         <div id="div-false" class="div-tf" onclick="chooseTF(false)">False</div>
                     </div>
-                } else if (Model.Question.Type == "R")
+                }
+                else if (Model.Question.Type == "R")
                 {
-                    <grid class="grid-ranking">
+                    <grid class="grid-ranking-options">
                         @foreach (var option in Model.Question.Options)
                         {
-                            <div id="ranking-@option" class="div-option" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)">@option</div>
+                            <div id="ranking-@option" class="div-option" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                <div id="@option" draggable="true" ondragstart="drag(event)">@option</div>
+                            </div>
                         }
                     </grid>
-                } else if (Model.Question.Type == "SA")
+                    <grid id="grid-ranking-answers" class="grid-ranking-options">
+                        @foreach (var option in Model.Question.Options)
+                        {
+                            <div class="div-option" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                        }
+                    </grid>
+                }
+                else if (Model.Question.Type == "SA")
                 {
                     <textarea id="div-sa" placeholder="Enter your answer here."></textarea>
-                } else
+                }
+                else
                 {
                     //ERROR!!!
                 }

@@ -23,11 +23,6 @@ function answerQuestionSubmit() {
 
 function allowDrop(ev) {
     ev.preventDefault();
-
-    if (ev.target.className == "ranking-question-grid-container") {
-        dragged.parentNode.removeChild(dragged);
-        ev.target.appendChild(dragged);
-    }
 }
 
 function drag(ev) {
@@ -37,7 +32,9 @@ function drag(ev) {
 function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(data));
+    if (ev.target.firstElementChild == null) {
+        ev.target.appendChild(document.getElementById(data));
+    }
 }
 
 function createQuestion(userId, roomId, setId, type) {
@@ -48,3 +45,4 @@ function createQuestion(userId, roomId, setId, type) {
 function returnToEditSet(userId, roomId, setId) {
     window.location = "/Set/EditSet?userId=" + userId + "&roomId=" + roomId + "&setId=" + setId;
 }
+

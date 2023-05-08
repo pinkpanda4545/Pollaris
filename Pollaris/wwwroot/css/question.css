@@ -22,9 +22,9 @@
     padding: 25px 50px 25px 50px;
 }
 
-.grid-ranking {
+.grid-ranking-options {
     height: 90%;
-    width: 100%;
+    width: 50%;
     display: grid;
     row-gap: 30px;
     grid-template-columns: auto;
@@ -32,6 +32,7 @@
     overflow-y: scroll;
     align-self: center; 
 }
+
 
 #div-sa {
     width: 100%;
@@ -49,6 +50,7 @@
 }
 
 .div-option {
+    width: 100%;
     color: white; 
     font-size: 48px; 
     font-family: Arial; 

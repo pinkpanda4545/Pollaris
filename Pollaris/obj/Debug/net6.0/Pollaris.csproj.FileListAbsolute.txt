@@ -1,144 +1,183 @@
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\bin\Debug\net6.0\appsettings.Development.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\bin\Debug\net6.0\appsettings.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\bin\Debug\net6.0\Pollaris.staticwebassets.runtime.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\bin\Debug\net6.0\Pollaris.exe
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\bin\Debug\net6.0\Pollaris.deps.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\bin\Debug\net6.0\Pollaris.runtimeconfig.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\bin\Debug\net6.0\Pollaris.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\bin\Debug\net6.0\Pollaris.pdb
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\obj\Debug\net6.0\Pollaris.csproj.AssemblyReference.cache
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\obj\Debug\net6.0\Pollaris.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\obj\Debug\net6.0\Pollaris.AssemblyInfoInputs.cache
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\obj\Debug\net6.0\Pollaris.AssemblyInfo.cs
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\obj\Debug\net6.0\Pollaris.csproj.CoreCompileInputs.cache
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\obj\Debug\net6.0\Pollaris.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\obj\Debug\net6.0\Pollaris.RazorAssemblyInfo.cache
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\obj\Debug\net6.0\Pollaris.RazorAssemblyInfo.cs
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\obj\Debug\net6.0\staticwebassets\msbuild.Pollaris.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\obj\Debug\net6.0\staticwebassets\msbuild.build.Pollaris.props
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Pollaris.props
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.Pollaris.props
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\obj\Debug\net6.0\staticwebassets.pack.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\obj\Debug\net6.0\staticwebassets.build.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\obj\Debug\net6.0\staticwebassets.development.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\obj\Debug\net6.0\scopedcss\bundle\Pollaris.styles.css
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\obj\Debug\net6.0\scopedcss\projectbundle\Pollaris.bundle.scp.css
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\obj\Debug\net6.0\Pollaris.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\obj\Debug\net6.0\refint\Pollaris.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\obj\Debug\net6.0\Pollaris.pdb
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\obj\Debug\net6.0\Pollaris.genruntimeconfig.cache
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\obj\Debug\net6.0\ref\Pollaris.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\bin\Debug\net6.0\Newtonsoft.Json.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-code\Pollaris\obj\Debug\net6.0\Pollaris.csproj.CopyComplete
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\bin\Debug\net6.0\appsettings.Development.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\bin\Debug\net6.0\appsettings.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\bin\Debug\net6.0\Pollaris.staticwebassets.runtime.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\bin\Debug\net6.0\Pollaris.exe
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\bin\Debug\net6.0\Pollaris.deps.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\bin\Debug\net6.0\Pollaris.runtimeconfig.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\bin\Debug\net6.0\Pollaris.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\bin\Debug\net6.0\Pollaris.pdb
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\bin\Debug\net6.0\Newtonsoft.Json.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\obj\Debug\net6.0\Pollaris.csproj.AssemblyReference.cache
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\obj\Debug\net6.0\Pollaris.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\obj\Debug\net6.0\Pollaris.AssemblyInfoInputs.cache
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\obj\Debug\net6.0\Pollaris.AssemblyInfo.cs
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\obj\Debug\net6.0\Pollaris.csproj.CoreCompileInputs.cache
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\obj\Debug\net6.0\Pollaris.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\obj\Debug\net6.0\Pollaris.RazorAssemblyInfo.cache
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\obj\Debug\net6.0\Pollaris.RazorAssemblyInfo.cs
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\obj\Debug\net6.0\staticwebassets\msbuild.Pollaris.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\obj\Debug\net6.0\staticwebassets\msbuild.build.Pollaris.props
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Pollaris.props
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.Pollaris.props
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\obj\Debug\net6.0\staticwebassets.pack.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\obj\Debug\net6.0\staticwebassets.build.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\obj\Debug\net6.0\staticwebassets.development.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\obj\Debug\net6.0\scopedcss\bundle\Pollaris.styles.css
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\obj\Debug\net6.0\scopedcss\projectbundle\Pollaris.bundle.scp.css
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\obj\Debug\net6.0\Pollaris.csproj.CopyComplete
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\obj\Debug\net6.0\Pollaris.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\obj\Debug\net6.0\refint\Pollaris.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\obj\Debug\net6.0\Pollaris.pdb
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\obj\Debug\net6.0\Pollaris.genruntimeconfig.cache
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\obj\Debug\net6.0\ref\Pollaris.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\bin\Debug\net6.0\appsettings.Development.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\bin\Debug\net6.0\appsettings.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\bin\Debug\net6.0\Pollaris.staticwebassets.runtime.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\bin\Debug\net6.0\Pollaris.exe
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\bin\Debug\net6.0\Pollaris.deps.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\bin\Debug\net6.0\Pollaris.runtimeconfig.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\bin\Debug\net6.0\Pollaris.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\bin\Debug\net6.0\Pollaris.pdb
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\bin\Debug\net6.0\Newtonsoft.Json.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\obj\Debug\net6.0\Pollaris.csproj.AssemblyReference.cache
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\obj\Debug\net6.0\Pollaris.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\obj\Debug\net6.0\Pollaris.AssemblyInfoInputs.cache
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\obj\Debug\net6.0\Pollaris.AssemblyInfo.cs
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\obj\Debug\net6.0\Pollaris.csproj.CoreCompileInputs.cache
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\obj\Debug\net6.0\Pollaris.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\obj\Debug\net6.0\Pollaris.RazorAssemblyInfo.cache
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\obj\Debug\net6.0\Pollaris.RazorAssemblyInfo.cs
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\obj\Debug\net6.0\staticwebassets\msbuild.Pollaris.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\obj\Debug\net6.0\staticwebassets\msbuild.build.Pollaris.props
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Pollaris.props
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.Pollaris.props
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\obj\Debug\net6.0\staticwebassets.pack.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\obj\Debug\net6.0\staticwebassets.build.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\obj\Debug\net6.0\staticwebassets.development.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\obj\Debug\net6.0\scopedcss\bundle\Pollaris.styles.css
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\obj\Debug\net6.0\scopedcss\projectbundle\Pollaris.bundle.scp.css
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\obj\Debug\net6.0\Pollaris.csproj.CopyComplete
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\obj\Debug\net6.0\Pollaris.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\obj\Debug\net6.0\refint\Pollaris.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\obj\Debug\net6.0\Pollaris.pdb
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\obj\Debug\net6.0\Pollaris.genruntimeconfig.cache
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v2\Pollaris\obj\Debug\net6.0\ref\Pollaris.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\bin\Debug\net6.0\System.Data.SqlClient.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\project-code-pollaris\Pollaris\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\bin\Debug\net6.0\appsettings.Development.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\bin\Debug\net6.0\appsettings.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\bin\Debug\net6.0\Pollaris.staticwebassets.runtime.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\bin\Debug\net6.0\Pollaris.exe
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\bin\Debug\net6.0\Pollaris.deps.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\bin\Debug\net6.0\Pollaris.runtimeconfig.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\bin\Debug\net6.0\Pollaris.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\bin\Debug\net6.0\Pollaris.pdb
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\bin\Debug\net6.0\Newtonsoft.Json.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\bin\Debug\net6.0\System.Data.SqlClient.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\obj\Debug\net6.0\Pollaris.csproj.AssemblyReference.cache
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\obj\Debug\net6.0\Pollaris.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\obj\Debug\net6.0\Pollaris.AssemblyInfoInputs.cache
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\obj\Debug\net6.0\Pollaris.AssemblyInfo.cs
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\obj\Debug\net6.0\Pollaris.csproj.CoreCompileInputs.cache
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\obj\Debug\net6.0\Pollaris.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\obj\Debug\net6.0\Pollaris.RazorAssemblyInfo.cache
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\obj\Debug\net6.0\Pollaris.RazorAssemblyInfo.cs
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\obj\Debug\net6.0\staticwebassets\msbuild.Pollaris.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\obj\Debug\net6.0\staticwebassets\msbuild.build.Pollaris.props
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Pollaris.props
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.Pollaris.props
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\obj\Debug\net6.0\staticwebassets.pack.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\obj\Debug\net6.0\staticwebassets.build.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\obj\Debug\net6.0\staticwebassets.development.json
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\obj\Debug\net6.0\scopedcss\bundle\Pollaris.styles.css
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\obj\Debug\net6.0\scopedcss\projectbundle\Pollaris.bundle.scp.css
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\obj\Debug\net6.0\Pollaris.csproj.CopyComplete
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\obj\Debug\net6.0\Pollaris.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\obj\Debug\net6.0\refint\Pollaris.dll
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\obj\Debug\net6.0\Pollaris.pdb
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\obj\Debug\net6.0\Pollaris.genruntimeconfig.cache
-C:\Users\pinkp\OneDrive - University of Nebraska-Lincoln\Semester 4 (Spring 2023)\Software Engineering IV\pollaris-v4\Pollaris\obj\Debug\net6.0\ref\Pollaris.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/bin/Debug/net6.0/appsettings.Development.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/bin/Debug/net6.0/appsettings.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/bin/Debug/net6.0/Pollaris.staticwebassets.runtime.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/bin/Debug/net6.0/Pollaris.exe
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/bin/Debug/net6.0/Pollaris.deps.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/bin/Debug/net6.0/Pollaris.runtimeconfig.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/bin/Debug/net6.0/Pollaris.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/bin/Debug/net6.0/Pollaris.pdb
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/obj/Debug/net6.0/Pollaris.csproj.AssemblyReference.cache
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/obj/Debug/net6.0/Pollaris.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/obj/Debug/net6.0/Pollaris.AssemblyInfoInputs.cache
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/obj/Debug/net6.0/Pollaris.AssemblyInfo.cs
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/obj/Debug/net6.0/Pollaris.csproj.CoreCompileInputs.cache
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/obj/Debug/net6.0/Pollaris.MvcApplicationPartsAssemblyInfo.cache
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/obj/Debug/net6.0/Pollaris.RazorAssemblyInfo.cache
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/obj/Debug/net6.0/Pollaris.RazorAssemblyInfo.cs
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/obj/Debug/net6.0/staticwebassets/msbuild.Pollaris.Microsoft.AspNetCore.StaticWebAssets.props
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/obj/Debug/net6.0/staticwebassets/msbuild.build.Pollaris.props
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.Pollaris.props
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.Pollaris.props
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/obj/Debug/net6.0/staticwebassets.pack.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/obj/Debug/net6.0/staticwebassets.build.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/obj/Debug/net6.0/staticwebassets.development.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/obj/Debug/net6.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/obj/Debug/net6.0/scopedcss/bundle/Pollaris.styles.css
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/obj/Debug/net6.0/scopedcss/projectbundle/Pollaris.bundle.scp.css
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/obj/Debug/net6.0/Pollaris.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/obj/Debug/net6.0/refint/Pollaris.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/obj/Debug/net6.0/Pollaris.pdb
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/obj/Debug/net6.0/Pollaris.genruntimeconfig.cache
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/obj/Debug/net6.0/ref/Pollaris.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/bin/Debug/net6.0/Newtonsoft.Json.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-code/Pollaris/obj/Debug/net6.0/Pollaris.csproj.CopyComplete
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/bin/Debug/net6.0/appsettings.Development.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/bin/Debug/net6.0/appsettings.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/bin/Debug/net6.0/Pollaris.staticwebassets.runtime.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/bin/Debug/net6.0/Pollaris.exe
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/bin/Debug/net6.0/Pollaris.deps.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/bin/Debug/net6.0/Pollaris.runtimeconfig.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/bin/Debug/net6.0/Pollaris.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/bin/Debug/net6.0/Pollaris.pdb
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/bin/Debug/net6.0/Newtonsoft.Json.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/obj/Debug/net6.0/Pollaris.csproj.AssemblyReference.cache
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/obj/Debug/net6.0/Pollaris.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/obj/Debug/net6.0/Pollaris.AssemblyInfoInputs.cache
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/obj/Debug/net6.0/Pollaris.AssemblyInfo.cs
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/obj/Debug/net6.0/Pollaris.csproj.CoreCompileInputs.cache
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/obj/Debug/net6.0/Pollaris.MvcApplicationPartsAssemblyInfo.cache
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/obj/Debug/net6.0/Pollaris.RazorAssemblyInfo.cache
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/obj/Debug/net6.0/Pollaris.RazorAssemblyInfo.cs
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/obj/Debug/net6.0/staticwebassets/msbuild.Pollaris.Microsoft.AspNetCore.StaticWebAssets.props
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/obj/Debug/net6.0/staticwebassets/msbuild.build.Pollaris.props
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.Pollaris.props
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.Pollaris.props
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/obj/Debug/net6.0/staticwebassets.pack.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/obj/Debug/net6.0/staticwebassets.build.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/obj/Debug/net6.0/staticwebassets.development.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/obj/Debug/net6.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/obj/Debug/net6.0/scopedcss/bundle/Pollaris.styles.css
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/obj/Debug/net6.0/scopedcss/projectbundle/Pollaris.bundle.scp.css
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/obj/Debug/net6.0/Pollaris.csproj.CopyComplete
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/obj/Debug/net6.0/Pollaris.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/obj/Debug/net6.0/refint/Pollaris.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/obj/Debug/net6.0/Pollaris.pdb
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/obj/Debug/net6.0/Pollaris.genruntimeconfig.cache
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/obj/Debug/net6.0/ref/Pollaris.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/bin/Debug/net6.0/appsettings.Development.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/bin/Debug/net6.0/appsettings.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/bin/Debug/net6.0/Pollaris.staticwebassets.runtime.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/bin/Debug/net6.0/Pollaris.exe
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/bin/Debug/net6.0/Pollaris.deps.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/bin/Debug/net6.0/Pollaris.runtimeconfig.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/bin/Debug/net6.0/Pollaris.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/bin/Debug/net6.0/Pollaris.pdb
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/bin/Debug/net6.0/Newtonsoft.Json.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/obj/Debug/net6.0/Pollaris.csproj.AssemblyReference.cache
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/obj/Debug/net6.0/Pollaris.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/obj/Debug/net6.0/Pollaris.AssemblyInfoInputs.cache
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/obj/Debug/net6.0/Pollaris.AssemblyInfo.cs
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/obj/Debug/net6.0/Pollaris.csproj.CoreCompileInputs.cache
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/obj/Debug/net6.0/Pollaris.MvcApplicationPartsAssemblyInfo.cache
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/obj/Debug/net6.0/Pollaris.RazorAssemblyInfo.cache
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/obj/Debug/net6.0/Pollaris.RazorAssemblyInfo.cs
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/obj/Debug/net6.0/staticwebassets/msbuild.Pollaris.Microsoft.AspNetCore.StaticWebAssets.props
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/obj/Debug/net6.0/staticwebassets/msbuild.build.Pollaris.props
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.Pollaris.props
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.Pollaris.props
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/obj/Debug/net6.0/staticwebassets.pack.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/obj/Debug/net6.0/staticwebassets.build.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/obj/Debug/net6.0/staticwebassets.development.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/obj/Debug/net6.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/obj/Debug/net6.0/scopedcss/bundle/Pollaris.styles.css
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/obj/Debug/net6.0/scopedcss/projectbundle/Pollaris.bundle.scp.css
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/obj/Debug/net6.0/Pollaris.csproj.CopyComplete
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/obj/Debug/net6.0/Pollaris.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/obj/Debug/net6.0/refint/Pollaris.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/obj/Debug/net6.0/Pollaris.pdb
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/obj/Debug/net6.0/Pollaris.genruntimeconfig.cache
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v2/Pollaris/obj/Debug/net6.0/ref/Pollaris.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/bin/Debug/net6.0/System.Data.SqlClient.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/bin/Debug/net6.0/runtimes/win-arm64/native/sni.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/bin/Debug/net6.0/runtimes/win-x64/native/sni.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/bin/Debug/net6.0/runtimes/win-x86/native/sni.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/bin/Debug/net6.0/runtimes/unix/lib/netcoreapp2.1/System.Data.SqlClient.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/project-code-pollaris/Pollaris/bin/Debug/net6.0/runtimes/win/lib/netcoreapp2.1/System.Data.SqlClient.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/bin/Debug/net6.0/appsettings.Development.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/bin/Debug/net6.0/appsettings.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/bin/Debug/net6.0/Pollaris.staticwebassets.runtime.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/bin/Debug/net6.0/Pollaris.exe
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/bin/Debug/net6.0/Pollaris.deps.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/bin/Debug/net6.0/Pollaris.runtimeconfig.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/bin/Debug/net6.0/Pollaris.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/bin/Debug/net6.0/Pollaris.pdb
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/bin/Debug/net6.0/Newtonsoft.Json.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/bin/Debug/net6.0/System.Data.SqlClient.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/bin/Debug/net6.0/runtimes/win-arm64/native/sni.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/bin/Debug/net6.0/runtimes/win-x64/native/sni.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/bin/Debug/net6.0/runtimes/win-x86/native/sni.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/bin/Debug/net6.0/runtimes/unix/lib/netcoreapp2.1/System.Data.SqlClient.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/bin/Debug/net6.0/runtimes/win/lib/netcoreapp2.1/System.Data.SqlClient.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/obj/Debug/net6.0/Pollaris.csproj.AssemblyReference.cache
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/obj/Debug/net6.0/Pollaris.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/obj/Debug/net6.0/Pollaris.AssemblyInfoInputs.cache
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/obj/Debug/net6.0/Pollaris.AssemblyInfo.cs
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/obj/Debug/net6.0/Pollaris.csproj.CoreCompileInputs.cache
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/obj/Debug/net6.0/Pollaris.MvcApplicationPartsAssemblyInfo.cache
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/obj/Debug/net6.0/Pollaris.RazorAssemblyInfo.cache
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/obj/Debug/net6.0/Pollaris.RazorAssemblyInfo.cs
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/obj/Debug/net6.0/staticwebassets/msbuild.Pollaris.Microsoft.AspNetCore.StaticWebAssets.props
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/obj/Debug/net6.0/staticwebassets/msbuild.build.Pollaris.props
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.Pollaris.props
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.Pollaris.props
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/obj/Debug/net6.0/staticwebassets.pack.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/obj/Debug/net6.0/staticwebassets.build.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/obj/Debug/net6.0/staticwebassets.development.json
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/obj/Debug/net6.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/obj/Debug/net6.0/scopedcss/bundle/Pollaris.styles.css
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/obj/Debug/net6.0/scopedcss/projectbundle/Pollaris.bundle.scp.css
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/obj/Debug/net6.0/Pollaris.csproj.CopyComplete
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/obj/Debug/net6.0/Pollaris.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/obj/Debug/net6.0/refint/Pollaris.dll
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/obj/Debug/net6.0/Pollaris.pdb
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/obj/Debug/net6.0/Pollaris.genruntimeconfig.cache
+C:/Users/pinkp/OneDrive - University of Nebraska-Lincoln/Semester 4 (Spring 2023)/Software Engineering IV/pollaris-v4/Pollaris/obj/Debug/net6.0/ref/Pollaris.dll
+/Users/emilynnau/Documents/Pollaris/Pollaris/bin/Debug/net6.0/appsettings.Development.json
+/Users/emilynnau/Documents/Pollaris/Pollaris/bin/Debug/net6.0/appsettings.json
+/Users/emilynnau/Documents/Pollaris/Pollaris/bin/Debug/net6.0/Pollaris.staticwebassets.runtime.json
+/Users/emilynnau/Documents/Pollaris/Pollaris/bin/Debug/net6.0/Pollaris
+/Users/emilynnau/Documents/Pollaris/Pollaris/bin/Debug/net6.0/Pollaris.deps.json
+/Users/emilynnau/Documents/Pollaris/Pollaris/bin/Debug/net6.0/Pollaris.runtimeconfig.json
+/Users/emilynnau/Documents/Pollaris/Pollaris/bin/Debug/net6.0/Pollaris.dll
+/Users/emilynnau/Documents/Pollaris/Pollaris/bin/Debug/net6.0/Pollaris.pdb
+/Users/emilynnau/Documents/Pollaris/Pollaris/bin/Debug/net6.0/Newtonsoft.Json.dll
+/Users/emilynnau/Documents/Pollaris/Pollaris/bin/Debug/net6.0/System.Data.SqlClient.dll
+/Users/emilynnau/Documents/Pollaris/Pollaris/bin/Debug/net6.0/runtimes/win-arm64/native/sni.dll
+/Users/emilynnau/Documents/Pollaris/Pollaris/bin/Debug/net6.0/runtimes/win-x64/native/sni.dll
+/Users/emilynnau/Documents/Pollaris/Pollaris/bin/Debug/net6.0/runtimes/win-x86/native/sni.dll
+/Users/emilynnau/Documents/Pollaris/Pollaris/bin/Debug/net6.0/runtimes/unix/lib/netcoreapp2.1/System.Data.SqlClient.dll
+/Users/emilynnau/Documents/Pollaris/Pollaris/bin/Debug/net6.0/runtimes/win/lib/netcoreapp2.1/System.Data.SqlClient.dll
+/Users/emilynnau/Documents/Pollaris/Pollaris/obj/Debug/net6.0/Pollaris.csproj.AssemblyReference.cache
+/Users/emilynnau/Documents/Pollaris/Pollaris/obj/Debug/net6.0/Pollaris.GeneratedMSBuildEditorConfig.editorconfig
+/Users/emilynnau/Documents/Pollaris/Pollaris/obj/Debug/net6.0/Pollaris.AssemblyInfoInputs.cache
+/Users/emilynnau/Documents/Pollaris/Pollaris/obj/Debug/net6.0/Pollaris.AssemblyInfo.cs
+/Users/emilynnau/Documents/Pollaris/Pollaris/obj/Debug/net6.0/Pollaris.csproj.CoreCompileInputs.cache
+/Users/emilynnau/Documents/Pollaris/Pollaris/obj/Debug/net6.0/Pollaris.MvcApplicationPartsAssemblyInfo.cache
+/Users/emilynnau/Documents/Pollaris/Pollaris/obj/Debug/net6.0/Pollaris.RazorAssemblyInfo.cache
+/Users/emilynnau/Documents/Pollaris/Pollaris/obj/Debug/net6.0/Pollaris.RazorAssemblyInfo.cs
+/Users/emilynnau/Documents/Pollaris/Pollaris/obj/Debug/net6.0/staticwebassets/msbuild.Pollaris.Microsoft.AspNetCore.StaticWebAssets.props
+/Users/emilynnau/Documents/Pollaris/Pollaris/obj/Debug/net6.0/staticwebassets/msbuild.build.Pollaris.props
+/Users/emilynnau/Documents/Pollaris/Pollaris/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.Pollaris.props
+/Users/emilynnau/Documents/Pollaris/Pollaris/obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.Pollaris.props
+/Users/emilynnau/Documents/Pollaris/Pollaris/obj/Debug/net6.0/staticwebassets.pack.json
+/Users/emilynnau/Documents/Pollaris/Pollaris/obj/Debug/net6.0/staticwebassets.build.json
+/Users/emilynnau/Documents/Pollaris/Pollaris/obj/Debug/net6.0/staticwebassets.development.json
+/Users/emilynnau/Documents/Pollaris/Pollaris/obj/Debug/net6.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
+/Users/emilynnau/Documents/Pollaris/Pollaris/obj/Debug/net6.0/scopedcss/bundle/Pollaris.styles.css
+/Users/emilynnau/Documents/Pollaris/Pollaris/obj/Debug/net6.0/scopedcss/projectbundle/Pollaris.bundle.scp.css
+/Users/emilynnau/Documents/Pollaris/Pollaris/obj/Debug/net6.0/Pollaris.csproj.CopyComplete
+/Users/emilynnau/Documents/Pollaris/Pollaris/obj/Debug/net6.0/Pollaris.dll
+/Users/emilynnau/Documents/Pollaris/Pollaris/obj/Debug/net6.0/refint/Pollaris.dll
+/Users/emilynnau/Documents/Pollaris/Pollaris/obj/Debug/net6.0/Pollaris.pdb
+/Users/emilynnau/Documents/Pollaris/Pollaris/obj/Debug/net6.0/Pollaris.genruntimeconfig.cache
+/Users/emilynnau/Documents/Pollaris/Pollaris/obj/Debug/net6.0/ref/Pollaris.dll
