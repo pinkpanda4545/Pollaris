@@ -83,9 +83,9 @@ namespace Pollaris._3.Accessors
             string query = "SELECT password FROM Users WHERE user_id = @userId;";
             connection.Open();
             SqlCommand command = new(query, connection);
-            command.Parameters.AddWithValue("@userId", userId);
+            command.Parameters.AddWithValue("@userId", user);
 
-            string result = (string)command.ExecuteScalar();
+            int result = (string)command.ExecuteScalar();
             connection.Close();
             return result;
         }
@@ -102,12 +102,12 @@ namespace Pollaris._3.Accessors
             int rowsAffected = command.ExecuteNonQuery();
             if (rowsAffected > 0)
             {
-                connection.Close();
+                connection.close();
                 return true;
             }
             else
             {
-                connection.Close();
+                connection.close();
                 return false;
             }
         }
@@ -197,12 +197,12 @@ namespace Pollaris._3.Accessors
             int rowsAffected = command.ExecuteNonQuery();
             if (rowsAffected > 0)
             {
-                connection.Close();
+                connection.close();
                 return true;
             }
             else
             {
-                connection.Close();
+                connection.close();
                 return false;
             }
         }
@@ -219,12 +219,12 @@ namespace Pollaris._3.Accessors
 
             if (reader.Read())
             {
-                connection.Close();
+                connection.close();
                 return reader.GetString(0);
             }
             else
             {
-                connection.Close();
+                connection.close();
                 return "";
             }
         }
@@ -315,12 +315,12 @@ namespace Pollaris._3.Accessors
             if (reader.Read())
             {
                 int result = reader.GetInt32(0);
-                connection.Close();
-                return result;
+                connection.close();
+                return result
             }
             else
             {
-                connection.Close();
+                connection.close();
                 return 0;
             }
         }
@@ -338,12 +338,12 @@ namespace Pollaris._3.Accessors
             int rowsAffected = command.ExecuteNonQuery();
             if (rowsAffected > 0)
             {
-                connection.Close();
+                connection.close();
                 return true;
             }
             else
             {
-                connection.Close();
+                connection.close();
                 return false;
             }
         }
@@ -360,12 +360,12 @@ namespace Pollaris._3.Accessors
 
             if (reader.Read())
             {
-                connection.Close();
+                connection.close();
                 return true;
             }
             else
             {
-                connection.Close();
+                connection.close();
                 return false;
             }
         }
@@ -385,12 +385,12 @@ namespace Pollaris._3.Accessors
             int rowsAffected = command.ExecuteNonQuery();
             if (rowsAffected > 0)
             {
-                connection.Close();
+                connection.close();
                 return true;
             }
             else
             {
-                connection.Close();
+                connection.close();
                 return false;
             }
         }
@@ -413,8 +413,8 @@ namespace Pollaris._3.Accessors
                 questionIds.Add(reader.GetInt32(0));
             }
 
-            connection.Close();
-            return questionIds;
+            connection.close();
+            return questionIds
         }
 
         public List<QuestionInfo> GetQuestionsFromIds(List<int> questionIds)
@@ -427,11 +427,11 @@ namespace Pollaris._3.Accessors
             command.Parameters.AddWithValue("@questionIds", questionIds);
 
             SqlDataReader reader = command.ExecuteReader();
-            List<QuestionInfo> questions = new List<QuestionInfo>();
+            List<RoomInfo> questions = new List<RoomInfo>();
             while (reader.Read())
             {
                 int questionId = reader.GetInt32(0);
-                string questionName = reader.GetString(1);
+                string question = reader.GetString(1);
                 string type = reader.GetString(2);
                 // TODO
                 string instructorName = reader.GetString(3);
@@ -444,8 +444,8 @@ namespace Pollaris._3.Accessors
                 {
                     isActive = false;
                 }
-                QuestionInfo question = new QuestionInfo(questionId, questionName, type, isActive);
-                questions.Add(question);
+                RoomInfo room = new RoomInfo(questionId, question, type, instructorName, isActive);
+                questions.Add(room);
             }
 
             connection.Close();
@@ -471,12 +471,12 @@ namespace Pollaris._3.Accessors
             int rowsAffected = command.ExecuteNonQuery();
             if (rowsAffected > 0)
             {
-                connection.Close();
+                connection.close();
                 return true;
             }
             else
             {
-                connection.Close();
+                connection.close();
                 return false;
             }
         }
@@ -497,8 +497,8 @@ namespace Pollaris._3.Accessors
                 optionIds.Add(reader.GetInt32(0));
             }
 
-            connection.Close();
-            return optionIds;
+            connection.close();
+            return optionIds
         }
 
         public List<OptionInfo> GetOptionsFromIds(List<int> optionsIds)
@@ -527,11 +527,11 @@ namespace Pollaris._3.Accessors
                     isCorrect = false;
                 }
                 OptionInfo option = new OptionInfo(id, name, isCorrect);
-                options.Add(option);
+                result.Add(option);
             }
 
             connection.Close();
-            return options;
+            return options
         }
 
         public bool ChangeActiveQuestion(int currActiveId, int nextActiveId)
@@ -542,7 +542,6 @@ namespace Pollaris._3.Accessors
 
         public QuestionInfo? GetQuestionFromId(int questionId)
         {
-            return null;
         }
 
         public List<String> GetAnswersFromQuestionId(int questionId)
@@ -560,7 +559,7 @@ namespace Pollaris._3.Accessors
             {
                 int id = reader.GetInt32(0);
                 string answer = reader.GetString("role");
-                answers.Add(answer);
+                result.Add(answer);
             }
 
             connection.Close();
@@ -569,13 +568,12 @@ namespace Pollaris._3.Accessors
 
         public void SubmitStudentAnswer(int userId, int questionId, List<string> answer)
         {
-            //TODO - FIX THIS WITH NEW DATABASE SETUP
             SqlConnection connection = getConnection();
             connection.Open();
 
             string query = "INSERT INTO QuestionSet (set_id, question_id) VALUES (@setId, @questionId)";
             SqlCommand command = new(query, connection);
-            command.Parameters.AddWithValue("@userId", userId);
+            command.Parameters.AddWithValue("@setId", setId);
             command.Parameters.AddWithValue("@questionId", questionId);
 
             int rowsAffected = command.ExecuteNonQuery();
@@ -591,7 +589,7 @@ namespace Pollaris._3.Accessors
 
             string query = "SELECT response_id FROM ResponseQuestion WHERE question_id = @questionId;";
             SqlCommand command = new(query, connection);
-            command.Parameters.AddWithValue("@questionId", questionId);
+            command.Parameters.AddWithValue("@questionId", question_id);
             SqlDataReader reader = command.ExecuteReader();
             List<int> responseIds = new List<int>();
 
@@ -600,8 +598,8 @@ namespace Pollaris._3.Accessors
                 responseIds.Add(reader.GetInt32(0));
             }
 
-            connection.Close();
-            return responseIds;
+            connection.close();
+            return responseIds
         }
 
         public List<StudentResponseInfo> GetResponsesFromIds(List<int> responseIds)
@@ -611,7 +609,7 @@ namespace Pollaris._3.Accessors
 
             string query = "SELECT * FROM Response WHERE response_id IN @responseIds;";
             SqlCommand command = new(query, connection);
-            command.Parameters.AddWithValue("@responseIds", responseIds);
+            command.Parameters.AddWithValue("@responseIds", resopnseIds);
 
             SqlDataReader reader = command.ExecuteReader();
             List<StudentResponseInfo> studentResponses = new List<StudentResponseInfo>();
@@ -620,7 +618,7 @@ namespace Pollaris._3.Accessors
                 int id = reader.GetInt32(0);
                 string response = reader.GetString("resopnse");
                 StudentResponseInfo studentResponse = new StudentResponseInfo(id, response);
-                studentResponses.Add(studentResponse);
+                studentResponses.Add(response);
             }
 
             connection.Close();
@@ -646,14 +644,14 @@ namespace Pollaris._3.Accessors
                 setIds.Add(reader.GetInt32(0));
             }
 
-            connection.Close();
+            connection.close();
             return setIds;
         }
 
         public List<SetInfo> GetSetsFromIds(List<int> setIds)
         {
             List<SetInfo> sets = new List<SetInfo>();
-            for (int i = 0; i < setIds.Count; i++)
+            for (int i = 0; i < setIds.length; i++)
             {
                 sets.Add(GetSetFromId(setIds[i]));
             }
@@ -674,7 +672,7 @@ namespace Pollaris._3.Accessors
             SqlCommand command = new(query, connection);
             command.Parameters.AddWithValue("@setId", setId);
             int rowsAffected = command.ExecuteNonQuery();
-            connection.Close();
+            connection.close();
         }
 
         public void RemoveSetFromRoom(int roomId, int setId)
@@ -686,12 +684,11 @@ namespace Pollaris._3.Accessors
             SqlCommand command = new(query, connection);
             command.Parameters.AddWithValue("@setId", setId);
             int rowsAffected = command.ExecuteNonQuery();
-            connection.Close();
+            connection.close();
         }
 
         public SetInfo? GetSetFromId(int setId)
         {
-            //TODO - convert to set from copied user info
             SqlConnection connection = getConnection();
             connection.Open();
 
@@ -728,14 +725,14 @@ namespace Pollaris._3.Accessors
 
             if (reader.Read())
             {
-                int result = reader.GetInt32(0);
-                connection.Close();
+                result = reader.GetInt32(0);
+                connection.close();
                 return result;
             }
             else
             {
                 // If the setId is not in RoomSet
-                connection.Close();
+                connection.close();
                 return 0;
             }
         }
