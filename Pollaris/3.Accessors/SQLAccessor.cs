@@ -7,13 +7,11 @@ namespace Pollaris._3.Accessors
 {
     public class SQLAccessor
     {
-        private static string connectionString = "Data Source=tcp:pollarissql.database.windows.net,1433;Initial Catalog=Pollaris;User Id=sqladmin;Password=iajdfij#29dfkjb(fj; Column Encryption Setting=enabled";
-        
+        private static string connectionString = "Data Source=tcp:pollarissql.database.windows.net,1433;Initial Catalog=Pollaris;User Id=sqladmin;Password=iajdfij#29dfkjb(fj;";
+
         public SqlConnection getConnection()
         {
-            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(connectionString);
-            builder.ColumnEncryptionSetting = SqlConnectionColumnEncryptionSetting.Enabled;
-            return new SqlConnection(builder.ConnectionString);
+            return new SqlConnection(connectionString);
         }
 
 
@@ -81,12 +79,37 @@ namespace Pollaris._3.Accessors
 
         public string? GetPasswordFromUserId(int userId)
         {
-            return null; 
+            SqlConnection connection = getConnection();
+            string query = "SELECT password FROM Users WHERE user_id = @userId;";
+            connection.Open();
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@userId", user);
+
+            int result = (string)command.ExecuteScalar();
+            connection.Close();
+            return result;
         }
 
         public bool ChangePassword(int userId, string newPassword)
         {
-            return false; 
+            SqlConnection connection = getConnection();
+            string query = "UPDATE Users SET password = @newPassword WHERE user_id = @userId;";
+            connection.Open();
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@newPassword", newPassword);
+            command.Parameters.AddWithValue("@user_id", userId);
+
+            int rowsAffected = command.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                connection.close();
+                return true;
+            }
+            else
+            {
+                connection.close();
+                return false;
+            }
         }
 
         public List<int> GetMembersFromRoomId(int roomId)
@@ -100,7 +123,8 @@ namespace Pollaris._3.Accessors
 
             SqlDataReader reader = command.ExecuteReader();
             List<int> result = new List<int>();
-            while (reader.Read()) {
+            while (reader.Read())
+            {
                 int id = reader.GetInt32(0);
                 result.Add(id);
             }
@@ -125,7 +149,7 @@ namespace Pollaris._3.Accessors
                 string role = reader.GetString("role");
                 string firstName = reader.GetString("first_name");
                 string lastName = reader.GetString("last_name");
-                string photo = reader.GetString("photo"); 
+                string photo = reader.GetString("photo");
                 UserInfo user = new UserInfo(id, role, firstName, lastName, photo);
                 result.Add(user);
             }
@@ -161,12 +185,48 @@ namespace Pollaris._3.Accessors
 
         public bool SaveProfileInfo(int userId, string firstName, string lastName)
         {
-            return false; 
+            SqlConnection connection = getConnection();
+            connection.Open();
+
+            string query = "UPDATE Users SET first_name = @firstName, last_name = @lastName WHERE user_id = @userId;";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@first_name", firstName);
+            command.Parameters.AddWithValue("@last_name", lastName);
+            command.Parameters.AddWithValue("@user_id", userId);
+
+            int rowsAffected = command.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                connection.close();
+                return true;
+            }
+            else
+            {
+                connection.close();
+                return false;
+            }
         }
 
         public string GetUserNameFromId(int userId)
         {
-            return "";
+            SqlConnection connection = getConnection();
+            connection.Open();
+
+            string query = "SELECT first_name FROM Users WHERE user_id = @userId;";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@userId", userId);
+            SqlDataReader reader = command.ExecuteReader();
+
+            if (reader.Read())
+            {
+                connection.close();
+                return reader.GetString(0);
+            }
+            else
+            {
+                connection.close();
+                return "";
+            }
         }
 
 
@@ -244,39 +304,152 @@ namespace Pollaris._3.Accessors
 
         public int ValidateRoomCode(string roomCode)
         {
-            //return 0 if reader.HasRows == false
-            //return roomId otherwise
-            return 0;
+            SqlConnection connection = getConnection();
+            connection.Open();
+
+            string query = "SELECT room_id FROM Room WHERE room_code = @roomCode;";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@roomCode", roomCode);
+            SqlDataReader reader = command.ExecuteReader();
+
+            if (reader.Read())
+            {
+                int result = reader.GetInt32(0);
+                connection.close();
+                return result
+            }
+            else
+            {
+                connection.close();
+                return 0;
+            }
         }
 
         public bool UserRoomConnection(int userId, int roomId)
         {
-            return false; 
+            SqlConnection connection = getConnection();
+            connection.Open();
+
+            string query = "INSERT INTO UsersRoom (user_id, room_id) VALUES (@userId, @roomId)";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@userId", userId);
+            command.Parameters.AddWithValue("@roomId", roomId);
+
+            int rowsAffected = command.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                connection.close();
+                return true;
+            }
+            else
+            {
+                connection.close();
+                return false;
+            }
         }
 
         public bool CodeNotAvailable(string newCode)
         {
-            //check Rooms table for the code
-            //return true if the code is in the table
-            //return false if the code is NOT in the table
-            return false; 
+            SqlConnection connection = getConnection();
+            connection.Open();
+
+            string query = "SELECT room_id FROM Room WHERE room_code = @newCode;";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@newCode", newCode);
+            SqlDataReader reader = command.ExecuteReader();
+
+            if (reader.Read())
+            {
+                connection.close();
+                return true;
+            }
+            else
+            {
+                connection.close();
+                return false;
+            }
         }
 
         public bool CreateRoom(string roomName, string roomCode, int instructorId, string instructorName)
         {
-            return false; 
+            SqlConnection connection = getConnection();
+            connection.Open();
+
+            string query = "INSERT INTO Room (room_name, room_code, instructor_id, instructor_name) VALUES (@roomName, @roomCode, @instructorId, @instructorName)";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@roomName", roomName);
+            command.Parameters.AddWithValue("@roomCode", roomCode);
+            command.Parameters.AddWithValue("@instructorId", instructorId);
+            command.Parameters.AddWithValue("@instructorName", instructorName);
+
+            int rowsAffected = command.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                connection.close();
+                return true;
+            }
+            else
+            {
+                connection.close();
+                return false;
+            }
         }
 
         //QUESTION MANAGER
 
         public List<int> GetQuestionIdsFromSetId(int setId)
         {
-            return new List<int>();
+            SqlConnection connection = getConnection();
+            connection.Open();
+
+            string query = "SELECT question_id FROM QuestionSet WHERE set_id = @setId;";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@setId", setId);
+            SqlDataReader reader = command.ExecuteReader();
+            List<int> questionIds = new List<int>();
+
+            while (reader.Read())
+            {
+                questionIds.Add(reader.GetInt32(0));
+            }
+
+            connection.close();
+            return questionIds
         }
 
         public List<QuestionInfo> GetQuestionsFromIds(List<int> questionIds)
         {
-            return new List<QuestionInfo>(); 
+            SqlConnection connection = getConnection();
+            connection.Open();
+
+            string query = "SELECT * FROM Question WHERE question_id IN @questionIds;";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@questionIds", questionIds);
+
+            SqlDataReader reader = command.ExecuteReader();
+            List<RoomInfo> questions = new List<RoomInfo>();
+            while (reader.Read())
+            {
+                int questionId = reader.GetInt32(0);
+                string question = reader.GetString(1);
+                string type = reader.GetString(2);
+                // TODO
+                string instructorName = reader.GetString(3);
+                bool isActive;
+                if (reader.GetInt32(4) == 1)
+                {
+                    isActive = true;
+                }
+                else
+                {
+                    isActive = false;
+                }
+                RoomInfo room = new RoomInfo(questionId, question, type, instructorName, isActive);
+                questions.Add(room);
+            }
+
+            connection.Close();
+            return questions;
         }
 
         public QuestionInfo CreateQuestion(string type)
@@ -285,19 +458,80 @@ namespace Pollaris._3.Accessors
             return null;
         }
 
-        public void SetQuestionConnection(int setId, int questionId)
+        public bool SetQuestionConnection(int setId, int questionId)
         {
+            SqlConnection connection = getConnection();
+            connection.Open();
 
+            string query = "INSERT INTO QuestionSet (set_id, question_id) VALUES (@setId, @questionId)";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@setId", setId);
+            command.Parameters.AddWithValue("@questionId", questionId);
+
+            int rowsAffected = command.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                connection.close();
+                return true;
+            }
+            else
+            {
+                connection.close();
+                return false;
+            }
         }
 
         public List<int> GetOptionIdsFromQuestionId(int questionId)
         {
-            return new List<int>();
+            SqlConnection connection = getConnection();
+            connection.Open();
+
+            string query = "SELECT option_id FROM QuestionOption WHERE question_id = @questionId;";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@questionId", questionId);
+            SqlDataReader reader = command.ExecuteReader();
+            List<int> optionIds = new List<int>();
+
+            while (reader.Read())
+            {
+                optionIds.Add(reader.GetInt32(0));
+            }
+
+            connection.close();
+            return optionIds
         }
 
         public List<OptionInfo> GetOptionsFromIds(List<int> optionsIds)
         {
-            return new List<OptionInfo>();
+            SqlConnection connection = getConnection();
+            connection.Open();
+
+            string query = "SELECT * FROM Option WHERE option_id IN @optionsId;";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@optionsIds", optionsIds);
+
+            SqlDataReader reader = command.ExecuteReader();
+            List<OptionInfo> options = new List<OptionInfo>();
+            while (reader.Read())
+            {
+                int id = reader.GetInt32(0);
+                string name = reader.GetString("name");
+                int isCorrectInt = reader.GetInt32("is_correct");
+                bool isCorrect;
+                if (isCorrectInt == 1)
+                {
+                    isCorrect = true;
+                }
+                else
+                {
+                    isCorrect = false;
+                }
+                OptionInfo option = new OptionInfo(id, name, isCorrect);
+                result.Add(option);
+            }
+
+            connection.Close();
+            return options
         }
 
         public bool ChangeActiveQuestion(int currActiveId, int nextActiveId)
@@ -308,17 +542,41 @@ namespace Pollaris._3.Accessors
 
         public QuestionInfo? GetQuestionFromId(int questionId)
         {
-            return null; 
         }
 
         public List<String> GetAnswersFromQuestionId(int questionId)
         {
-            return new List<String>();
+            SqlConnection connection = getConnection();
+            connection.Open();
+
+            string query = "SELECT * FROM Answer WHERE question_id IN @questionId;";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@questionId", questionId);
+
+            SqlDataReader reader = command.ExecuteReader();
+            List<string> answers = new List<string>();
+            while (reader.Read())
+            {
+                int id = reader.GetInt32(0);
+                string answer = reader.GetString("role");
+                result.Add(answer);
+            }
+
+            connection.Close();
+            return answers;
         }
 
         public void SubmitStudentAnswer(int userId, int questionId, List<string> answer)
         {
+            SqlConnection connection = getConnection();
+            connection.Open();
 
+            string query = "INSERT INTO QuestionSet (set_id, question_id) VALUES (@setId, @questionId)";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@setId", setId);
+            command.Parameters.AddWithValue("@questionId", questionId);
+
+            int rowsAffected = command.ExecuteNonQuery();
         }
 
 
@@ -326,12 +584,45 @@ namespace Pollaris._3.Accessors
 
         public List<int> GetResponseIdsFromQuestionId(int questionId)
         {
-            return new List<int>(); 
+            SqlConnection connection = getConnection();
+            connection.Open();
+
+            string query = "SELECT response_id FROM ResponseQuestion WHERE question_id = @questionId;";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@questionId", question_id);
+            SqlDataReader reader = command.ExecuteReader();
+            List<int> responseIds = new List<int>();
+
+            while (reader.Read())
+            {
+                responseIds.Add(reader.GetInt32(0));
+            }
+
+            connection.close();
+            return responseIds
         }
 
         public List<StudentResponseInfo> GetResponsesFromIds(List<int> responseIds)
         {
-            return new List<StudentResponseInfo>();
+            SqlConnection connection = getConnection();
+            connection.Open();
+
+            string query = "SELECT * FROM Response WHERE response_id IN @responseIds;";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@responseIds", resopnseIds);
+
+            SqlDataReader reader = command.ExecuteReader();
+            List<StudentResponseInfo> studentResponses = new List<StudentResponseInfo>();
+            while (reader.Read())
+            {
+                int id = reader.GetInt32(0);
+                string response = reader.GetString("resopnse");
+                StudentResponseInfo studentResponse = new StudentResponseInfo(id, response);
+                studentResponses.Add(response);
+            }
+
+            connection.Close();
+            return studentResponses;
         }
 
 
@@ -339,12 +630,32 @@ namespace Pollaris._3.Accessors
 
         public List<int> GetSetIdsFromRoomId(int roomId)
         {
-            return new List<int>(); 
+            SqlConnection connection = getConnection();
+            connection.Open();
+
+            string query = "SELECT set_id FROM RoomSet WHERE room_id = @roomId;";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@roomId", roomId);
+            SqlDataReader reader = command.ExecuteReader();
+            List<int> setIds = new List<int>();
+
+            while (reader.Read())
+            {
+                setIds.Add(reader.GetInt32(0));
+            }
+
+            connection.close();
+            return setIds;
         }
 
         public List<SetInfo> GetSetsFromIds(List<int> setIds)
         {
-            return new List<SetInfo>();
+            List<SetInfo> sets = new List<SetInfo>();
+            for (int i = 0; i < setIds.length; i++)
+            {
+                sets.Add(GetSetFromId(setIds[i]));
+            }
+            return sets;
         }
 
         public SetInfo CreateSet(int roomId)
@@ -354,39 +665,114 @@ namespace Pollaris._3.Accessors
 
         public void DeleteSet(int setId)
         {
+            SqlConnection connection = getConnection();
+            connection.Open();
 
+            string query = "DELETE FROM Set WHERE set_id = @setId;";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@setId", setId);
+            int rowsAffected = command.ExecuteNonQuery();
+            connection.close();
         }
 
         public void RemoveSetFromRoom(int roomId, int setId)
         {
+            SqlConnection connection = getConnection();
+            connection.Open();
 
+            string query = "DELETE FROM Room WHERE set_id = @setId;";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@setId", setId);
+            int rowsAffected = command.ExecuteNonQuery();
+            connection.close();
         }
 
         public SetInfo? GetSetFromId(int setId)
         {
-            return null;
+            SqlConnection connection = getConnection();
+            connection.Open();
+
+            string query = "SELECT * FROM Users WHERE user_id = @user_id";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@user_id", id);
+
+            SqlDataReader reader = command.ExecuteReader();
+            SetInfo result = null;
+            if (reader.Read())
+            {
+                int userId = reader.GetInt32(0);
+                string? role = reader.GetString("role");
+                string firstName = reader.GetString("first_name");
+                string lastName = reader.GetString("last_name");
+                string? photo = reader.GetString("photo");
+                result = new UserInfo(userId, role, firstName, lastName, photo);
+            }
+            // TODO
+
+            connection.Close();
+            return result;
         }
 
         public int GetRoomIdFromSetId(int setId)
         {
-            //use Room Sets connection table
-            return 0; 
+            SqlConnection connection = getConnection();
+            connection.Open();
+
+            string query = "SELECT room_id FROM RoomSet WHERE set_id = @setId";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@setId", setId);
+            SqlDataReader reader = command.ExecuteReader();
+
+            if (reader.Read())
+            {
+                result = reader.GetInt32(0);
+                connection.close();
+                return result;
+            }
+            else
+            {
+                // If the setId is not in RoomSet
+                connection.close();
+                return 0;
+            }
         }
 
         public int GetActiveSetIdFromRoomId(int roomId)
         {
-            //find active set
-            return 0; 
+            SqlConnection connection = getConnection();
+            string query = "SELECT active_set_id FROM Room WHERE room_id = @roomId;";
+            connection.Open();
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@roomId", roomId);
+
+            int result = (int)command.ExecuteScalar();
+            connection.Close();
+            return result;
         }
 
         public void ChangeActiveSet(int activeSetId, int newSetId)
         {
+            SqlConnection connection = getConnection();
+            string query = "UPDATE Room SET active_set_id = @newSetId WHERE active_set_id = @activeSetId;";
+            connection.Open();
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@newSetId", newSetId);
+            command.Parameters.AddWithValue("@activeSetId", activeSetId);
 
+            int result = command.ExecuteNonQuery();
+            connection.Close();
         }
 
         public void ChangeStatus(int setId, string newStatus)
         {
-            //newStatus == "C" or "R"
+            SqlConnection connection = getConnection();
+            string query = "UPDATE Set SET status = @newStatus WHERE set_id = @setId;";
+            connection.Open();
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@setId", setId);
+
+            int result = command.ExecuteNonQuery();
+            connection.Close();
         }
     }
 }
