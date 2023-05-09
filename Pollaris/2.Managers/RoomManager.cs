@@ -105,5 +105,10 @@ namespace Pollaris.Managers
             }
             return code; 
         }
+
+        public string GetRole(int userId, int roomId)
+        {
+            return "TA"; 
+        }
     }
 }

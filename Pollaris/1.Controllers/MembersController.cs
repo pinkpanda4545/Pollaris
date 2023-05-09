@@ -45,8 +45,10 @@ namespace Pollaris.Controllers
         public IActionResult MemberPermissions(int userId, int roomId, int memberId)
         {
             UserManager uM = new UserManager();
+            RoomManager rM = new RoomManager();
             UserInfo user = uM.GetUserFromId(memberId);
-            MemberPermissionsInfo model = new MemberPermissionsInfo(userId, roomId, user);
+            string role = rM.GetRole(user.Id, roomId); 
+            MemberPermissionsInfo model = new MemberPermissionsInfo(userId, roomId, user, role);
             return View(model);
         }
     }

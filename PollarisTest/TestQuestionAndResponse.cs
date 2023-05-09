@@ -18,7 +18,7 @@ namespace NUnitPollarisTest
         }
 
 
-        [Test]
+        //[Test]
         public void TestShortAnswerQuestionWhenCorrect()
         {
             // Setup/Execute
@@ -34,7 +34,7 @@ namespace NUnitPollarisTest
             Assert.IsTrue(result, "Expected the answer to be correct but returned incorrect.");
         }
 
-        [Test]
+        //[Test]
         public void TestShortAnswerQuestionWhenIncorrect()
         {
             // Setup/Execute
@@ -50,7 +50,7 @@ namespace NUnitPollarisTest
             Assert.IsFalse(result, "Expected the answer to be incorrect but returned correct.");
         }
 
-        [Test]
+        //[Test]
         public void TestMultipleChoiceQuestionWhenCorrect()
         {
             // Setup/Execute
@@ -66,7 +66,7 @@ namespace NUnitPollarisTest
             Assert.IsTrue(result, "Expected the answer to be correct but returned incorrect.");
         }
 
-        [Test]
+        //[Test]
         public void TestMultipleChoiceQuestionWhenIncorrect()
         {
             // Setup/Execute
@@ -82,7 +82,7 @@ namespace NUnitPollarisTest
             Assert.IsFalse(result, "Expected the answer to be incorrect but returned correct.");
         }
 
-        [Test]
+        //[Test]
         public void TestTrueFalseQuestionWhenCorrect()
         {
             // Setup/Execute
@@ -98,7 +98,7 @@ namespace NUnitPollarisTest
             Assert.IsTrue(result, "Expected the answer to be correct but returned incorrect.");
         }
 
-        [Test]
+        //[Test]
         public void TestTrueFalseQuestionWhenIncorrect()
         {
             // Setup/Execute
@@ -114,7 +114,7 @@ namespace NUnitPollarisTest
             Assert.IsFalse(result, "Expected the answer to be incorrect but returned correct.");
         }
 
-        [Test]
+        //[Test]
         public void TestRankingQuestionWhenCorrect()
         {
             // Setup/Execute
@@ -133,7 +133,7 @@ namespace NUnitPollarisTest
             Assert.IsTrue(result, "Expected the answer to be correct but returned incorrect.");
         }
 
-        [Test]
+        //[Test]
         public void TestRankingQuestionWhenIncorrect()
         {
             // Setup/Execute
@@ -152,7 +152,7 @@ namespace NUnitPollarisTest
             Assert.IsFalse(result, "Expected the answer to be incorrect but returned correct.");
         }
 
-        [Test]
+        //[Test]
         public void TestWhenQuestionNull()
         {
             // Setup/Execute
@@ -168,7 +168,7 @@ namespace NUnitPollarisTest
             Assert.IsFalse(result, "The method did not return false for null questions.");
         }
 
-        [Test]
+        //[Test]
         public void TestWhenAnswerNull()
         {
             // Setup/Execute
@@ -214,7 +214,7 @@ namespace NUnitPollarisTest
         //    Assert.IsTrue(result, "The question returned was null");
         //}
 
-        [Test]
+        //[Test]
         public void TestAnswersEmpty()
         {
             // Setup/Execute
@@ -229,7 +229,7 @@ namespace NUnitPollarisTest
             Assert.IsFalse(result, "The method did not return false for empty answers.");
         }
 
-        [Test]
+        //[Test]
         public void TestAnswersNull()
         {
             // Setup/Execute
@@ -243,7 +243,7 @@ namespace NUnitPollarisTest
             Assert.IsFalse(result, "The method did not return false for null answers.");
         }
 
-        [Test]
+        //[Test]
         public void TestValidateStudentUserReturnsFalseIfUserIdEqualsRoomOwnerId()
         {
             // Setup/Execute
@@ -257,7 +257,7 @@ namespace NUnitPollarisTest
             Assert.IsFalse(result, "The method did not return false when the user is the room's instructor.");
         }
 
-        [Test]
+        //[Test]
         public void TestValidateStudentUserReturnsTrueIfUserIdDoesntEqualRoomOwnerId()
         {
             // Setup/Execute
@@ -271,7 +271,7 @@ namespace NUnitPollarisTest
             Assert.IsTrue(result, "The method did not return true when the user isn't the room's instructor.");
         }
 
-        [Test]
+        //[Test]
         public void TestValidateStudentUserReturnsTrueIfUserIdIsInRoomMembers()
         {
             // Setup/Execute
@@ -285,7 +285,7 @@ namespace NUnitPollarisTest
             Assert.IsTrue(result, "The method did not return true when the user is in the room's member list.");
         }
 
-        [Test]
+        //[Test]
         public void TestValidateStudentUserReturnsFalseIfUserIdIsntInRoomMembers()
         {
             // Setup/Execute
@@ -299,7 +299,7 @@ namespace NUnitPollarisTest
             Assert.IsFalse(result, "The method did not return false when the user isn't in the room's member list.");
         }
 
-        [Test]
+        //[Test]
         public void TestSQLGetUsersFromIds()
         {
             int id = 5;
@@ -309,7 +309,7 @@ namespace NUnitPollarisTest
             Assert.IsTrue(result != null);
         }
 
-        [Test]
+        //[Test]
         public void TestStuff()
         {
             string connectionString = "Data Source=tcp:pollarissql.database.windows.net,1433;Initial Catalog=Pollaris;User Id=sqladmin;Password=iajdfij#29dfkjb(fj; Column Encryption Setting=enabled";

@@ -14,6 +14,26 @@ namespace Pollaris._3.Accessors
             return new SqlConnection(connectionString);
         }
 
+        public string ListToSqlString(List<int> ids)
+        {
+            if (ids == null || ids.Count == 0)
+            {
+                return "('0')"; 
+            }
+            string result = "("; 
+            for (int i = 0; i < ids.Count; i++)
+            {
+                if (i < ids.Count - 1)
+                {
+                    result += "'" + ids[i].ToString() + "',";
+                } else
+                {
+                    result += "'" + ids[i].ToString() + "')";
+                }
+            }
+            return result; 
+        }
+
 
         //USER MANAGER
         public bool SignInValidation(string email, string password)
@@ -97,7 +117,7 @@ namespace Pollaris._3.Accessors
             connection.Open();
             SqlCommand command = new(query, connection);
             command.Parameters.AddWithValue("@newPassword", newPassword);
-            command.Parameters.AddWithValue("@user_id", userId);
+            command.Parameters.AddWithValue("@userId", userId);
 
             int rowsAffected = command.ExecuteNonQuery();
             if (rowsAffected > 0)
@@ -136,21 +156,25 @@ namespace Pollaris._3.Accessors
         {
             SqlConnection connection = getConnection();
             connection.Open();
+            string concatenatedIds = this.ListToSqlString(ids); 
 
-            string query = "SELECT * FROM Users WHERE user_id IN @user_ids;";
+            string query = "SELECT * FROM Users WHERE user_id IN " + concatenatedIds;
             SqlCommand command = new(query, connection);
-            command.Parameters.AddWithValue("@user_ids", ids);
 
             SqlDataReader reader = command.ExecuteReader();
             List<UserInfo> result = new List<UserInfo>();
             while (reader.Read())
             {
                 int id = reader.GetInt32(0);
-                string role = reader.GetString("role");
                 string firstName = reader.GetString("first_name");
                 string lastName = reader.GetString("last_name");
-                string photo = reader.GetString("photo");
-                UserInfo user = new UserInfo(id, role, firstName, lastName, photo);
+                object photoValue = reader.GetValue("photo");
+                string photo = ""; 
+                if (photoValue != null && photoValue != DBNull.Value)
+                {
+                    photo = (string)photoValue;
+                }
+                UserInfo user = new UserInfo(id, firstName, lastName, photo);
                 result.Add(user);
             }
 
@@ -163,20 +187,24 @@ namespace Pollaris._3.Accessors
             SqlConnection connection = getConnection();
             connection.Open();
 
-            string query = "SELECT * FROM Users WHERE user_id = @user_id";
+            string query = "SELECT * FROM Users WHERE user_id = @userId";
             SqlCommand command = new(query, connection);
-            command.Parameters.AddWithValue("@user_id", id);
+            command.Parameters.AddWithValue("@userId", id);
 
             SqlDataReader reader = command.ExecuteReader();
-            UserInfo result = null;
+            UserInfo? result = null;
             while (reader.Read())
             {
                 int userId = reader.GetInt32(0);
-                string? role = reader.GetString("role");
                 string firstName = reader.GetString("first_name");
                 string lastName = reader.GetString("last_name");
-                string? photo = reader.GetString("photo");
-                result = new UserInfo(userId, role, firstName, lastName, photo);
+                object photoValue = reader.GetValue("photo");
+                string photo = "";
+                if (photoValue != null && photoValue != DBNull.Value)
+                {
+                    photo = (string)photoValue;
+                }
+                result = new UserInfo(userId, firstName, lastName, photo);
             }
 
             connection.Close();
@@ -190,9 +218,9 @@ namespace Pollaris._3.Accessors
 
             string query = "UPDATE Users SET first_name = @firstName, last_name = @lastName WHERE user_id = @userId;";
             SqlCommand command = new(query, connection);
-            command.Parameters.AddWithValue("@first_name", firstName);
-            command.Parameters.AddWithValue("@last_name", lastName);
-            command.Parameters.AddWithValue("@user_id", userId);
+            command.Parameters.AddWithValue("@firstName", firstName);
+            command.Parameters.AddWithValue("@lastName", lastName);
+            command.Parameters.AddWithValue("@userId", userId);
 
             int rowsAffected = command.ExecuteNonQuery();
             if (rowsAffected > 0)

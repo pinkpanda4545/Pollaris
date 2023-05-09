@@ -16,7 +16,7 @@
 
         <div id="permissions-bar">
             <button onclick="makeMemberTA(@Model.UserId, @Model.RoomId, @Model.Member.Id)">Make TA</button>
-            @if (Model.Member.Role == "TA")
+            @if (Model.MemberRole == "TA")
             {
                 <button onclick="removeTA(@Model.UserId, @Model.RoomId, @Model.Member.Id)">Remove TA</button>
             }
