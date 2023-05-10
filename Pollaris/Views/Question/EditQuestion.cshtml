@@ -53,7 +53,8 @@
                     </div>
                 }
             </div>
-            <div id="edit-question-grid" style="grid-template-rows:repeat(@Model.Question.Options.Count(), 100px)">
+            
+            <div id="edit-question-grid" style="grid-template-rows:repeat(@Model.GetGridRowNumber(), 100px)">
                 @{int i = 1;} 
                 @if (Model.Question.Options != null)
                 {
@@ -89,7 +90,7 @@
 
     <div class="button-bar-3">
         <button onclick="openEditSet(@Model.UserId, @Model.RoomId, @Model.SetId)">Exit</button>
-        <button class="dark-green" onclick="saveOptionNames(@Model.UserId, @Model.RoomId, @Model.SetId)">Save</button>
+        <button class="dark-green" onclick="saveQuestionEdits(@Model.UserId, @Model.RoomId, @Model.SetId, @Model.Question.Id)">Save</button>
     </div>
 </body>
 </html>

@@ -18,7 +18,7 @@
             {
                 <div class="room-dashboard-set">
                     <h3 class="mt-lg-4">@Html.DisplayFor(modelItem => set.Name)</h3>
-                    @if (set.Status == "Launch")
+                    @if (set.Status == "L")
                     {
                         if (Model.Room.UserType == "TA")
                         {
@@ -29,11 +29,11 @@
                             <button class="room-dashboard-set-button dark-green" onclick="launchSet(@Model.UserId, @Model.Room.Id, @set.Id)">Launch</button>
                         }
                     }
-                    else if (set.Status == "Continue")
+                    else if (set.Status == "C")
                     {
                         <button class="room-dashboard-set-button red" onclick="continueSet(@Model.UserId, @Model.Room.Id, @set.Id)">@set.Status</button>
                     }
-                    else if (set.Status == "Reset")
+                    else if (set.Status == "R")
                     {
                         <button class="room-dashboard-set-button red" onclick="resetSet(@Model.UserId, @Model.Room.Id, @set.Id)">@set.Status</button>
                     }

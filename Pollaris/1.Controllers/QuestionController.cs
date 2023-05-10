@@ -76,5 +76,11 @@ namespace Pollaris.Controllers
             qM.ChangeAnonymous(questionId, isAnonymous); 
         }
 
+        public void ChangeQuestionName(int questionId, string questionName)
+        {
+            QuestionManager qM = new QuestionManager();
+            qM.ChangeQuestionName(questionId, questionName); 
+        }
+
     }
 }

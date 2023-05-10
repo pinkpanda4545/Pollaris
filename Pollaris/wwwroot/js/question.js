@@ -177,11 +177,24 @@ function deleteOption(optionId) {
     }
 }
 
-function saveOptionNames(userId, roomId, setId) {
+function saveQuestionEdits(userId, roomId, setId, questionId) {
+    var questionName = $("#txt-area-edit-question").val(); 
+    var datastring = { questionId: questionId, questionName: questionName };
+
+    $.ajax({
+        url: "/Question/ChangeQuestionName",
+        method: "POST",
+        data: datastring
+    });
+
+    saveOptionNames();
+}
+
+function saveOptionNames() {
     var elements = $("#edit-question-grid").children(".question-name-bar");
     elements.foreach((elem) => {
-        var optionId = $(elem).attr("id").substring(4); 
-        var optionName = $(elem).val(); 
+        var optionId = $(elem).attr("id").substring(4);
+        var optionName = $(elem).val();
 
         var datastring = { optionId: optionId, optionName: optionName };
 

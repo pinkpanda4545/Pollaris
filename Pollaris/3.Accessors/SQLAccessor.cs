@@ -812,6 +812,14 @@ namespace Pollaris._3.Accessors
             }
         }
 
+        public void ChangeQuestionName(int questionId, string questionName)
+        {
+            SqlConnection connection = getConnection();
+            connection.Open();
+
+            //TODO = fill in!
+        }
+
         //OPTIONS MANAGER
 
         public bool ChangeOptionCorrect(int optionId, bool isCorrect)

@@ -47,8 +47,11 @@
         </div>
 
         <div class="button-bar-3">
-                <button onclick="openRoomDashboard(@Model.UserId, @Model.RoomId)">Exit</button>
+            <button onclick="openRoomDashboard(@Model.UserId, @Model.RoomId)">Exit</button>
+            <div class="d-flex flex-row">
+                <button class="btn-wide" onclick="openCreateQuestion(@Model.UserId, @Model.RoomId, @Model.SetId)">Add Question</button>
                 <button class="btn-green" onclick="saveOptionNames(@Model.UserId, @Model.RoomId)">Save</button>
+            </div>
         </div>
     </body>
 </html>

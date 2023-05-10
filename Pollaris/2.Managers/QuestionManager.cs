@@ -90,5 +90,11 @@ namespace Pollaris.Managers
             SQLAccessor sql = new SQLAccessor();
             sql.ChangeAnonymous(questionId, isAnonymous);
         }
+
+        public void ChangeQuestionName(int questionId, string questionName)
+        {
+            SQLAccessor sql = new SQLAccessor(); ;
+            sql.ChangeQuestionName(questionId, questionName); 
+        }
     }
 }
