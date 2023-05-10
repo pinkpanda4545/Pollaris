@@ -27,7 +27,7 @@ function answerQuestionSubmit(userId, roomId, setId, questionId, questionType) {
         answers = $("#div-sa").val();
     }
 
-    var datastring = { userId: userId, roomId: roomId, setId: setId, questionId: questionId, answers: answers };
+    var datastring = { userId: userId, roomId: roomId, questionId: questionId, answers: answers };
 
     $.ajax({
         url: "/Question/SubmitStudentAnswer",
@@ -36,7 +36,7 @@ function answerQuestionSubmit(userId, roomId, setId, questionId, questionType) {
     })
         .done(function (result) {
             if (result) {
-                //????
+              //???   
             }
         })
         .fail(function () {

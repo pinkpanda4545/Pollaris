@@ -60,11 +60,16 @@ namespace Pollaris.Controllers
             QuestionManager qM = new QuestionManager();
             ResponsesManager rM = new ResponsesManager();
             SetManager sM = new SetManager();
-            sM.ChangeStatus(setId, newStatus); 
-            SetResponsesInfo model = new SetResponsesInfo(userId, roomId, setId); 
-            model.Questions = qM.GetQuestionsFromSetId(setId);
-            int questionId = model.Questions.Where(x => x.IsActive).First().Id; 
-            model.Responses = rM.GetResponsesFromQuestionId(questionId); 
+
+            sM.ChangeStatus(setId, newStatus);
+
+            List<SetInfo> sets = sM.GetSets(roomId);
+            SetInfo set = sets.Where(x => x.Id == setId).First();
+            List<QuestionInfo> questions = qM.GetQuestionsFromSetId(setId);
+            int activeQuestionIndex = questions.IndexOf(questions.Where(x => x.Id == set.ActiveQuestionId).First());
+            List<StudentResponseInfo> responses = rM.GetResponsesFromQuestionId(set.ActiveQuestionId);
+
+            SetResponsesInfo model = new SetResponsesInfo(userId, roomId, setId, activeQuestionIndex, questions, responses);
             return View(model);
         }
 
@@ -72,10 +77,11 @@ namespace Pollaris.Controllers
         {
             ResponsesManager rM = new ResponsesManager();
             QuestionManager qM = new QuestionManager();
-            QuestionInfo activeQuestion = qM.ChangeActiveQuestion(setId); 
-            SetResponsesInfo model = new SetResponsesInfo(userId, roomId, setId);
-            model.Questions = qM.GetQuestionsFromSetId(setId);
-            model.Responses = rM.GetResponsesFromQuestionId(activeQuestion.Id);
+            SetManager sM = new SetManager();
+            int activeQuestionIndex = sM.ChangeActiveQuestion(setId); 
+            List<QuestionInfo> questions = qM.GetQuestionsFromSetId(setId);
+            List<StudentResponseInfo> responses = rM.GetResponsesFromQuestionId(questions[activeQuestionIndex].Id);
+            SetResponsesInfo model = new SetResponsesInfo(userId, roomId, setId, activeQuestionIndex, questions, responses);
             return View("SetResponses", model);
         }
     }

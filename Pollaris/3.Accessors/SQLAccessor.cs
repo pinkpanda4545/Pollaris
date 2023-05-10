@@ -2,6 +2,7 @@
 using System.Data;
 using System;
 using Microsoft.Data.SqlClient;
+using Microsoft.AspNetCore.Routing;
 
 namespace Pollaris._3.Accessors
 {
@@ -156,9 +157,8 @@ namespace Pollaris._3.Accessors
         {
             SqlConnection connection = getConnection();
             connection.Open();
-            string concatenatedIds = this.ListToSqlString(ids); 
 
-            string query = "SELECT * FROM Users WHERE user_id IN " + concatenatedIds;
+            string query = "SELECT * FROM Users WHERE user_id IN " + this.ListToSqlString(ids) + ";";
             SqlCommand command = new(query, connection);
 
             SqlDataReader reader = command.ExecuteReader();
@@ -240,15 +240,18 @@ namespace Pollaris._3.Accessors
             SqlConnection connection = getConnection();
             connection.Open();
 
-            string query = "SELECT first_name FROM Users WHERE user_id = @userId;";
+            string query = "SELECT first_name, last_name FROM Users WHERE user_id = @userId;";
             SqlCommand command = new(query, connection);
             command.Parameters.AddWithValue("@userId", userId);
             SqlDataReader reader = command.ExecuteReader();
 
             if (reader.Read())
             {
+                string firstName = reader.GetString("first_name");
+                string lastName = reader.GetString("last_name");
+                string userName = String.Concat(firstName, " ", lastName);
                 connection.Close();
-                return reader.GetString(0);
+                return userName;
             }
             else
             {
@@ -273,10 +276,10 @@ namespace Pollaris._3.Accessors
             while (reader.Read())
             {
                 int roomId = reader.GetInt32(0);
-                string name = reader.GetString(1);
-                int instructorId = reader.GetInt32(2);
-                string instructorName = reader.GetString(3);
-                string code = reader.GetString(4);
+                string name = reader.GetString("room_name");
+                int instructorId = reader.GetInt32("instructor_id");
+                string instructorName = reader.GetString("instructor_name");
+                string code = reader.GetString("room_code");
                 result = new RoomInfo(roomId, name, instructorId, instructorName, code);
             }
 
@@ -289,9 +292,9 @@ namespace Pollaris._3.Accessors
             SqlConnection connection = getConnection();
             connection.Open();
 
-            string query = "SELECT room_id FROM UsersRoom WHERE user_id = @user_id;";
+            string query = "SELECT room_id FROM UsersRoom WHERE user_id = @userId;";
             SqlCommand command = new(query, connection);
-            command.Parameters.AddWithValue("@user_id", userId);
+            command.Parameters.AddWithValue("@userId", userId);
 
             SqlDataReader reader = command.ExecuteReader();
             List<int> result = new List<int>();
@@ -309,19 +312,18 @@ namespace Pollaris._3.Accessors
             SqlConnection connection = getConnection();
             connection.Open();
 
-            string query = "SELECT * FROM Room WHERE room_id IN @room_ids;";
+            string query = "SELECT * FROM Room WHERE room_id IN " + this.ListToSqlString(ids) + ";";
             SqlCommand command = new(query, connection);
-            command.Parameters.AddWithValue("@room_ids", ids);
 
             SqlDataReader reader = command.ExecuteReader();
             List<RoomInfo> result = new List<RoomInfo>();
             while (reader.Read())
             {
                 int roomId = reader.GetInt32(0);
-                string name = reader.GetString(1);
-                int instructorId = reader.GetInt32(2);
-                string instructorName = reader.GetString(3);
-                string code = reader.GetString(4);
+                string name = reader.GetString("room_name");
+                int instructorId = reader.GetInt32("instructor_id");
+                string instructorName = reader.GetString("instructor_name");
+                string code = reader.GetString("room_code");
                 RoomInfo room = new RoomInfo(roomId, name, instructorId, instructorName, code);
                 result.Add(room);
             }
@@ -353,26 +355,34 @@ namespace Pollaris._3.Accessors
             }
         }
 
-        public bool UserRoomConnection(int userId, int roomId)
+        public bool UserRoomConnection(int userId, int roomId, string role)
         {
             SqlConnection connection = getConnection();
             connection.Open();
 
-            string query = "INSERT INTO UsersRoom (user_id, room_id) VALUES (@userId, @roomId)";
+            string query = "INSERT INTO UsersRoom (user_id, room_id, role) VALUES (@userId, @roomId, @role)";
             SqlCommand command = new(query, connection);
             command.Parameters.AddWithValue("@userId", userId);
             command.Parameters.AddWithValue("@roomId", roomId);
+            command.Parameters.AddWithValue("@role", role);
 
-            int rowsAffected = command.ExecuteNonQuery();
-            if (rowsAffected > 0)
+            try
+            {
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    connection.Close();
+                    return true;
+                }
+                else
+                {
+                    connection.Close();
+                    return false;
+                }
+            } catch (SqlException ex)
             {
                 connection.Close();
-                return true;
-            }
-            else
-            {
-                connection.Close();
-                return false;
+                return false; 
             }
         }
 
@@ -386,7 +396,7 @@ namespace Pollaris._3.Accessors
             command.Parameters.AddWithValue("@newCode", newCode);
             SqlDataReader reader = command.ExecuteReader();
 
-            if (reader.Read())
+            if (reader.HasRows)
             {
                 connection.Close();
                 return true;
@@ -398,28 +408,35 @@ namespace Pollaris._3.Accessors
             }
         }
 
-        public bool CreateRoom(string roomName, string roomCode, int instructorId, string instructorName)
+        public int CreateRoom(string roomName, string roomCode, int instructorId, string instructorName)
         {
             SqlConnection connection = getConnection();
             connection.Open();
 
-            string query = "INSERT INTO Room (room_name, room_code, instructor_id, instructor_name) VALUES (@roomName, @roomCode, @instructorId, @instructorName)";
+            string query = "INSERT INTO Room (room_name, room_code, instructor_id, instructor_name) VALUES (@roomName, @roomCode, @instructorId, @instructorName) SELECT SCOPE_IDENTITY();";
             SqlCommand command = new(query, connection);
             command.Parameters.AddWithValue("@roomName", roomName);
             command.Parameters.AddWithValue("@roomCode", roomCode);
             command.Parameters.AddWithValue("@instructorId", instructorId);
             command.Parameters.AddWithValue("@instructorName", instructorName);
 
-            int rowsAffected = command.ExecuteNonQuery();
-            if (rowsAffected > 0)
+            try
+            {
+                int roomId = (int)command.ExecuteScalar();
+                if (roomId != 0)
+                {
+                    connection.Close();
+                    return roomId;
+                }
+                else
+                {
+                    connection.Close();
+                    return 0;
+                }
+            } catch (SqlException e)
             {
                 connection.Close();
-                return true;
-            }
-            else
-            {
-                connection.Close();
-                return false;
+                return 0; 
             }
         }
 
@@ -447,44 +464,57 @@ namespace Pollaris._3.Accessors
 
         public List<QuestionInfo> GetQuestionsFromIds(List<int> questionIds)
         {
-            //SqlConnection connection = getConnection();
-            //connection.Open();
+            SqlConnection connection = getConnection();
+            connection.Open();
 
-            //string query = "SELECT * FROM Question WHERE question_id IN @questionIds;";
-            //SqlCommand command = new(query, connection);
-            //command.Parameters.AddWithValue("@questionIds", questionIds);
+            string query = "SELECT * FROM Question WHERE question_id IN " + this.ListToSqlString(questionIds) + ";";
+            SqlCommand command = new(query, connection);
 
-            //SqlDataReader reader = command.ExecuteReader();
-            //List<RoomInfo> questions = new List<RoomInfo>();
-            //while (reader.Read())
-            //{
-            //    int questionId = reader.GetInt32(0);
-            //    string question = reader.GetString(1);
-            //    string type = reader.GetString(2);
-            //    // TODO
-            //    string instructorName = reader.GetString(3);
-            //    bool isActive;
-            //    if (reader.GetInt32(4) == 1)
-            //    {
-            //        isActive = true;
-            //    }
-            //    else
-            //    {
-            //        isActive = false;
-            //    }
-            //    RoomInfo room = new RoomInfo(questionId, question, type, instructorName, isActive);
-            //    questions.Add(room);
-            //}
+            SqlDataReader reader = command.ExecuteReader();
+            List<QuestionInfo> questions = new List<QuestionInfo>();
+            while (reader.Read())
+            {
+                int questionId = reader.GetInt32(0);
+                string question = reader.GetString("question");
+                string type = reader.GetString("question_type");
+                bool isGraded = reader.GetBoolean("is_graded");
+                bool isAnonymous = reader.GetBoolean("is_anonymous");
+                QuestionInfo room = new QuestionInfo(questionId, question, type, isGraded, isAnonymous);
+                questions.Add(room);
+            }
 
-            //connection.Close();
-            //return questions;
-            return new List<QuestionInfo>();
+            connection.Close();
+            return questions;
         }
 
         public QuestionInfo CreateQuestion(string type)
         {
             //Type == "MC", "SA", "TF", or "R" (i think)
-            return null;
+            //SELECT SCOPE_IDENTITY();
+            SqlConnection connection = getConnection();
+            connection.Open();
+            string questionName = ""; 
+
+            // Create Query
+            string query = "INSERT INTO Question (question, question_type, is_graded, is_anonymous) VALUES (@question, @questionType, @isGraded, @isAnonymous) SELECT SCOPE_IDENTITY();";
+ 
+            SqlCommand command = new(query, connection);
+            // Add parameters
+            command.Parameters.AddWithValue("@question", questionName);
+            command.Parameters.AddWithValue("@questionType", type);
+            command.Parameters.AddWithValue("@isGraded", true);
+            command.Parameters.AddWithValue("@isAnonymous", false);
+            // Execute
+            int questionId = (int)command.ExecuteNonQuery();
+            connection.Close();
+            if (questionId == 0)
+            {
+                return null;
+            } else
+            {
+                QuestionInfo question = new QuestionInfo(questionId, questionName, type, true, false);
+                return question; 
+            }
         }
 
         public bool SetQuestionConnection(int setId, int questionId)
@@ -497,17 +527,25 @@ namespace Pollaris._3.Accessors
             command.Parameters.AddWithValue("@setId", setId);
             command.Parameters.AddWithValue("@questionId", questionId);
 
-            int rowsAffected = command.ExecuteNonQuery();
-            if (rowsAffected > 0)
+            try
             {
-                connection.Close();
-                return true;
-            }
-            else
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    connection.Close();
+                    return true;
+                }
+                else
+                {
+                    connection.Close();
+                    return false;
+                }
+            } catch (SqlException  e)
             {
-                connection.Close();
-                return false;
+                connection.Close(); 
+                return false; 
             }
+            
         }
 
         public List<int> GetOptionIdsFromQuestionId(int questionId)
@@ -525,7 +563,6 @@ namespace Pollaris._3.Accessors
             {
                 optionIds.Add(reader.GetInt32(0));
             }
-
             connection.Close();
             return optionIds;
         }
@@ -535,27 +572,29 @@ namespace Pollaris._3.Accessors
             SqlConnection connection = getConnection();
             connection.Open();
 
-            string query = "SELECT * FROM Option WHERE option_id IN @optionsId;";
+            string query = "SELECT * FROM [Option] WHERE option_id IN " + this.ListToSqlString(optionsIds) + ";";
             SqlCommand command = new(query, connection);
-            command.Parameters.AddWithValue("@optionsIds", optionsIds);
 
             SqlDataReader reader = command.ExecuteReader();
             List<OptionInfo> options = new List<OptionInfo>();
+
             while (reader.Read())
             {
                 int id = reader.GetInt32(0);
                 string name = reader.GetString("name");
-                int isCorrectInt = reader.GetInt32("is_correct");
-                bool isCorrect;
-                if (isCorrectInt == 1)
+                object isCorrectValue = reader.GetValue("is_correct");
+                bool isCorrect = false;
+                if (isCorrectValue != null && isCorrectValue != DBNull.Value)
                 {
-                    isCorrect = true;
+                    isCorrect = (bool)isCorrectValue;
                 }
-                else
+                object rankIndexValue = reader.GetValue("rank_index");
+                int rankIndex = 0;
+                if (rankIndexValue != null && rankIndexValue != DBNull.Value)
                 {
-                    isCorrect = false;
+                    rankIndex = (int)rankIndexValue;
                 }
-                OptionInfo option = new OptionInfo(id, name, isCorrect);
+                OptionInfo option = new OptionInfo(id, name, isCorrect, rankIndex);
                 options.Add(option);
             }
 
@@ -563,50 +602,144 @@ namespace Pollaris._3.Accessors
             return options;
         }
 
-        public bool ChangeActiveQuestion(int currActiveId, int nextActiveId)
+        public bool ChangeActiveQuestion(int setId, int nextQuestionId)
         {
-            //deactivate currActive, active nextActive
-            return true;
+            SqlConnection connection = getConnection();
+            string query = "UPDATE [Set] SET active_question_id = @nextQuestionId WHERE set_id = @setId;";
+            connection.Open();
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@setId", setId);
+            command.Parameters.AddWithValue("@nextQuestionId", nextQuestionId);
+
+            int result = command.ExecuteNonQuery();
+            if (result == 1)
+            {
+                connection.Close();
+                return true;
+            }
+            else
+            {
+                connection.Close();
+                return false;
+            }
         }
 
         public QuestionInfo? GetQuestionFromId(int questionId)
         {
-            return null;
-        }
-
-        public List<String> GetAnswersFromQuestionId(int questionId)
-        {
             SqlConnection connection = getConnection();
             connection.Open();
 
-            string query = "SELECT * FROM Answer WHERE question_id IN @questionId;";
+            string query = "SELECT * FROM Question WHERE question_id = @questionId;";
             SqlCommand command = new(query, connection);
             command.Parameters.AddWithValue("@questionId", questionId);
 
             SqlDataReader reader = command.ExecuteReader();
-            List<string> answers = new List<string>();
+            QuestionInfo question = null;
             while (reader.Read())
             {
                 int id = reader.GetInt32(0);
-                string answer = reader.GetString("role");
-                answers.Add(answer);
+                string questionName = reader.GetString("question");
+                string questionType = reader.GetString("question_type");
+                bool isGraded = reader.GetBoolean("is_graded");
+                bool isAnonymous = reader.GetBoolean("is_anonymous");
+                question = new QuestionInfo(id, questionName, questionType, isGraded, isAnonymous);
             }
 
             connection.Close();
-            return answers;
+            return question;
         }
 
-        public void SubmitStudentAnswer(int userId, int questionId, List<string> answer)
+        public bool SubmitSAResponse(int userId, int questionId, string answer)
         {
-            //SqlConnection connection = getConnection();
-            //connection.Open();
+            SqlConnection connection = getConnection();
+            connection.Open();
 
-            //string query = "INSERT INTO QuestionSet (set_id, question_id) VALUES (@setId, @questionId)";
-            //SqlCommand command = new(query, connection);
-            //command.Parameters.AddWithValue("@setId", setId);
-            //command.Parameters.AddWithValue("@questionId", questionId);
+            string query = "INSERT INTO ShortAnswer (user_id, question_id, response) VALUES (@userId, @questionId, @response)";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@userId", userId);
+            command.Parameters.AddWithValue("@questionId", questionId);
+            command.Parameters.AddWithValue("@response", answer);
 
-            //int rowsAffected = command.ExecuteNonQuery();
+            try
+            {
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    connection.Close();
+                    return true;
+                }
+                else
+                {
+                    connection.Close();
+                    return false;
+                }
+            }
+            catch (SqlException e)
+            {
+                connection.Close();
+                return false;
+            }
+        }
+
+        public bool SubmitMCorTFResponse(int userId, int optionId)
+        {
+            SqlConnection connection = getConnection();
+            connection.Open();
+
+            string query = "INSERT INTO Response (user_id, option_id) VALUES (@userId, @optionId)";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@userId", userId);
+            command.Parameters.AddWithValue("@optionId", optionId);
+
+            try
+            {
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    connection.Close();
+                    return true;
+                }
+                else
+                {
+                    connection.Close();
+                    return false;
+                }
+            } catch (SqlException e)
+            {
+                return false; 
+            }
+        }
+
+        public bool SubmitRankingResponse(int userId, int optionId, int rankingChosen)
+        {
+            SqlConnection connection = getConnection();
+            connection.Open();
+
+            string query = "INSERT INTO Response (user_id, option_id, rank_index) VALUES (@userId, @optionId, @rankIndex)";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@userId", userId);
+            command.Parameters.AddWithValue("@optionId", optionId);
+            command.Parameters.AddWithValue("@rankIndex", rankingChosen);
+
+            try
+            {
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    connection.Close();
+                    return true;
+                }
+                else
+                {
+                    connection.Close();
+                    return false;
+                }
+            }
+            catch (SqlException e)
+            {
+                connection.Close();
+                return false;
+            }
         }
 
 
@@ -680,6 +813,7 @@ namespace Pollaris._3.Accessors
 
         public List<SetInfo> GetSetsFromIds(List<int> setIds)
         {
+            //MUST RETURN WITH ACTIVE QUESTION ID. 
             List<SetInfo> sets = new List<SetInfo>();
             for (int i = 0; i < setIds.Count; i++)
             {
@@ -719,6 +853,8 @@ namespace Pollaris._3.Accessors
 
         public SetInfo? GetSetFromId(int setId)
         {
+            //MUST RETURN WITH ACTIVE QUESTION ID
+
             //SqlConnection connection = getConnection();
             //connection.Open();
 

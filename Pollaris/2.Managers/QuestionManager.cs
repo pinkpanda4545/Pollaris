@@ -21,27 +21,6 @@ namespace Pollaris.Managers
             return questions; 
         }
 
-        public int? GetActiveQuestionIndex(int setId, int roomId)
-        {
-            SQLAccessor sql = new SQLAccessor(); 
-            List<int> questionIds = sql.GetQuestionIdsFromSetId(setId);
-            List<QuestionInfo> questions = sql.GetQuestionsFromIds(questionIds); 
-            for (int i = 0; i < questions.Count; i++)
-            {
-                if (questions[i].IsActive) return i;
-            }
-            return null;
-        }
-
-        public QuestionInfo? GetActiveQuestionFromSet(SetInfo set)
-        {
-            foreach (QuestionInfo q in set.Questions)
-            {
-                if (q.IsActive) return q;
-            }
-            return null;
-        }
-
         public QuestionInfo GetQuestionFromId(int questionId)
         {
             SQLAccessor sql = new SQLAccessor();
@@ -52,21 +31,32 @@ namespace Pollaris.Managers
             return question;
         }
 
-        public bool SubmitAnswer(int userId, int roomId, int setId, QuestionInfo question, List<string> answers)
+        public bool SubmitAnswer(int userId, QuestionInfo question, List<string> answers)
         {
             SQLAccessor sql = new SQLAccessor();
-            List<string> correctAnswers = sql.GetAnswersFromQuestionId(question.Id);
-            if (correctAnswers.SequenceEqual(answers))
+            if (question.Type != "SA")
             {
-                //student answered correctly
-                sql.SubmitStudentAnswer(userId, question.Id, answers);
-                return true;
-            }
-            else
+                List<int> optionIds = sql.GetOptionIdsFromQuestionId(question.Id);
+                List<OptionInfo> options = sql.GetOptionsFromIds(optionIds);
+                if (question.Type != "R")
+                {
+                    int optionId = options.Where(x => x.Name == answers[0]).First().Id;
+                    return sql.SubmitMCorTFResponse(userId, optionId); 
+                } else
+                {
+                    if (answers.Count != options.Count) return false; 
+
+                    for (int i = 0; i < answers.Count; i++)
+                    {
+                        int optionId = options.Where(x => x.Name == answers[i]).First().Id;
+                        bool result = sql.SubmitRankingResponse(userId, optionId, i);
+                        if (!result) return false; 
+                    }
+                    return true; 
+                }
+            } else
             {
-                //student answered incorrectly
-                sql.SubmitStudentAnswer(userId, question.Id, answers);
-                return false;
+                return sql.SubmitSAResponse(userId, question.Id, answers[0]);
             }
         }
 
@@ -76,26 +66,6 @@ namespace Pollaris.Managers
             QuestionInfo question = sql.CreateQuestion(type);
             sql.SetQuestionConnection(setId, question.Id);
             return question;
-        }
-
-        public QuestionInfo ChangeActiveQuestion(int setId)
-        {
-            SQLAccessor sql = new SQLAccessor();
-            List<int> ids = sql.GetQuestionIdsFromSetId(setId);
-            List<QuestionInfo> questions = sql.GetQuestionsFromIds(ids);
-            int activeQuestionId = questions.Where(x => x.IsActive).First().Id;
-            int nextQuestionId = 0;
-            int nextQuestionIndex = -1;
-            for (int i = 0; i < questions.Count; i++)
-            {
-                if (questions[i].IsActive)
-                {
-                    nextQuestionId = questions[i + 1].Id;
-                    nextQuestionIndex = i;
-                }
-            }
-            sql.ChangeActiveQuestion(activeQuestionId, nextQuestionId);
-            return questions[nextQuestionIndex];
         }
 
         public void SaveQuestionEdits(int questionId)

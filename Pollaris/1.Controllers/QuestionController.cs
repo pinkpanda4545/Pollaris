@@ -14,9 +14,9 @@ namespace Pollaris.Controllers
             SetInfo activeSet = sM.GetActiveSet(sets);
             activeSet.Questions = qM.GetQuestionsFromSetId(activeSet.Id); 
             int setSize = activeSet.Questions.Count;
-            QuestionInfo? activeQuestion = qM.GetActiveQuestionFromSet(activeSet);
-            int? questionIndex = qM.GetActiveQuestionIndex(activeSet.Id, roomId) + 1;
-
+            int activeQuestionId = activeSet.ActiveQuestionId;
+            QuestionInfo activeQuestion = activeSet.Questions.Where(x => x.Id == activeQuestionId).First(); 
+            int questionIndex = activeSet.Questions.IndexOf(activeQuestion);
             AnswerQuestionInfo model = new AnswerQuestionInfo(userId, roomId, activeSet.Id, setSize, activeQuestion, questionIndex);
             return View(model);
         }
@@ -44,7 +44,7 @@ namespace Pollaris.Controllers
 
         [HttpPost]
         [Route("/Question/SubmitStudentAnswer")]
-        public bool SubmitStudentAnswer(int userId, int roomId, int setId, int questionId, List<string> answers)
+        public bool SubmitStudentAnswer(int userId, int roomId, int questionId, List<string> answers)
         {
             if (answers == null || answers.Count < 1) return false; 
             UserManager uM = new UserManager(); 
@@ -53,7 +53,7 @@ namespace Pollaris.Controllers
                 QuestionManager qM = new QuestionManager();
                 QuestionInfo question = qM.GetQuestionFromId(questionId);
                 if (question == null || answers == null) return false;
-                return qM.SubmitAnswer(userId, roomId, setId, question, answers);
+                return qM.SubmitAnswer(userId, question, answers);
             }
             return false; 
         }

@@ -76,7 +76,7 @@ namespace Pollaris.Managers
             SQLAccessor sql = new SQLAccessor();
             List<int> ids = sql.GetMembersFromRoomId(roomId);
             if (ids.Contains(userId)) return false;
-            return sql.UserRoomConnection(userId, roomId); 
+            return sql.UserRoomConnection(userId, roomId, "S"); 
         }
 
         public bool CreateRoom(int userId, string userName, string roomName) 
@@ -87,7 +87,12 @@ namespace Pollaris.Managers
             {
                 newCode = RandomRoomCode();
             }
-            return sql.CreateRoom(roomName, newCode, userId, userName);
+            int roomId = sql.CreateRoom(roomName, newCode, userId, userName);
+            if (roomId != 0)
+            {
+                return sql.UserRoomConnection(userId, roomId, "I");
+            }
+            return false; 
         }
 
         public string RandomRoomCode()

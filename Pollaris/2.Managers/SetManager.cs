@@ -62,5 +62,17 @@ namespace Pollaris.Managers
             sql.ChangeStatus(setId, newStatus);
         }
 
+        //returns the new active question's index
+        public int ChangeActiveQuestion(int setId)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            List<int> ids = sql.GetQuestionIdsFromSetId(setId);
+            List<QuestionInfo> questions = sql.GetQuestionsFromIds(ids);
+            SetInfo set = sql.GetSetFromId(setId);
+            int activeQuestionId = set.ActiveQuestionId;
+            int nextQuestionId = questions.IndexOf(questions.Where(x => x.Id == activeQuestionId).First()) + 1;
+            sql.ChangeActiveQuestion(setId, nextQuestionId);
+            return questions.IndexOf(questions.Where(x => x.Id == nextQuestionId).First());
+        }
     }
 }
