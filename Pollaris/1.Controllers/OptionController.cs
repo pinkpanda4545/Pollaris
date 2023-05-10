@@ -36,7 +36,8 @@ namespace Pollaris.Controllers
         [Route("/Option/ChangeOptionName")]
         public void ChangeOptionName(int optionId, string optionName)
         {
-            
+            OptionManager oM = new OptionManager(); 
+            oM.ChangeOptionName(optionId, optionName);
         }
     }
 }
