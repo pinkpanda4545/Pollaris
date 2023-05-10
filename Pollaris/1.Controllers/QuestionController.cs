@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Pollaris._3.Accessors;
 using Pollaris.Managers;
 using Pollaris.Models; 
 
@@ -35,7 +36,17 @@ namespace Pollaris.Controllers
         public IActionResult CreateThenEditQuestion(int userId, int roomId, int setId, string type)
         {
             QuestionManager qM = new QuestionManager();
-            QuestionInfo question = qM.CreateQuestion(setId, type);
+            QuestionInfo initialQuestion = qM.CreateQuestion(setId, type);
+
+            if (type == "TF")
+            {
+                OptionManager oM = new OptionManager();
+                int trueOptionId = oM.CreateNewOption(initialQuestion.Id);
+                oM.ChangeOptionName(trueOptionId, "True");
+                int falseOptionId = oM.CreateNewOption(initialQuestion.Id);
+                oM.ChangeOptionName(falseOptionId, "False");
+            }
+            QuestionInfo question = qM.GetQuestionFromId(initialQuestion.Id);
             EditQuestionInfo model = new EditQuestionInfo(userId, roomId, setId, question);
          
             return View("EditQuestion", model);

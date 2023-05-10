@@ -80,7 +80,7 @@ namespace Pollaris.Controllers
             List<QuestionInfo> questions = qM.GetQuestionsFromSetId(setId);
             List<StudentResponseInfo> responses = rM.GetResponsesFromQuestionId(questions[activeQuestionIndex].Id, questions[activeQuestionIndex].Type);
             SetResponsesInfo model = new SetResponsesInfo(userId, roomId, setId, activeQuestionIndex, questions, responses);
-            return View("SetResponses", model);
+            return RedirectToAction("SetResponses", "Set", model);
         }
     }
 }

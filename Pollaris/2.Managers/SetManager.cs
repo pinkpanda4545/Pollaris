@@ -84,7 +84,7 @@ namespace Pollaris.Managers
             List<QuestionInfo> questions = sql.GetQuestionsFromIds(ids);
             SetInfo set = sql.GetSetFromId(setId);
             int activeQuestionId = (int)set.ActiveQuestionId;
-            int nextQuestionId = questions.IndexOf(questions.Where(x => x.Id == activeQuestionId).First()) + 1;
+            int nextQuestionId = questions[questions.IndexOf(questions.Where(x => x.Id == activeQuestionId).First()) + 1].Id;
             sql.ChangeActiveQuestion(setId, nextQuestionId);
             return questions.IndexOf(questions.Where(x => x.Id == nextQuestionId).First());
         }

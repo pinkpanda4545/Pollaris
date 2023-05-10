@@ -1103,7 +1103,7 @@ namespace Pollaris._3.Accessors
             SqlConnection connection = getConnection();
             connection.Open();
 
-            string query = "DELETE FROM Set WHERE set_id = @setId;";
+            string query = "DELETE FROM [Set] WHERE set_id = @setId;";
             SqlCommand command = new(query, connection);
             command.Parameters.AddWithValue("@setId", setId);
             command.ExecuteNonQuery();
