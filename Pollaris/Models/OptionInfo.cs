@@ -2,7 +2,7 @@
 {
     public class OptionInfo
     {
-        public OptionInfo(int id, string name, bool isCorrect, int rankIndex) { 
+        public OptionInfo(int id, string name, bool isCorrect, int? rankIndex) { 
             Id = id;
             Name = name;
             IsCorrect = isCorrect;
@@ -11,7 +11,7 @@
         public int Id { get; set; }
         public string Name { get; set; }
         public bool IsCorrect { get; set; }
-        public int RankIndex { get; set; }
+        public int? RankIndex { get; set; }
 
         public string GetRed()
         {

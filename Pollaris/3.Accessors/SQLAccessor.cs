@@ -860,27 +860,81 @@ namespace Pollaris._3.Accessors
 
         public OptionInfo? CreateOption()
         {
-            return null;
+            SqlConnection connection = getConnection();
+            // Create Query
+            string query = "INSERT INTO [Option] (name, is_correct, rank_index) VALUES (@name, @isCorrect, @rankIndex) SELECT SCOPE_IDENTITY();";
+            connection.Open();
+            SqlCommand command = new(query, connection);
+            // Add parameters
+            string name = "Option Name";
+            bool isCorrect = false;
+            int? rankIndex = null;
+            command.Parameters.AddWithValue("@name", name);
+            command.Parameters.AddWithValue("@isCorrect", isCorrect);
+            command.Parameters.AddWithValue("@rankIndex", rankIndex);
+            // Execute
+            string result = command.ExecuteScalar().ToString();
+            int id = int.Parse(result);
+            if (id > 0)
+            {
+                connection.Close();
+                return new OptionInfo(id, name, isCorrect, rankIndex);
+            }
+            else
+            {
+                connection.Close();
+                return null;
+            }
         }
 
         public void QuestionOptionConnection(int questionId, int optionId)
         {
-
+            SqlConnection connection = getConnection();
+            // Create Query
+            string query = "INSERT INTO QuestionOption (question_id, option_id) VALUES (@questionId, @optionId);";
+            connection.Open();
+            SqlCommand command = new(query, connection);
+            // Add parameters
+            command.Parameters.AddWithValue("@questionId", questionId);
+            command.Parameters.AddWithValue("@optionId", optionId);
+            command.ExecuteNonQuery();
+            connection.Close();
         }
 
         public void DeleteOptionsFromQuestionOptions(List<int> ids)
         {
+            SqlConnection connection = getConnection();
+            connection.Open();
 
+            string query = "DELETE FROM QuestionOption WHERE option_id IN " + this.ListToSqlString(ids) + ";";
+            SqlCommand command = new(query, connection);
+
+            command.ExecuteNonQuery();
+            connection.Close();
         }
 
         public void DeleteOptionsFromResponse(List<int> ids)
         {
+            SqlConnection connection = getConnection();
+            connection.Open();
 
+            string query = "DELETE FROM Response WHERE option_id IN " + this.ListToSqlString(ids) + ";";
+            SqlCommand command = new(query, connection);
+
+            command.ExecuteNonQuery();
+            connection.Close();
         }
 
         public void DeleteOptionsFromIds(List<int> ids)
         {
+            SqlConnection connection = getConnection();
+            connection.Open();
 
+            string query = "DELETE FROM [Option] WHERE option_id IN " + this.ListToSqlString(ids) + ";";
+            SqlCommand command = new(query, connection);
+
+            command.ExecuteNonQuery();
+            connection.Close();
         }
 
         //RESPONSES MANAGER
