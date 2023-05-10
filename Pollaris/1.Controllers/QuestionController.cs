@@ -11,10 +11,10 @@ namespace Pollaris.Controllers
         {
             SetManager sM = new SetManager();
             QuestionManager qM = new QuestionManager();
-            try
+            List<SetInfo> sets = sM.GetSets(roomId);
+            SetInfo activeSet = sM.GetActiveSet(sets);
+            if (activeSet != null)
             {
-                List<SetInfo> sets = sM.GetSets(roomId);
-                SetInfo activeSet = sM.GetActiveSet(sets);
                 activeSet.Questions = qM.GetQuestionsFromSetId(activeSet.Id);
                 int setSize = activeSet.Questions.Count;
                 int activeQuestionId = (int)activeSet.ActiveQuestionId;
@@ -22,10 +22,11 @@ namespace Pollaris.Controllers
                 int questionIndex = activeSet.Questions.IndexOf(activeQuestion);
                 AnswerQuestionInfo model = new AnswerQuestionInfo(userId, roomId, activeSet.Id, setSize, activeQuestion, questionIndex);
                 return View(model);
-            } catch (Exception ex)
+            }
+            else
             {
                 AnswerQuestionInfo model = new AnswerQuestionInfo(userId, roomId, null, null, null, null);
-                return View(model); 
+                return View(model);
             }
         }
         public IActionResult CreateQuestion(int userId, int roomId, int setId)
