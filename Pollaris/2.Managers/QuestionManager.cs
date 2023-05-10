@@ -67,5 +67,17 @@ namespace Pollaris.Managers
             sql.SetQuestionConnection(setId, question.Id);
             return question;
         }
+
+        public void ChangeGraded(int questionId, bool isGraded)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            sql.ChangeGraded(questionId, isGraded); 
+        }
+
+        public void ChangeAnonymous(int questionId, bool isAnonymous)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            sql.ChangeAnonymous(questionId, isAnonymous);
+        }
     }
 }

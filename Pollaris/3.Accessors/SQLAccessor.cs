@@ -742,6 +742,28 @@ namespace Pollaris._3.Accessors
             }
         }
 
+        public void ChangeGraded(int questionId, bool isGraded)
+        {
+            //set question isGraded = isGraded
+        }
+
+        public void ChangeAnonymous (int questionId, bool isAnonymous)
+        {
+
+        }
+
+        //OPTIONS MANAGER
+
+        public void ChangeOptionCorrect(int optionId, bool isCorrect)
+        {
+
+        }
+
+        public void ChangeOptionName(int optionId, string optionName)
+        {
+
+        }
+
 
         //RESPONSES MANAGER
 
@@ -1027,6 +1049,9 @@ namespace Pollaris._3.Accessors
             connection.Close();
         }
 
-
+        public void ChangeSetName(int setId, string newName)
+        {
+            //TODO - Fill this in!
+        }
     }
 }

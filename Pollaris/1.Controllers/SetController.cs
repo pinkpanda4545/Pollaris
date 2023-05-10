@@ -18,7 +18,8 @@ namespace Pollaris.Controllers
 
         public void ChangeSetName(int setId, string newName)
         {
-
+            SetManager sM = new SetManager();
+            sM.ChangeSetName(setId, newName); 
         }
 
         public IActionResult DeleteSet(int userId, int roomId, int setId)

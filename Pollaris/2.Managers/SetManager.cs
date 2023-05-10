@@ -78,5 +78,11 @@ namespace Pollaris.Managers
             sql.ChangeActiveQuestion(setId, nextQuestionId);
             return questions.IndexOf(questions.Where(x => x.Id == nextQuestionId).First());
         }
+
+        public void ChangeSetName(int setId, string setName) 
+        {
+            SQLAccessor sql = new SQLAccessor();
+            sql.ChangeSetName(setId, setName); 
+        }
     }
 }

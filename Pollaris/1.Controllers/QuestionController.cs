@@ -65,12 +65,14 @@ namespace Pollaris.Controllers
 
         public void ChangeGraded(int questionId, bool isGraded)
         {
-
+            QuestionManager qM = new QuestionManager();
+            qM.ChangeGraded(questionId, isGraded); 
         }
 
         public void ChangeAnonymous (int questionId, bool isAnonymous)
         {
-
+            QuestionManager qM = new QuestionManager();
+            qM.ChangeAnonymous(questionId, isAnonymous); 
         }
 
     }

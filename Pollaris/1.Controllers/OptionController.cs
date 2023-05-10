@@ -9,9 +9,10 @@ namespace Pollaris.Controllers
     {
         [HttpPost]
         [Route("/Option/MakeOptionCorrect")]
-        public void MakeOptionCorrect(int optionId)
+        public void MakeOptionCorrect(int optionId,bool isCorrect)
         {
-
+            OptionManager oM = new OptionManager();
+            oM.MakeOptionCorrect(optionId, isCorrect); 
         }
 
         [HttpPost]

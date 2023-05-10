@@ -71,21 +71,22 @@ function createQuestion(userId, roomId, setId, type) {
 
 //Edit Question
 function redCircle(element, optionId) {
+    var isCorrect = false; 
     if ($(element).attr('class') == "red-circle") {
         $(element).removeClass("red-circle");
         $(element).addClass("empty-circle");
     } else {
         $(element).removeClass("empty-circle");
         $(element).addClass("red-circle");
-
-        var datastring = { optionId: optionId };
-
-        $.ajax({
-            url: "/Question/MakeOptionCorrect",
-            method: "POST",
-            data: datastring
-        });
+        isCorrect = true;
     }
+    var datastring = { optionId: optionId, isCorrect: isCorrect };
+
+    $.ajax({
+        url: "/Question/MakeOptionCorrect",
+        method: "POST",
+        data: datastring
+    });
 }
 
 function chooseButton(element, questionId) {
