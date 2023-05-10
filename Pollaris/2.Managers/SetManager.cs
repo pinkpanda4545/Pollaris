@@ -66,10 +66,12 @@ namespace Pollaris.Managers
             int roomId = sql.GetRoomIdFromSetId(setId);
             if (makeActive)
             {
-                sql.ChangeRoomActiveSet(roomId, setId); 
+                sql.ChangeRoomActiveSet(roomId, setId);
+                sql.ChangeSetIsActive(setId, true); 
             } else
             {
-                sql.ChangeRoomActiveSet(roomId, null); 
+                sql.ChangeRoomActiveSet(roomId, null);
+                sql.ChangeSetIsActive(setId, false); 
             }
             sql.ChangeStatus(setId, newStatus);
         }

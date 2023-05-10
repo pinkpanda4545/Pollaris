@@ -83,7 +83,7 @@ function redCircle(element, optionId) {
     var datastring = { optionId: optionId, isCorrect: isCorrect };
 
     $.ajax({
-        url: "/Question/MakeOptionCorrect",
+        url: "/Option/MakeOptionCorrect",
         method: "POST",
         data: datastring
     });
@@ -131,7 +131,7 @@ function createNewOption(questionId, questionType) {
     var datastring = { questionId: questionId };
 
     $.ajax({
-        url: "/Question/CreateNewOption",
+        url: "/Option/CreateNewOption",
         method: "POST",
         data: datastring
     }).done((result) => {
@@ -177,24 +177,31 @@ function deleteOption(optionId) {
     }
 }
 
-function saveQuestionEdits(userId, roomId, setId, questionId) {
-    var questionName = $("#txt-area-edit-question").val(); 
+function saveQuestionEdits(userId, roomId, setId, questionId, type) {
+    var questionName = $("#txtarea-edit-question").val(); 
     var datastring = { questionId: questionId, questionName: questionName };
 
     $.ajax({
         url: "/Question/ChangeQuestionName",
         method: "POST",
         data: datastring
+    }).done(() => {
+        if (type != "SA") {
+            saveOptionNames(userId, roomId, setId);
+        } else {
+            openEditSet(userId, roomId, setId); 
+        }
     });
 
-    saveOptionNames();
 }
 
-function saveOptionNames() {
-    var elements = $("#edit-question-grid").children(".question-name-bar");
-    elements.foreach((elem) => {
-        var optionId = $(elem).attr("id").substring(4);
-        var optionName = $(elem).val();
+function saveOptionNames(userId, roomId, setId) {
+    var elements = $("#edit-question-grid").children(".question-name-bar"); 
+
+    for (var i = 0; i < elements.length; i++) {
+        var optionId = $(elements[i]).attr("id").substring(4);
+        var optionName = $(elements[i]).val();
+        console.log(elements[i]);
 
         var datastring = { optionId: optionId, optionName: optionName };
 
@@ -202,6 +209,8 @@ function saveOptionNames() {
             url: "/Option/ChangeOptionName",
             method: "POST",
             data: datastring
+        }).done(() => {
+            openEditSet(userId, roomId, setId);
         });
-    });
+    }
 }

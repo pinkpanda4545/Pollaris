@@ -15,10 +15,17 @@ namespace Pollaris.Controllers
             activeSet.Questions = qM.GetQuestionsFromSetId(activeSet.Id); 
             int setSize = activeSet.Questions.Count;
             int activeQuestionId = (int)activeSet.ActiveQuestionId;
-            QuestionInfo activeQuestion = activeSet.Questions.Where(x => x.Id == activeQuestionId).First(); 
-            int questionIndex = activeSet.Questions.IndexOf(activeQuestion);
-            AnswerQuestionInfo model = new AnswerQuestionInfo(userId, roomId, activeSet.Id, setSize, activeQuestion, questionIndex);
-            return View(model);
+            try
+            {
+                QuestionInfo activeQuestion = activeSet.Questions.Where(x => x.Id == activeQuestionId).First();
+                int questionIndex = activeSet.Questions.IndexOf(activeQuestion);
+                AnswerQuestionInfo model = new AnswerQuestionInfo(userId, roomId, activeSet.Id, setSize, activeQuestion, questionIndex);
+                return View(model);
+            } catch (Exception ex)
+            {
+                AnswerQuestionInfo model = new AnswerQuestionInfo(userId, roomId, activeSet.Id, setSize, null, null);
+                return View(model); 
+            }
         }
         public IActionResult CreateQuestion(int userId, int roomId, int setId)
         {

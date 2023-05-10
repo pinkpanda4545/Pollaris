@@ -817,7 +817,13 @@ namespace Pollaris._3.Accessors
             SqlConnection connection = getConnection();
             connection.Open();
 
-            //TODO = fill in!
+            string query = "UPDATE [Question] SET question = @questionName WHERE question_id = @questionId;";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@questionId", questionId);
+            command.Parameters.AddWithValue("@questionName", questionName);
+
+            command.ExecuteNonQuery();
+            connection.Close();
         }
 
         //OPTIONS MANAGER
@@ -870,23 +876,21 @@ namespace Pollaris._3.Accessors
         {
             SqlConnection connection = getConnection();
             // Create Query
-            string query = "INSERT INTO [Option] (name, is_correct, rank_index) VALUES (@name, @isCorrect, @rankIndex) SELECT SCOPE_IDENTITY();";
+            string query = "INSERT INTO [Option] (name, is_correct) VALUES (@name, @isCorrect) SELECT SCOPE_IDENTITY();";
             connection.Open();
             SqlCommand command = new(query, connection);
             // Add parameters
             string name = "Option Name";
             bool isCorrect = false;
-            int? rankIndex = null;
             command.Parameters.AddWithValue("@name", name);
             command.Parameters.AddWithValue("@isCorrect", isCorrect);
-            command.Parameters.AddWithValue("@rankIndex", rankIndex);
             // Execute
             string result = command.ExecuteScalar().ToString();
             int id = int.Parse(result);
             if (id > 0)
             {
                 connection.Close();
-                return new OptionInfo(id, name, isCorrect, rankIndex);
+                return new OptionInfo(id, name, isCorrect, null);
             }
             else
             {
@@ -1201,7 +1205,7 @@ namespace Pollaris._3.Accessors
         public void ChangeRoomActiveSet(int roomId, int? setId)
         {
             SqlConnection connection = getConnection();
-            string query = "UPDATE Room SET active_set_id = @setId WHERE room_id = @roomId;";
+            string query = "UPDATE [Room] SET active_set_id = @setId WHERE room_id = @roomId;";
             connection.Open();
             SqlCommand command = new(query, connection);
             command.Parameters.AddWithValue("@roomId", roomId);
@@ -1209,11 +1213,23 @@ namespace Pollaris._3.Accessors
             
             try
             {
-                int result = (int)command.ExecuteScalar();
+                object result = command.ExecuteScalar();
             } catch (SqlException e)
             {
 
             }
+            connection.Close();
+        }
+
+        public void ChangeSetIsActive(int setId, bool isActive)
+        {
+            SqlConnection connection = getConnection();
+            string query = "UPDATE [Set] SET is_active = @isActive WHERE set_id = @setId;";
+            connection.Open();
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@setId", setId);
+            command.Parameters.AddWithValue("@isActive", isActive);
+            command.ExecuteNonQuery();
             connection.Close();
         }
 
@@ -1224,8 +1240,9 @@ namespace Pollaris._3.Accessors
             connection.Open();
             SqlCommand command = new(query, connection);
             command.Parameters.AddWithValue("@setId", setId);
+            command.Parameters.AddWithValue("@newStatus", newStatus);
 
-            int result = command.ExecuteNonQuery();
+            object result = command.ExecuteNonQuery();
             connection.Close();
         }
 

@@ -65,6 +65,10 @@ namespace Pollaris.Managers
             SQLAccessor sql = new SQLAccessor();
             QuestionInfo question = sql.CreateQuestion(type);
             sql.SetQuestionConnection(setId, question.Id);
+            if (sql.GetQuestionIdsFromSetId(setId).Count == 1)
+            {
+                sql.ChangeActiveQuestion(setId, question.Id);
+            }
             return question;
         }
 
@@ -93,7 +97,7 @@ namespace Pollaris.Managers
 
         public void ChangeQuestionName(int questionId, string questionName)
         {
-            SQLAccessor sql = new SQLAccessor(); ;
+            SQLAccessor sql = new SQLAccessor();
             sql.ChangeQuestionName(questionId, questionName); 
         }
     }
