@@ -68,6 +68,17 @@ namespace Pollaris.Managers
             return question;
         }
 
+        public void DeleteQuestion(int id)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            List<int> optionIds = sql.GetOptionIdsFromQuestionId(id); 
+            sql.DeleteOptionsFromQuestionOptions(optionIds);
+            sql.DeleteOptionsFromResponse(optionIds);
+            sql.DeleteOptionsFromIds(optionIds);
+            sql.DeleteQuestionsFromSet(new List<int> { id });
+            sql.DeleteQuestionsFromIds(new List<int> { id });
+        }
+
         public void ChangeGraded(int questionId, bool isGraded)
         {
             SQLAccessor sql = new SQLAccessor();

@@ -19,17 +19,16 @@ namespace Pollaris.Controllers
         [Route("/Option/CreateNewOption")]
         public int CreateNewOption(int questionId)
         {
-            //Return the option's id
-            return 0; 
+            OptionManager oM = new OptionManager();
+            return oM.CreateNewOption(questionId); 
         }
 
         [HttpPost]
         [Route("/Option/DeleteOption")]
-        public void DeleteOption(int questionId)
+        public void DeleteOption(int optionId)
         {
-            //delete from questionOptions
-            //delete from response
-            //delete from Option
+            OptionManager oM = new OptionManager();
+            oM.DeleteOption(optionId);
         }
 
         [HttpPost]

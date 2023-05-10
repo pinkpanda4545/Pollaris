@@ -1249,5 +1249,135 @@ namespace NUnitPollarisTest
             Assert.IsTrue(result, "Did not return zero when an invalid set id was passed in.");
 
         }
+
+        [Test]
+        public void TestChangeGradedWhenQuestionIdValid()
+        {
+            // Setup/execute
+            int questionId = 15;
+            bool isGraded = false;
+            bool actual = sql.ChangeGraded(questionId, isGraded);
+
+            // Test
+            Assert.IsTrue(actual, "The question graded was not updated.");
+
+        }
+
+        [Test]
+        public void TestChangeGradedWhenQuestionIdIsInvalid()
+        {
+            // Setup/execute
+            int questionId = -1;
+            bool isGraded = false;
+            bool actual = sql.ChangeGraded(questionId, isGraded);
+
+            // Test
+            Assert.IsFalse(actual, "The question graded was updated when it shouldn't have been.");
+
+        }
+
+        [Test]
+        public void TestChangeAnonymousWhenQuestionIdValid()
+        {
+            // Setup/execute
+            int questionId = 15;
+            bool isAnonymous = true;
+            bool actual = sql.ChangeAnonymous(questionId, isAnonymous);
+
+            // Test
+            Assert.IsTrue(actual, "The question anonymous attribute was not updated.");
+
+        }
+
+        [Test]
+        public void TestChangeAnonymousWhenQuestionIdIsInvalid()
+        {
+            // Setup/execute
+            int questionId = -1;
+            bool isAnonymous = true;
+            bool actual = sql.ChangeAnonymous(questionId, isAnonymous);
+
+            // Test
+            Assert.IsFalse(actual, "The question anonymous attribute was updated when it shouldn't have been.");
+
+        }
+
+        [Test]
+        public void TestChangeOptionCorrectWhenOptionIdValid()
+        {
+            // Setup/execute
+            int optionId = 8;
+            bool isCorrect = true;
+            bool actual = sql.ChangeOptionCorrect(optionId, isCorrect);
+
+            // Test
+            Assert.IsTrue(actual, "The option's correct attribute was not updated.");
+
+        }
+
+        [Test]
+        public void TestChangeOptionCorrectWhenOptionIdInvalid()
+        {
+            // Setup/execute
+            int optionId = -1;
+            bool isCorrect = true;
+            bool actual = sql.ChangeOptionCorrect(optionId, isCorrect);
+
+            // Test
+            Assert.IsFalse(actual, "The option's correct attribute was updated when it shouldn't have been.");
+
+        }
+
+        [Test]
+        public void TestChangeOptionNameWhenOptionIdValid()
+        {
+            // Setup/execute
+            int optionId = 8;
+            string name = "newname";
+            bool actual = sql.ChangeOptionName(optionId, name);
+
+            // Test
+            Assert.IsTrue(actual, "The option's name was not updated.");
+
+        }
+
+        [Test]
+        public void TestChangeOptionNameWhenOptionIdInvalid()
+        {
+            // Setup/execute
+            int optionId = -1;
+            string name = "newname";
+            bool actual = sql.ChangeOptionName(optionId, name);
+
+            // Test
+            Assert.IsFalse(actual, "The option's name was updated when it shouldn't have been.");
+
+        }
+
+        [Test]
+        public void TestChangeSetNameWhenSetIdValid()
+        {
+            // Setup/execute
+            int setId = 12;
+            string name = "newname";
+            bool actual = sql.ChangeSetName(setId, name);
+
+            // Test
+            Assert.IsTrue(actual, "The set's name was not updated.");
+
+        }
+
+        [Test]
+        public void TestChangeSetNameWhenSetIdInvalid()
+        {
+            // Setup/execute
+            int setId = -1;
+            string name = "newname";
+            bool actual = sql.ChangeSetName(setId, name);
+
+            // Test
+            Assert.IsFalse(actual, "The set's name was updated when it shouldn't have been.");
+
+        }
     }
 }

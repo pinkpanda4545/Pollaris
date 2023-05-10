@@ -44,7 +44,8 @@ namespace Pollaris.Controllers
 
         public void DeleteQuestion(int questionId)
         {
-
+            QuestionManager qM = new QuestionManager();
+            qM.DeleteQuestion(questionId); 
         }
 
         [HttpPost]

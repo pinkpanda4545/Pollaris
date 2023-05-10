@@ -14,7 +14,6 @@ namespace Pollaris.Controllers
         {
             RoomManager rM = new RoomManager(); 
             List<RoomInfo> rooms = rM.GetRooms(userId);
-
             DashboardInfo model = new DashboardInfo(userId, rooms); 
             return View(model);
         }
@@ -27,7 +26,7 @@ namespace Pollaris.Controllers
             RoomManager rM = new RoomManager();
             SetManager sM = new SetManager(); 
             List<SetInfo> sets = sM.GetSets(roomId);
-            RoomInfo room = rM.GetRoomFromId(roomId);
+            RoomInfo room = rM.GetRoomFromId(userId, roomId);
             room.Sets = sets;
             RoomDashboardInfo model = new RoomDashboardInfo(userId, room); 
             return View(model);

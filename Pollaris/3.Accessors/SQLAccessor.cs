@@ -440,6 +440,29 @@ namespace Pollaris._3.Accessors
             }
         }
 
+        public string GetRole(int userId, int roomId)
+        {
+            SqlConnection connection = getConnection();
+            connection.Open();
+
+            string query = "SELECT role FROM UsersRoom WHERE user_id = @userId AND room_id = @roomId;";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@userId", userId);
+            command.Parameters.AddWithValue("@roomId", roomId);
+
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                string result = reader.GetString("role");
+                connection.Close();
+                return result;
+            } else
+            {
+                connection.Close();
+                return "";
+            }
+        }
+
         //QUESTION MANAGER
 
         public List<int> GetQuestionIdsFromSetId(int setId)
@@ -742,28 +765,121 @@ namespace Pollaris._3.Accessors
             }
         }
 
-        public void ChangeGraded(int questionId, bool isGraded)
+        public bool ChangeGraded(int questionId, bool isGraded)
         {
             //set question isGraded = isGraded
+            SqlConnection connection = getConnection();
+            string query = "UPDATE Question SET is_graded = @isGraded WHERE question_id = @questionId;";
+            connection.Open();
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@isGraded", isGraded);
+            command.Parameters.AddWithValue("@questionId", questionId);
+
+            int rowsAffected = command.ExecuteNonQuery();
+            if (rowsAffected == 1)
+            {
+                connection.Close();
+                return true;
+            }
+            else
+            {
+                connection.Close();
+                return false;
+            }
         }
 
-        public void ChangeAnonymous (int questionId, bool isAnonymous)
+        public bool ChangeAnonymous(int questionId, bool isAnonymous)
         {
+            SqlConnection connection = getConnection();
+            string query = "UPDATE Question SET is_anonymous = @isAnonymous WHERE question_id = @questionId;";
+            connection.Open();
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@isAnonymous", isAnonymous);
+            command.Parameters.AddWithValue("@questionId", questionId);
 
+            int rowsAffected = command.ExecuteNonQuery();
+            if (rowsAffected == 1)
+            {
+                connection.Close();
+                return true;
+            }
+            else
+            {
+                connection.Close();
+                return false;
+            }
         }
 
         //OPTIONS MANAGER
 
-        public void ChangeOptionCorrect(int optionId, bool isCorrect)
+        public bool ChangeOptionCorrect(int optionId, bool isCorrect)
+        {
+            SqlConnection connection = getConnection();
+            string query = "UPDATE [Option] SET is_correct = @isCorrect WHERE option_id = @optionId;";
+            connection.Open();
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@isCorrect", isCorrect);
+            command.Parameters.AddWithValue("@optionId", optionId);
+
+            int rowsAffected = command.ExecuteNonQuery();
+            if (rowsAffected == 1)
+            {
+                connection.Close();
+                return true;
+            }
+            else
+            {
+                connection.Close();
+                return false;
+            }
+        }
+
+        public bool ChangeOptionName(int optionId, string optionName)
+        {
+            SqlConnection connection = getConnection();
+            string query = "UPDATE [Option] SET name = @optionName WHERE option_id = @optionId;";
+            connection.Open();
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@optionName", optionName);
+            command.Parameters.AddWithValue("@optionId", optionId);
+
+            int rowsAffected = command.ExecuteNonQuery();
+            if (rowsAffected == 1)
+            {
+                connection.Close();
+                return true;
+            }
+            else
+            {
+                connection.Close();
+                return false;
+            }
+        }
+
+        public OptionInfo? CreateOption()
+        {
+            return null;
+        }
+
+        public void QuestionOptionConnection(int questionId, int optionId)
         {
 
         }
 
-        public void ChangeOptionName(int optionId, string optionName)
+        public void DeleteOptionsFromQuestionOptions(List<int> ids)
         {
 
         }
 
+        public void DeleteOptionsFromResponse(List<int> ids)
+        {
+
+        }
+
+        public void DeleteOptionsFromIds(List<int> ids)
+        {
+
+        }
 
         //RESPONSES MANAGER
 
@@ -925,14 +1041,13 @@ namespace Pollaris._3.Accessors
             connection.Close();
         }
 
-        public void DeleteQuestionsFromSet(int setId, List<int> questionIds)
+        public void DeleteQuestionsFromSet(List<int> questionIds)
         {
             SqlConnection connection = getConnection();
             connection.Open();
 
-            string query = "DELETE FROM QuestionSet WHERE set_id = @setId AND question_id IN " + this.ListToSqlString(questionIds) + ";";
+            string query = "DELETE FROM QuestionSet WHERE question_id IN " + this.ListToSqlString(questionIds) + ";";
             SqlCommand command = new(query, connection);
-            command.Parameters.AddWithValue("@setId", setId);
 
             command.ExecuteNonQuery();
             connection.Close();
@@ -1049,9 +1164,26 @@ namespace Pollaris._3.Accessors
             connection.Close();
         }
 
-        public void ChangeSetName(int setId, string newName)
+        public bool ChangeSetName(int setId, string newName)
         {
-            //TODO - Fill this in!
+            SqlConnection connection = getConnection();
+            string query = "UPDATE [Set] SET name = @newName WHERE set_id = @setId;";
+            connection.Open();
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@newName", newName);
+            command.Parameters.AddWithValue("@setId", setId);
+
+            int rowsAffected = command.ExecuteNonQuery();
+            if (rowsAffected == 1)
+            {
+                connection.Close();
+                return true;
+            }
+            else
+            {
+                connection.Close();
+                return false;
+            }
         }
     }
 }

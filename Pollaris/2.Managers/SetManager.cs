@@ -35,10 +35,18 @@ namespace Pollaris.Managers
         {
             SQLAccessor sql = new SQLAccessor();
             List<int> questionIds = sql.GetQuestionIdsFromSetId(setId);
-            sql.DeleteQuestionsFromSet(setId, questionIds);
+            List<int> optionIds = new List<int>(); 
+            foreach (int questionId in questionIds)
+            {
+                optionIds.AddRange(sql.GetOptionIdsFromQuestionId(questionId)); 
+            }
+            sql.DeleteOptionsFromQuestionOptions(optionIds);
+            sql.DeleteOptionsFromResponse(optionIds);
+            sql.DeleteOptionsFromIds(optionIds);
+            sql.DeleteQuestionsFromSet(questionIds);
+            sql.DeleteQuestionsFromIds(questionIds);
             sql.RemoveSetFromRoom(roomId, setId);
             sql.DeleteSet(setId);
-            sql.DeleteQuestionsFromIds(questionIds);
         }
 
         public string GetSetNameFromId(int setId)

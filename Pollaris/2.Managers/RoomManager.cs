@@ -12,6 +12,11 @@ namespace Pollaris.Managers
             List<int> roomIds = sql.GetRoomIdsFromUserId(userId);
             List<RoomInfo> rooms = sql.GetRoomsFromIds(roomIds); 
             //ADD USERTYPE
+            for (int i = 0; i < rooms.Count; i++)
+            {
+                string userType = sql.GetRole(userId, rooms[i].Id);
+                rooms[i].UserType = userType; 
+            }
             List<RoomInfo> result = SortRoomsByUserType(rooms);
             return rooms;
         }
@@ -42,13 +47,13 @@ namespace Pollaris.Managers
             return result; 
         }
 
-        public RoomInfo? GetRoomFromId(int roomId)
+        public RoomInfo? GetRoomFromId(int userId, int roomId)
         {
             SQLAccessor sql = new SQLAccessor();
             RoomInfo? room = sql.GetRoomFromId(roomId); 
             if (room != null)
             {
-                //ADD USERTYPE
+                string userType = sql.GetRole(userId, roomId); 
             }
             return room; 
         }
@@ -113,7 +118,8 @@ namespace Pollaris.Managers
 
         public string GetRole(int userId, int roomId)
         {
-            return "TA"; 
+            SQLAccessor sql = new SQLAccessor();
+            return sql.GetRole(userId, roomId); 
         }
     }
 }
