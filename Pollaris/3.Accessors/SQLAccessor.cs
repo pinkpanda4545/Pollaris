@@ -422,7 +422,8 @@ namespace Pollaris._3.Accessors
 
             try
             {
-                int roomId = (int)command.ExecuteScalar();
+                string result = command.ExecuteScalar().ToString();
+                int roomId = int.Parse(result);
                 if (roomId != 0)
                 {
                     connection.Close();
@@ -528,7 +529,8 @@ namespace Pollaris._3.Accessors
             command.Parameters.AddWithValue("@isGraded", true);
             command.Parameters.AddWithValue("@isAnonymous", false);
             // Execute
-            int questionId = (int)command.ExecuteNonQuery();
+            string result = command.ExecuteScalar().ToString();
+            int questionId = int.Parse(result);
             connection.Close();
             if (questionId == 0)
             {
@@ -1001,11 +1003,12 @@ namespace Pollaris._3.Accessors
             command.Parameters.AddWithValue("@status", status);
             command.Parameters.AddWithValue("@isActive", isActive);
             // Execute
-            int id = (int) command.ExecuteNonQuery();
-            if (id > 0)
+            string result = command.ExecuteScalar().ToString();
+            int setId = int.Parse(result);
+            if (setId > 0)
             {
                 connection.Close();
-                return new SetInfo(id, name, status, isActive, null);
+                return new SetInfo(setId, name, status, isActive, null);
             }
             else
             {

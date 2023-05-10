@@ -15,7 +15,7 @@
         <grid class="grid-container">
             @foreach (var room in Model.Rooms)
             {
-                @if (room.UserType == "Instructor")
+                @if (room.UserType == "I")
                 {
                     <div class="room-icon" onclick="openRoomDashboard(@Model.UserId, @room.Id)">
                         <div class="room-icon-header h-75">
@@ -37,7 +37,7 @@
                         <div class="room-icon-instructor">INSTRUCTOR: @room.InstructorName</div>
                     </div>
                 }
-                else if (room.UserType == "Student")
+                else if (room.UserType == "S")
                 {
                     <div class="room-icon" onclick="openAnswerQuestion(@Model.UserId, @room.Id)">
                         <div class="room-icon-header">
