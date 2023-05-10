@@ -79,5 +79,5 @@ function finishSetAndClose(userId, roomId, setId) {
 }
 
 function exitAndChangeStatus(userId, roomId, setId) {
-    window.location = "/Set/ContinueStatusAndExit?userId" + userId + "&roomId=" + roomId + "&setId=" + setId;
+    window.location = "/Set/ContinueStatusAndExit?userId=" + userId + "&roomId=" + roomId + "&setId=" + setId;
 }

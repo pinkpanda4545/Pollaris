@@ -18,13 +18,23 @@ function chooseMC(optionName) {
 function answerQuestionSubmit(userId, roomId, setId, questionId, questionType) {
     answers = []
     if (questionType == "MC") {
-        answers = $("#grid-mc").children(".dark-green").val();
+        grid = $(".grid-mc").children();
+        options = $(".grid-mc").children(".dark-green");
+        for (var i = 0; i < options.length; i++) {
+            answers.push(options[i].textContent); 
+        }
     } else if (questionType == "TF") {
-        answers = $("#div-tf-container").children(".dark-green").val();
+        options = $(".div-tf-container").children(".dark-green");
+        for (var i = 0; i < options.length; i++) {
+            answers.push(options[i].textContent);
+        }
     } else if (questionType == "R") {
-        answers = $("#grid-ranking").children().val(); 
+        options = $(".grid-ranking").children();
+        for (var i = 0; i < options.length; i++) {
+            answers.push(options[i].textContent);
+        }
     } else {
-        answers = $("#div-sa").val();
+        answers.push($("#div-sa").val());
     }
 
     var datastring = { userId: userId, roomId: roomId, questionId: questionId, answers: answers };

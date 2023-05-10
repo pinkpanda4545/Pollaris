@@ -22,7 +22,14 @@
             {
                 @foreach (var response in Model.Responses)
                 {
-                    <div class="student-response">@response.Response</div>
+                    @if (@Model.Questions[Model.ActiveQuestionIndex].Type == "MC" || @Model.Questions[Model.ActiveQuestionIndex].Type == "TF")
+                    {
+                        <div class="student-response">@response.OptionName</div>
+                    }
+                    else
+                    {
+                        <div class="student-response">@response.Response</div>
+                    }
                 }
             }
         </grid>
