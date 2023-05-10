@@ -70,51 +70,89 @@ function createQuestion(userId, roomId, setId, type) {
 }
 
 //Edit Question
-function redCircle(element) {
+function redCircle(element, optionId) {
     if ($(element).attr('class') == "red-circle") {
         $(element).removeClass("red-circle");
         $(element).addClass("empty-circle");
     } else {
         $(element).removeClass("empty-circle");
         $(element).addClass("red-circle");
+
+        var datastring = { optionId: optionId };
+
+        $.ajax({
+            url: "/Question/MakeOptionCorrect",
+            method: "POST",
+            data: datastring
+        });
     }
 }
 
-function chooseButton(element) {
+function chooseButton(element, questionId) {
+    var changeGraded = false; 
+    var changeToYes = false; 
     if ($(element).attr('id') == "graded-yes") {
         $(element).addClass("chosen-button");
         $("#graded-no").removeClass("chosen-button");
+        changeGraded = true;
+        changeToYes = true;
     } else if ($(element).attr('id') == "graded-no") {
         $(element).addClass("chosen-button");
         $("#graded-yes").removeClass("chosen-button");
+        changeGraded = true;
     } else if ($(element).attr("id") == "anonymous-yes") {
         $(element).addClass("chosen-button");
         $("#anonymous-no").removeClass("chosen-button");
+        changeToYes = true;
     } else if ($(element).attr("id") == "anonymous-no") {
         $(element).addClass("chosen-button");
         $("#anonymous-yes").removeClass("chosen-button");
     }
+
+    var datastring = { questionId: questionId, isGraded: changeToYes };
+
+    if (changeGraded) {
+        $.ajax({
+            url: "/Question/ChangeGraded",
+            method: "POST",
+            data: datastring
+        });
+    } else {
+        $.ajax({
+            url: "/Question/ChangeAnonymous",
+            method: "POST",
+            data: datastring
+        });
+    }
 } 
 
-function addOption(questionType) {
-    var id = $("#edit-question-grid").children(".list-number").length + 1;
-    $("#edit-question-grid").css("grid-template-rows", "repeat(" + id + ", 100px)");
-    $("#edit-question-grid").append("<div id='ln-" + id + "' class='list-number'>" + id + "</div>");
+function createNewOption(questionId, questionType) {
+    var datastring = { questionId: questionId };
+
+    $.ajax({
+        url: "/Question/CreateNewOption",
+        method: "POST",
+        data: datastring
+    }).done((result) => {
+        addOption(result, questionType);
+    });
+}
+
+function addOption(id, questionType) {
+    var index = $("#edit-question-grid").children(".list-number").length + 1;
+    $("#edit-question-grid").css("grid-template-rows", "repeat(" + index + ", 100px)");
+    $("#edit-question-grid").append("<div id='ln-" + id + "' class='list-number'>" + index + "</div>");
     $("#edit-question-grid").append("<textarea id='qnb-" + id + "' class='question-name-bar'></textarea>");
-    if (questionType != "R") {
+    if (questionType == "MC") {
         $("#edit-question-grid").append("<div id='circle-" + id + "' class='empty-circle' onclick='redCircle(this)'></div>");
     } else {
         $("#edit-question-grid").append("<div id='circle-" + id + "'></div>");
     }
-    if (questionType != "TF") {
-        $("#edit-question-grid").append(
-            "<div id='bd-" + id + "' class='btn-delete' onclick='deleteOption(" + id + ")'>" +
-            "<img class='img-btn-delete' src='/images/trash.png' />" +
-            "</div>"
-        );
-    } else {
-        $("#edit-question-grid").append("<div id='bd-" + id + "'></div>");
-    }
+    $("#edit-question-grid").append(
+        "<div id='bd-" + id + "' class='btn-delete' onclick='deleteOption(" + id + ")'>" +
+        "<img class='img-btn-delete' src='/images/trash.png' />" +
+        "</div>"
+    );
 }
 
 function deleteOption(optionId) {
@@ -123,6 +161,14 @@ function deleteOption(optionId) {
     $("#circle-" + optionId).remove();
     $("#bd-" + optionId).remove();
 
+    var datastring = { optionId: optionId };
+
+    $.ajax({
+        url: "/Option/DeleteOption",
+        method: "POST",
+        data: datastring
+    });
+
     var numberList = $("#edit-question-grid").children(".list-number");
     $("#edit-question-grid").css("grid-template-rows", "repeat(" + numberList.length + ", 100px)");
     for (let i = 0; i < numberList.length; i++) {
@@ -130,6 +176,18 @@ function deleteOption(optionId) {
     }
 }
 
-function saveQuestionEdits() {
-    //Save Question Edits
+function saveOptionNames(userId, roomId, setId) {
+    var elements = $("#edit-question-grid").children(".question-name-bar");
+    elements.foreach((elem) => {
+        var optionId = $(elem).attr("id").substring(4); 
+        var optionName = $(elem).val(); 
+
+        var datastring = { optionId: optionId, optionName: optionName };
+
+        $.ajax({
+            url: "/Option/ChangeOptionName",
+            method: "POST",
+            data: datastring
+        });
+    });
 }

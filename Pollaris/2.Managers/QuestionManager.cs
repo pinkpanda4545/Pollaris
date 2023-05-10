@@ -67,10 +67,5 @@ namespace Pollaris.Managers
             sql.SetQuestionConnection(setId, question.Id);
             return question;
         }
-
-        public void SaveQuestionEdits(int questionId)
-        {
-
-        }
     }
 }

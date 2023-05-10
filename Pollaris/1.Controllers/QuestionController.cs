@@ -14,7 +14,7 @@ namespace Pollaris.Controllers
             SetInfo activeSet = sM.GetActiveSet(sets);
             activeSet.Questions = qM.GetQuestionsFromSetId(activeSet.Id); 
             int setSize = activeSet.Questions.Count;
-            int activeQuestionId = activeSet.ActiveQuestionId;
+            int activeQuestionId = (int)activeSet.ActiveQuestionId;
             QuestionInfo activeQuestion = activeSet.Questions.Where(x => x.Id == activeQuestionId).First(); 
             int questionIndex = activeSet.Questions.IndexOf(activeQuestion);
             AnswerQuestionInfo model = new AnswerQuestionInfo(userId, roomId, activeSet.Id, setSize, activeQuestion, questionIndex);
@@ -42,6 +42,11 @@ namespace Pollaris.Controllers
             return View(model);
         }
 
+        public void DeleteQuestion(int questionId)
+        {
+
+        }
+
         [HttpPost]
         [Route("/Question/SubmitStudentAnswer")]
         public bool SubmitStudentAnswer(int userId, int roomId, int questionId, List<string> answers)
@@ -58,12 +63,15 @@ namespace Pollaris.Controllers
             return false; 
         }
 
-        public IActionResult SaveQuestionEdits(int userId, int roomId, int setId, int questionId)
+        public void ChangeGraded(int questionId, bool isGraded)
         {
-            QuestionManager qM = new QuestionManager();
-            qM.SaveQuestionEdits(questionId); 
-            //Return to EditSet
-            return Redirect("/Set/EditSet?userId=" + userId + "&roomId=" + roomId + "&setId=" + setId); 
+
         }
+
+        public void ChangeAnonymous (int questionId, bool isAnonymous)
+        {
+
+        }
+
     }
 }

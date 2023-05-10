@@ -26,20 +26,19 @@ namespace Pollaris.Managers
         public SetInfo CreateSet(int roomId)
         {
             SQLAccessor sql = new SQLAccessor();
-            SetInfo set = sql.CreateSet(roomId); 
+            SetInfo set = sql.CreateSet();
+            sql.ConnectSetAndRoom(set, roomId);
             return set;
-        }
-
-        public void SaveSetEdits(int setId)
-        {
-
         }
 
         public void DeleteSet(int roomId, int setId)
         {
             SQLAccessor sql = new SQLAccessor();
+            List<int> questionIds = sql.GetQuestionIdsFromSetId(setId);
+            sql.DeleteQuestionsFromSet(setId, questionIds);
+            sql.RemoveSetFromRoom(roomId, setId);
             sql.DeleteSet(setId);
-            sql.RemoveSetFromRoom(roomId, setId); 
+            sql.DeleteQuestionsFromIds(questionIds);
         }
 
         public string GetSetNameFromId(int setId)
@@ -53,12 +52,17 @@ namespace Pollaris.Managers
             return "";
         }
 
-        public void ChangeStatus(int setId, string newStatus)
+        public void ChangeStatus(int setId, string newStatus, bool makeActive)
         {
             SQLAccessor sql = new SQLAccessor();
             int roomId = sql.GetRoomIdFromSetId(setId);
-            int activeSetId = sql.GetActiveSetIdFromRoomId(roomId);
-            sql.ChangeActiveSet(activeSetId, setId);
+            if (makeActive)
+            {
+                sql.ChangeRoomActiveSet(roomId, setId); 
+            } else
+            {
+                sql.ChangeRoomActiveSet(roomId, null); 
+            }
             sql.ChangeStatus(setId, newStatus);
         }
 
@@ -69,7 +73,7 @@ namespace Pollaris.Managers
             List<int> ids = sql.GetQuestionIdsFromSetId(setId);
             List<QuestionInfo> questions = sql.GetQuestionsFromIds(ids);
             SetInfo set = sql.GetSetFromId(setId);
-            int activeQuestionId = set.ActiveQuestionId;
+            int activeQuestionId = (int)set.ActiveQuestionId;
             int nextQuestionId = questions.IndexOf(questions.Where(x => x.Id == activeQuestionId).First()) + 1;
             sql.ChangeActiveQuestion(setId, nextQuestionId);
             return questions.IndexOf(questions.Where(x => x.Id == nextQuestionId).First());

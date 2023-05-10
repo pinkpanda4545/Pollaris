@@ -9,22 +9,22 @@
                 <p class="p-edit-question">Graded?</p>
                 @if (Model.Question.IsGraded)
                 {
-                    <button id="graded-yes" class="btn-blue-tiny chosen-button" onclick="chooseButton(this)">YES</button>
-                    <button id="graded-no" class="btn-blue-tiny" onclick="chooseButton(this)">NO</button>
+                    <button id="graded-yes" class="btn-blue-tiny chosen-button" onclick="chooseButton(this, @Model.Question.Id)">YES</button>
+                    <button id="graded-no" class="btn-blue-tiny" onclick="chooseButton(this, @Model.Question.Id)">NO</button>
                 } else
                 {
-                    <button id="graded-yes" class="btn-blue-tiny" onclick="chooseButton(this)">YES</button>
-                    <button id="graded-no" class="btn-blue-tiny chosen-button" onclick="chooseButton(this)">NO</button>
+                    <button id="graded-yes" class="btn-blue-tiny" onclick="chooseButton(this, @Model.Question.Id)">YES</button>
+                    <button id="graded-no" class="btn-blue-tiny chosen-button" onclick="chooseButton(this, @Model.Question.Id)">NO</button>
                 }
                 <p class="p-edit-question">Anonymous?</p>
                 @if (Model.Question.IsAnonymous)
                 {
-                    <button id="anonymous-yes" class="btn-blue-tiny chosen-button" onclick="chooseButton(this)">YES</button>
-                    <button id="anonymous-no" class="btn-blue-tiny" onclick="chooseButton(this)">NO</button>
+                    <button id="anonymous-yes" class="btn-blue-tiny chosen-button" onclick="chooseButton(this, @Model.Question.Id)">YES</button>
+                    <button id="anonymous-no" class="btn-blue-tiny" onclick="chooseButton(this, @Model.Question.Id)">NO</button>
                 } else
                 {
-                    <button id="anonymous-yes" class="btn-blue-tiny" onclick="chooseButton(this)">YES</button>
-                    <button id="anonymous-no" class="btn-blue-tiny chosen-button" onclick="chooseButton(this)">NO</button>
+                    <button id="anonymous-yes" class="btn-blue-tiny" onclick="chooseButton(this, @Model.Question.Id)">YES</button>
+                    <button id="anonymous-no" class="btn-blue-tiny chosen-button" onclick="chooseButton(this, @Model.Question.Id)">NO</button>
                 }
             </div>
         </div>
@@ -37,7 +37,7 @@
                 <h2 id="h2-options">OPTIONS</h2>
                 @if (Model.Question.Type != "TF")
                 {
-                    <button id="btn-add-option" class="btn-small" onclick="addOption('@Model.Question.Type')">Add Option</button>
+                    <button id="btn-add-option" class="btn-small" onclick="createNewOption(@Model.Question.Id, '@Model.Question.Type')">Add Option</button>
                 } else
                 {
                     <div></div>
@@ -63,7 +63,7 @@
                         <textarea id="qnb-@option.Id" class="question-name-bar">@option.Name</textarea>
                         @if (Model.Question.Type != "R")
                         {
-                            <div id="circle-@option.Id" class="@option.GetRed()" onclick="redCircle(this)"></div>
+                            <div id="circle-@option.Id" class="@option.GetRed()" onclick="redCircle(this, @option.Id)"></div>
                         }
                         else
                         {
@@ -89,7 +89,7 @@
 
     <div class="button-bar-3">
         <button onclick="openEditSet(@Model.UserId, @Model.RoomId, @Model.SetId)">Exit</button>
-        <button class="btn-green" onclick="saveQuestionEdits()">Save</button>
+        <button class="dark-green" onclick="saveOptionNames(@Model.UserId, @Model.RoomId, @Model.SetId)">Save</button>
     </div>
 </body>
 </html>

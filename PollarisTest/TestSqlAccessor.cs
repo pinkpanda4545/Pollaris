@@ -980,5 +980,274 @@ namespace NUnitPollarisTest
             // Test
             Assert.IsTrue(actual, "Did not update the next question Id.");
         }
+
+        //end of the carnage
+
+        [Test] 
+        public void TestSubmitRankingResponseValid()
+        {
+            //Setup
+            int userId = this.validUserId;
+            int optionId = 2;
+            int rankChosen = 5;
+            //Execute
+            bool result = sql.SubmitRankingResponse(userId, optionId, rankChosen);
+            //Test
+            Assert.IsTrue(result); 
+        }
+
+        [Test]
+        public void TestSubmitRankingResponseInvalidUser()
+        {
+            //Setup
+            int userId = this.invalidUserId;
+            int optionId = 2;
+            int rankChosen = 5;
+            //Execute
+            bool result = sql.SubmitRankingResponse(userId, optionId, rankChosen);
+            //Test
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void TestSubmitRankingResponseInvalidOption()
+        {
+            //Setup
+            int userId = this.validUserId;
+            int optionId = 0;
+            int rankChosen = 5;
+            //Execute
+            bool result = sql.SubmitRankingResponse(userId, optionId, rankChosen);
+            //Test
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void TestGetSAResponsesValid()
+        {
+            //Setup
+            int questionId = 11;
+            int expected = 2;
+            //Execute
+            List<StudentResponseInfo> studentResponses = sql.GetSAResponsesFromQuestionId(questionId);
+            //Test
+            int numResponses = studentResponses.Count;
+            Assert.That (numResponses, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void TestGetSAResponsesValidResponse0()
+        {
+            //Setup
+            int questionId = 11;
+            string expected = "A";
+            //Execute
+            List<StudentResponseInfo> studentResponses = sql.GetSAResponsesFromQuestionId(questionId);
+            //Test
+            string firstResponse = studentResponses[0].Response;
+            Assert.That(firstResponse, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void TestGetSAResponsesValidResponse1()
+        {
+            //Setup
+            int questionId = 11;
+            string expected = "B";
+            //Execute
+            List<StudentResponseInfo> studentResponses = sql.GetSAResponsesFromQuestionId(questionId);
+            //Test
+            string secondResponse = studentResponses[1].Response;
+            Assert.That(secondResponse, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void TestGetSAResponsesInvalidQuestionId()
+        {
+            //Setup
+            int questionId = 0;
+            int expected = 0;
+            //Execute
+            List<StudentResponseInfo> studentResponses = sql.GetSAResponsesFromQuestionId(questionId);
+            //Test
+            int actual = studentResponses.Count;
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void TestGetResponsesFromOptionsMCValid()
+        {
+            //Setup
+            List<int> optionIds = new List<int>() { 9, 10, 11, 12};
+            //Execute
+            List<StudentResponseInfo> actual = sql.GetResponsesFromOptions(optionIds);
+            //Test
+            bool result = actual.Count == 2;
+            Assert.IsTrue(result); 
+        }
+
+        [Test]
+        public void TestGetResponsesFromOptionsMCValidCheckIds()
+        {
+            //Setup
+            List<int> optionIds = new List<int>() { 9, 10, 11, 12 };
+            //Execute
+            List<StudentResponseInfo> actual = sql.GetResponsesFromOptions(optionIds);
+            //Test
+            List<int> userIds = actual.Select(x => x.UserId).ToList();
+            userIds.Sort(); 
+            Assert.That(userIds, Is.EqualTo(this.ids));
+        }
+
+        [Test] 
+        public void TestGetResponsesFromOptionsInvalid()
+        {
+            //Setup
+            List<int> optionIds = new List<int>() { 0 };
+            //Execute
+            List<StudentResponseInfo> actual = sql.GetResponsesFromOptions(optionIds);
+            //Test
+            bool result = actual.Count == 0; 
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void TestGetResponsesFromOptionsRankingValid()
+        {
+            //Setup
+            List<int> optionIds = new List<int>() { 4, 5, 6, 7, 8 };
+            int expected = 10; 
+            //Execute
+            List<StudentResponseInfo> actual = sql.GetResponsesFromOptions(optionIds);
+            //Test
+            Assert.That(actual.Count, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void TestGetSetsFromIdsWhenIdsDoNotExist()
+        {
+            // Setup/execute
+            List<int> setIds = new List<int>();
+            setIds.Add(-1);
+            setIds.Add(-2);
+            int actual = sql.GetSetsFromIds(setIds).Count;
+            int expected = 0;
+            bool result = actual == expected;
+
+            // Test
+            Assert.IsTrue(result, "Did not return an empty list of sets with invalid set ids.");
+
+        }
+
+        [Test]
+        public void TestGetSetFromIdWhenIdExists()
+        {
+            // Setup/execute
+            int setId = 7;
+            int? actual = sql.GetSetFromId(setId).ActiveQuestionId;
+            int expected = 5;
+            bool result = actual == expected;
+
+            // Test
+            Assert.IsTrue(result, "Did not return the proper active question id from the set.");
+
+        }
+
+        [Test]
+        public void TestGetSetFromIdWhenIdDoesNotExist()
+        {
+            // Setup/execute
+            int setId = -1;
+            SetInfo? actual = sql.GetSetFromId(setId);
+
+            // Test
+            Assert.IsNull(actual, "Did not return a null set for a nonexistent set id.");
+
+        }
+
+        [Test]
+        public void TestGetSetIdsFromRoomIdWhenRoomIdExists()
+        {
+            // Setup/execute
+            int roomId = 2;
+            int actual = sql.GetSetIdsFromRoomId(roomId)[0];
+            int expected = 7;
+            bool result = actual == expected;
+
+            // Test
+            Assert.IsTrue(result, "Did not return the proper set id based on room id.");
+
+        }
+
+        [Test]
+        public void TestGetSetIdsFromRoomIdWhenRoomIdDoesNotExist()
+        {
+            // Setup/execute
+            int roomId = -1;
+            int actual = sql.GetSetIdsFromRoomId(roomId).Count;
+            int expected = 0;
+            bool result = actual == expected;
+
+            // Test
+            Assert.IsTrue(result, "Did not return an empty list of set ids when the room id is invalid.");
+
+        }
+
+        [Test]
+        public void TestGetSetsFromIdsWhenIdsExist()
+        {
+            // Setup/execute
+            int firstExpectedId = 7;
+            int secondExpectedId = 9;
+            List<int> setIds = new List<int>();
+            setIds.Add(firstExpectedId);
+            setIds.Add(secondExpectedId);
+            int firstId = sql.GetSetsFromIds(setIds)[0].Id;
+            int secondId = sql.GetSetsFromIds(setIds)[1].Id;
+            bool result = firstExpectedId == firstId && secondExpectedId == secondId;
+
+            // Test
+            Assert.IsTrue(result, "Did not return the proper sets based on room id.");
+
+        }
+
+        [Test]
+        public void TestCreateSet()
+        {
+            // Setup/execute
+            SetInfo? set = sql.CreateSet();
+
+            // Test
+            Assert.IsNotNull(set, "Did not properly create a set.");
+
+        }
+
+        [Test]
+        public void TestGetRoomIdFromSetIdWhenSetIdExists()
+        {
+            // Setup/execute
+            int setId = 7;
+            int actual = sql.GetRoomIdFromSetId(setId);
+            int expected = 2;
+            bool result = actual == expected;
+
+            // Test
+            Assert.IsTrue(result, "Did not return the proper room id based on set id.");
+
+        }
+
+        [Test]
+        public void TestGetRoomIdFromSetIdWhenSetIdDoesNotExist()
+        {
+            // Setup/execute
+            int setId = -1;
+            int actual = sql.GetRoomIdFromSetId(setId);
+            int expected = 0;
+            bool result = actual == expected;
+
+            // Test
+            Assert.IsTrue(result, "Did not return zero when an invalid set id was passed in.");
+
+        }
     }
 }

@@ -1,12 +1,4 @@
 ﻿//EDIT SET
-function saveSetEdits(userId, roomId, setId) {
-    //NEED MORE INFO AS PARAMS!
-    //Take the order of questions and which questions there are.
-    //Individual question edits are saved on EditQuestion
-    //So is creating a new question. 
-    //So the only things to edit on this page is the set name, question order, and deleting questions. 
-    window.location = "/Set/SaveSetEdits?userId=" + userId + "&roomId=" + roomId + "&setId=" + setId;
-}
 
 function openCreateQuestion(userId, roomId, setId) {
     window.location = "/Question/CreateQuestion?userId=" + userId + "&roomId=" + roomId + "&setId=" + setId;
@@ -16,12 +8,20 @@ function openEditQuestion(userId, roomId, setId, questionId) {
     window.location = "/Question/EditQuestion?userId=" + userId + "&roomId=" + roomId + "&setId=" + setId + "&questionId=" + questionId;
 }
 
-function deleteQuestionLocal(questionId) {
+function deleteQuestion(questionId) {
     $("#ln-" + questionId).remove(); 
     $("#qnb-" + questionId).remove(); 
     $("#qt-" + questionId).remove(); 
     $("#bs-" + questionId).remove(); 
     $("#bd-" + questionId).remove();
+
+    var datastring = { questionId: questionId };
+
+    $.ajax({
+        url: "/Question/DeleteQuestion",
+        method: "POST",
+        data: datastring
+    });
 
     var numberList = $("#questions-list").children(".list-number");
     $("#questions-list").css("grid-template-rows", "repeat(" + numberList.length + ", 100px)");
@@ -51,13 +51,21 @@ function changeName(roomName, setName) {
     $("#btn-change-name").css('display', 'none');
 }
 
-function submitNewName(roomName, setName) {
+function submitNewName(setId, roomName) {
     var newName = $("#txtarea-change-set-name").val();
     $("#txtarea-change-set-name").text() == "";
     $("#txtarea-change-set-name").css("display", "none");
     $("#h1-set-name").text(roomName + " - " + newName);
     $("#btn-submit-name").css('display', 'none');
     $("#btn-change-name").css('display', 'block');
+
+    var datastring = { setId: setId, newName: newName };
+
+    $.ajax({
+        url: "/Set/ChangeSetName",
+        method: "POST",
+        data: datastring
+    });
 }
 
 //Set Responses

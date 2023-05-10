@@ -16,12 +16,9 @@ namespace Pollaris.Controllers
             return View("EditSet", model);
         }
 
-        public IActionResult SaveSetEdits(int userId, int roomId, int setId)
+        public void ChangeSetName(int setId, string newName)
         {
-            //ADD MORE PARAMS
-            SetManager sM = new SetManager();
-            sM.SaveSetEdits(setId); //ADD PARAMS 
-            return Redirect("/Dashboard/RoomDashboard?userId=" + userId + "&roomId=" + roomId); 
+
         }
 
         public IActionResult DeleteSet(int userId, int roomId, int setId)
@@ -44,14 +41,14 @@ namespace Pollaris.Controllers
         public IActionResult ContinueStatusAndExit(int userId, int roomId, int setId)
         {
             SetManager sM = new SetManager();
-            sM.ChangeStatus(setId, "C");
+            sM.ChangeStatus(setId, "C", false);
             return Redirect("/Dashboard/RoomDashboard?userId=" + userId + "&roomId=" + roomId);
         }
 
         public IActionResult FinishStatusAndExit(int userId, int roomId, int setId) 
         {
             SetManager sM = new SetManager();
-            sM.ChangeStatus(setId, "R");
+            sM.ChangeStatus(setId, "R", false);
             return Redirect("/Dashboard/RoomDashboard?userId=" + userId + "&roomId=" + roomId);
         }
 
@@ -61,13 +58,13 @@ namespace Pollaris.Controllers
             ResponsesManager rM = new ResponsesManager();
             SetManager sM = new SetManager();
 
-            sM.ChangeStatus(setId, newStatus);
+            sM.ChangeStatus(setId, newStatus, true);
 
             List<SetInfo> sets = sM.GetSets(roomId);
             SetInfo set = sets.Where(x => x.Id == setId).First();
             List<QuestionInfo> questions = qM.GetQuestionsFromSetId(setId);
             int activeQuestionIndex = questions.IndexOf(questions.Where(x => x.Id == set.ActiveQuestionId).First());
-            List<StudentResponseInfo> responses = rM.GetResponsesFromQuestionId(set.ActiveQuestionId);
+            List<StudentResponseInfo> responses = rM.GetResponsesFromQuestionId((int)set.ActiveQuestionId, questions[activeQuestionIndex].Type);
 
             SetResponsesInfo model = new SetResponsesInfo(userId, roomId, setId, activeQuestionIndex, questions, responses);
             return View(model);
@@ -80,7 +77,7 @@ namespace Pollaris.Controllers
             SetManager sM = new SetManager();
             int activeQuestionIndex = sM.ChangeActiveQuestion(setId); 
             List<QuestionInfo> questions = qM.GetQuestionsFromSetId(setId);
-            List<StudentResponseInfo> responses = rM.GetResponsesFromQuestionId(questions[activeQuestionIndex].Id);
+            List<StudentResponseInfo> responses = rM.GetResponsesFromQuestionId(questions[activeQuestionIndex].Id, questions[activeQuestionIndex].Type);
             SetResponsesInfo model = new SetResponsesInfo(userId, roomId, setId, activeQuestionIndex, questions, responses);
             return View("SetResponses", model);
         }
