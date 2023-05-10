@@ -77,10 +77,7 @@ namespace Pollaris.Controllers
             QuestionManager qM = new QuestionManager();
             SetManager sM = new SetManager();
             int activeQuestionIndex = sM.ChangeActiveQuestion(setId); 
-            List<QuestionInfo> questions = qM.GetQuestionsFromSetId(setId);
-            List<StudentResponseInfo> responses = rM.GetResponsesFromQuestionId(questions[activeQuestionIndex].Id, questions[activeQuestionIndex].Type);
-            SetResponsesInfo model = new SetResponsesInfo(userId, roomId, setId, activeQuestionIndex, questions, responses);
-            return RedirectToAction("SetResponses", "Set", model);
+            return Redirect("/Set/SetResponses?userId=" + userId + "&roomId=" + roomId + "&setId=" + setId + "&newStatus=" + "C");
         }
     }
 }
