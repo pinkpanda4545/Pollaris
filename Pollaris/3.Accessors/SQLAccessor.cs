@@ -235,6 +235,19 @@ namespace Pollaris._3.Accessors
             }
         }
 
+        public void ChangeProfilePhoto(int userId, string src)
+        {
+            SqlConnection connection = getConnection();
+            connection.Open();
+
+            string query = "UPDATE Users SET photo = @photo WHERE user_id = @userId;";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@photo", src);
+            command.Parameters.AddWithValue("@userId", userId);
+
+            command.ExecuteNonQuery();
+        }
+
         public void UpdateRoomInstructorName(List<int> ids, string name)
         {
             SqlConnection connection = getConnection();
