@@ -7,8 +7,15 @@ function closeChangePassword() {
     $("#change-password-popup").css("display", "none"); 
 }
 
-function changeImage() {
-
+function changeImage(event) {
+    var image = document.getElementById('photo');
+    var file = event.target.files;
+    var ext = file[0].type;
+    if (ext == "image/jpeg" || ext == "image/png") {
+        image.src = URL.createObjectURL(file[0]);
+    } else {
+        window.alert("File type not supported. Extension must be .png or .jpg");
+    }
 }
 
 function editProfileSave(userId) {
