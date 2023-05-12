@@ -2,14 +2,13 @@
 {
     public class DashboardInfo
     {
-        public DashboardInfo(int userId, List<RoomInfo> rooms, string? photo) {
+        public DashboardInfo(int userId, List<RoomInfo> rooms) {
             UserId = userId;
-            Rooms = rooms;
-            Photo = photo; 
+            Rooms = rooms; 
         }
 
         public int UserId { get; set; }
         public List<RoomInfo> Rooms { get; set; }
-        public string? Photo { get; set; }
+
     }
 }

@@ -11,10 +11,6 @@ function signUpSubmit() {
     email = $("#email").val();
     password = $("#password").val(); 
 
-    if (password.length < 8 || password.includes("#") || password.includes("&") || password.includes("%") || password.includes("=")) {
-        alert("Please try a different password that is 8+ characters long and doesn't include '#', '&', '%', or '='.");
-    } else {
-        window.location = "/Home/CreateUser?firstName=" + firstName + "&lastName=" + lastName +
-            "&email=" + email + "&password=" + password;
-    }
+    window.location = "/Home/CreateUser?firstName=" + firstName + "&lastName=" + lastName +
+        "&email=" + email + "&password=" + password;
 }
