@@ -11,7 +11,6 @@ namespace Pollaris.Controllers
         [Route("/Members/SaveProfileInformation")]
         public IActionResult SaveProfileInformation(int userId, string firstName, string lastName)
         {
-            //Save the first and last name and photo (if changed) to the database. 
             UserManager uM = new UserManager();
             bool result = uM.SaveProfileInfo(userId,firstName, lastName); 
             return new JsonResult(result); 
@@ -21,14 +20,13 @@ namespace Pollaris.Controllers
         [Route("/Members/ValidateAndSavePassword")]
         public IActionResult ValidateAndSavePassword(int userId, string oldPassword, string newPassword, string newPassword2)
         {
-            //Validate that the password matches the user id
-            //Validate that the newPassword and newPassword2 are the same
-            //Save it to the database
             UserManager uM = new UserManager();
             bool result = uM.ChangePassword(userId, oldPassword, newPassword, newPassword2);
-            return new JsonResult(true);
+            return new JsonResult(userId);
         }
 
+        [HttpGet]
+        [Route("/Members/EditProfile")]
         public IActionResult EditProfile(int userId)
         {
             UserId id = new UserId(userId);

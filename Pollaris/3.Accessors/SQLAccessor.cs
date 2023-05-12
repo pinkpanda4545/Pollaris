@@ -235,6 +235,19 @@ namespace Pollaris._3.Accessors
             }
         }
 
+        public void UpdateRoomInstructorName(List<int> ids, string name)
+        {
+            SqlConnection connection = getConnection();
+            connection.Open();
+
+            string query = "UPDATE Room SET instructor_name = @name WHERE room_id IN " + this.ListToSqlString(ids) + ";";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@name", name);
+
+            int rowsAffected = command.ExecuteNonQuery();
+            connection.Close();
+        }
+
         public string GetUserNameFromId(int userId)
         {
             SqlConnection connection = getConnection();

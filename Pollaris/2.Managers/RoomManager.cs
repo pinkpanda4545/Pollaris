@@ -18,7 +18,7 @@ namespace Pollaris.Managers
                 rooms[i].UserType = userType; 
             }
             List<RoomInfo> result = SortRoomsByUserType(rooms);
-            return rooms;
+            return result;
         }
 
         public List<RoomInfo> SortRoomsByUserType(List<RoomInfo> rooms)
@@ -31,13 +31,13 @@ namespace Pollaris.Managers
                     result.Add(room);
                 }
             }
-            foreach (RoomInfo room in result) { 
+            foreach (RoomInfo room in rooms) { 
                 if (room.UserType == "TA")
                 {
                     result.Add(room);
                 }
             }
-            foreach (RoomInfo room in result)
+            foreach (RoomInfo room in rooms)
             {
                 if (room.UserType == "S")
                 {
