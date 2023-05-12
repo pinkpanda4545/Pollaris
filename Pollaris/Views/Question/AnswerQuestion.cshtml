@@ -27,10 +27,19 @@
             }
             else if (Model.Question.Type == "R")
             {
-                <grid class="grid-ranking">
+                <grid class="grid-ranking-options">
                     @foreach (var option in Model.Question.Options)
                     {
-                        <div id="ranking-@option.Id" class="div-option" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)">@option.Name</div>
+                        <div id="ranking-@option.Id" class="div-option" ondrop="drop(event)" ondragover="allowDrop(event)">
+                            <div id="@option.Id" class="draggable-text" draggable="true" ondragstart="drag(event)">@option.Name</div>
+                        </div>
+                    }
+                </grid>
+                <grid id="grid-ranking-answers" class="grid-ranking-options">
+                    @foreach (var option in Model.Question.Options)
+                    {
+                        <div class="div-option" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
                     }
                 </grid>
             }
@@ -52,7 +61,7 @@
         <button onclick="openUserDashboard(@Model.UserId)">Exit</button>
         @if (Model.Question != null)
         {
-            <button onclick="answerQuestionSubmit(@Model.UserId, @Model.RoomId, @Model.SetId, @Model.Question.Id, '@Model.Question.Type')">Submit</button>
+            <button id="submit-answer" onclick="answerQuestionSubmit(@Model.UserId, @Model.RoomId, @Model.SetId, @Model.Question.Id, '@Model.Question.Type')">Submit</button>
         }
     </div>
 </body>

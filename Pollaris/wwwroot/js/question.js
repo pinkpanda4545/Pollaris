@@ -29,9 +29,11 @@ function answerQuestionSubmit(userId, roomId, setId, questionId, questionType) {
             answers.push(options[i].textContent);
         }
     } else if (questionType == "R") {
-        options = $(".grid-ranking").children();
+        options = $("#grid-ranking-answers").children();
         for (var i = 0; i < options.length; i++) {
-            answers.push(options[i].textContent);
+            if (options[i].textContent != '') {
+                answers.push(options[i].textContent);
+            }
         }
     } else {
         answers.push($("#div-sa").val());
@@ -46,7 +48,8 @@ function answerQuestionSubmit(userId, roomId, setId, questionId, questionType) {
     })
         .done(function (result) {
             if (result) {
-              //???   
+                $("#submit-answer").addClass("grey");
+                $("#submit-answer").attr("disabled", true);
             }
         })
         .fail(function () {
@@ -56,11 +59,6 @@ function answerQuestionSubmit(userId, roomId, setId, questionId, questionType) {
 
 function allowDrop(ev) {
     ev.preventDefault();
-
-    if (ev.target.className == "ranking-question-grid-container") {
-        dragged.parentNode.removeChild(dragged);
-        ev.target.appendChild(dragged);
-    }
 }
 
 function drag(ev) {
@@ -70,7 +68,9 @@ function drag(ev) {
 function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(data));
+    if (ev.target.firstElementChild == null) {
+        ev.target.appendChild(document.getElementById(data));
+    }
 }
 
 //Create Question 
