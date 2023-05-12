@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vaugh\\Source\\Repos\\pinkpanda4545\\Pollaris\\Pollaris\\Pollaris.csproj": {}
+    "/Users/emilynnau/Documents/Pollaris/Pollaris/Pollaris.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vaugh\\Source\\Repos\\pinkpanda4545\\Pollaris\\Pollaris\\Pollaris.csproj": {
+    "/Users/emilynnau/Documents/Pollaris/Pollaris/Pollaris.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vaugh\\Source\\Repos\\pinkpanda4545\\Pollaris\\Pollaris\\Pollaris.csproj",
+        "projectUniqueName": "/Users/emilynnau/Documents/Pollaris/Pollaris/Pollaris.csproj",
         "projectName": "Pollaris",
-        "projectPath": "C:\\Users\\vaugh\\Source\\Repos\\pinkpanda4545\\Pollaris\\Pollaris\\Pollaris.csproj",
-        "packagesPath": "C:\\Users\\vaugh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vaugh\\Source\\Repos\\pinkpanda4545\\Pollaris\\Pollaris\\obj\\",
+        "projectPath": "/Users/emilynnau/Documents/Pollaris/Pollaris/Pollaris.csproj",
+        "packagesPath": "/Users/emilynnau/.nuget/packages/",
+        "outputPath": "/Users/emilynnau/Documents/Pollaris/Pollaris/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\vaugh\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/emilynnau/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -76,7 +70,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.201/RuntimeIdentifierGraph.json"
         }
       }
     }

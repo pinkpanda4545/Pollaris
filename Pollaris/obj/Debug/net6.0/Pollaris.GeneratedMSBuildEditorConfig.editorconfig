@@ -9,89 +9,89 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Pollaris
 build_property.RootNamespace = Pollaris
-build_property.ProjectDir = C:\Users\vaugh\Source\Repos\pinkpanda4545\Pollaris\Pollaris\
+build_property.ProjectDir = /Users/emilynnau/Documents/Pollaris/Pollaris/
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\vaugh\Source\Repos\pinkpanda4545\Pollaris\Pollaris
+build_property.MSBuildProjectDirectory = /Users/emilynnau/Documents/Pollaris/Pollaris
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/vaugh/source/repos/pinkpanda4545/Pollaris/Pollaris/Views/Dashboard/RoomDashboard.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFJvb21EYXNoYm9hcmQuY3NodG1s
+[/Users/emilynnau/Documents/Pollaris/Pollaris/Views/Dashboard/RoomDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGFzaGJvYXJkL1Jvb21EYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vaugh/source/repos/pinkpanda4545/Pollaris/Pollaris/Views/Dashboard/UserDashboard.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFVzZXJEYXNoYm9hcmQuY3NodG1s
+[/Users/emilynnau/Documents/Pollaris/Pollaris/Views/Dashboard/UserDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGFzaGJvYXJkL1VzZXJEYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vaugh/source/repos/pinkpanda4545/Pollaris/Pollaris/Views/Home/SignIn.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTaWduSW4uY3NodG1s
+[/Users/emilynnau/Documents/Pollaris/Pollaris/Views/Home/SignIn.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9TaWduSW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vaugh/source/repos/pinkpanda4545/Pollaris/Pollaris/Views/Home/SignUp.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTaWduVXAuY3NodG1s
+[/Users/emilynnau/Documents/Pollaris/Pollaris/Views/Home/SignUp.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9TaWduVXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vaugh/source/repos/pinkpanda4545/Pollaris/Pollaris/Views/Members/ChangePassword.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVtYmVyc1xDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
+[/Users/emilynnau/Documents/Pollaris/Pollaris/Views/Members/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVtYmVycy9DaGFuZ2VQYXNzd29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vaugh/source/repos/pinkpanda4545/Pollaris/Pollaris/Views/Members/EditProfile.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVtYmVyc1xFZGl0UHJvZmlsZS5jc2h0bWw=
+[/Users/emilynnau/Documents/Pollaris/Pollaris/Views/Members/EditProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVtYmVycy9FZGl0UHJvZmlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vaugh/source/repos/pinkpanda4545/Pollaris/Pollaris/Views/Members/MemberList.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVtYmVyc1xNZW1iZXJMaXN0LmNzaHRtbA==
+[/Users/emilynnau/Documents/Pollaris/Pollaris/Views/Members/MemberList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVtYmVycy9NZW1iZXJMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vaugh/source/repos/pinkpanda4545/Pollaris/Pollaris/Views/Members/MemberPermissions.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVtYmVyc1xNZW1iZXJQZXJtaXNzaW9ucy5jc2h0bWw=
+[/Users/emilynnau/Documents/Pollaris/Pollaris/Views/Members/MemberPermissions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVtYmVycy9NZW1iZXJQZXJtaXNzaW9ucy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vaugh/source/repos/pinkpanda4545/Pollaris/Pollaris/Views/Question/AnswerQuestion.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXVlc3Rpb25cQW5zd2VyUXVlc3Rpb24uY3NodG1s
+[/Users/emilynnau/Documents/Pollaris/Pollaris/Views/Question/AnswerQuestion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUXVlc3Rpb24vQW5zd2VyUXVlc3Rpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vaugh/source/repos/pinkpanda4545/Pollaris/Pollaris/Views/Question/CreateQuestion.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXVlc3Rpb25cQ3JlYXRlUXVlc3Rpb24uY3NodG1s
+[/Users/emilynnau/Documents/Pollaris/Pollaris/Views/Question/CreateQuestion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUXVlc3Rpb24vQ3JlYXRlUXVlc3Rpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vaugh/source/repos/pinkpanda4545/Pollaris/Pollaris/Views/Question/EditQuestion.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXVlc3Rpb25cRWRpdFF1ZXN0aW9uLmNzaHRtbA==
+[/Users/emilynnau/Documents/Pollaris/Pollaris/Views/Question/EditQuestion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUXVlc3Rpb24vRWRpdFF1ZXN0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vaugh/source/repos/pinkpanda4545/Pollaris/Pollaris/Views/Room/CreateRoom.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9vbVxDcmVhdGVSb29tLmNzaHRtbA==
+[/Users/emilynnau/Documents/Pollaris/Pollaris/Views/Room/CreateRoom.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUm9vbS9DcmVhdGVSb29tLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vaugh/source/repos/pinkpanda4545/Pollaris/Pollaris/Views/Room/JoinRoom.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9vbVxKb2luUm9vbS5jc2h0bWw=
+[/Users/emilynnau/Documents/Pollaris/Pollaris/Views/Room/JoinRoom.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUm9vbS9Kb2luUm9vbS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vaugh/source/repos/pinkpanda4545/Pollaris/Pollaris/Views/Set/EditSet.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2V0XEVkaXRTZXQuY3NodG1s
+[/Users/emilynnau/Documents/Pollaris/Pollaris/Views/Set/EditSet.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2V0L0VkaXRTZXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vaugh/source/repos/pinkpanda4545/Pollaris/Pollaris/Views/Set/SetResponses.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2V0XFNldFJlc3BvbnNlcy5jc2h0bWw=
+[/Users/emilynnau/Documents/Pollaris/Pollaris/Views/Set/SetResponses.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2V0L1NldFJlc3BvbnNlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vaugh/source/repos/pinkpanda4545/Pollaris/Pollaris/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+[/Users/emilynnau/Documents/Pollaris/Pollaris/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vaugh/source/repos/pinkpanda4545/Pollaris/Pollaris/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[/Users/emilynnau/Documents/Pollaris/Pollaris/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vaugh/source/repos/pinkpanda4545/Pollaris/Pollaris/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[/Users/emilynnau/Documents/Pollaris/Pollaris/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vaugh/source/repos/pinkpanda4545/Pollaris/Pollaris/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+[/Users/emilynnau/Documents/Pollaris/Pollaris/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vaugh/source/repos/pinkpanda4545/Pollaris/Pollaris/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-ii8usxofmp
+[/Users/emilynnau/Documents/Pollaris/Pollaris/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-kbbrx36uyx
