@@ -25,23 +25,11 @@ namespace Pollaris.Controllers
             return new JsonResult(userId);
         }
 
-        public void ChangeProfilePhoto (int userId, string src)
-        {
-            UserManager uM = new UserManager();
-            uM.ChangeProfilePhoto(userId, src); 
-        }
-
         [HttpGet]
         [Route("/Members/EditProfile")]
         public IActionResult EditProfile(int userId)
         {
             UserId id = new UserId(userId);
-            UserManager uM = new UserManager();
-            UserInfo? user = uM.GetUserFromId(userId); 
-            if (user.ProfilePhoto != null && user.ProfilePhoto != "")
-            {
-                id.Photo = user.ProfilePhoto;
-            }
             return View(id);
         }
         public IActionResult MemberList(int userId, int roomId)

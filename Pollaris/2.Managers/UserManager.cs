@@ -87,12 +87,6 @@ namespace Pollaris.Managers
             return result;
         }
 
-        public void ChangeProfilePhoto(int userId, string src)
-        {
-            SQLAccessor sql = new SQLAccessor();
-            sql.ChangeProfilePhoto(userId, src); 
-        }
-
         public string GetUserNameFromId(int userId) 
         {
             SQLAccessor sql = new SQLAccessor();

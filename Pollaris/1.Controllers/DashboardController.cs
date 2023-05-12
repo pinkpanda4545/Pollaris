@@ -12,11 +12,9 @@ namespace Pollaris.Controllers
         [Route("/Dashboard/UserDashboard")]
         public IActionResult UserDashboard(int userId)
         {
-            RoomManager rM = new RoomManager();
-            UserManager uM = new UserManager();
-            UserInfo user = uM.GetUserFromId(userId); 
+            RoomManager rM = new RoomManager(); 
             List<RoomInfo> rooms = rM.GetRooms(userId);
-            DashboardInfo model = new DashboardInfo(userId, rooms, user.ProfilePhoto); 
+            DashboardInfo model = new DashboardInfo(userId, rooms); 
             return View(model);
         }
 

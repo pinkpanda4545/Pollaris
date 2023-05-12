@@ -2,23 +2,14 @@
 <html>
 <body>
     <div class="opening-page">
-
-        <label for="file" class="cursor-pointer">Upload Image</label>
-
-        <partial name="ChangePassword.cshtml" />
-        @if (Model.Photo != null && Model.Photo != "") {
-            <img id="photo" src="@Model.Photo" />
-        } else
-        {
-            <img id="photo" style="border: 2px white solid"/>
-        }
-        <input id="file" class="link d-none" href="#" type="file" accept="image/*" name="image" onchange="changeImage(event, @Model.Id)">
-        <label class="link cursor-pointer" for="file">Change Image</label>
+        <partial name="ChangePassword.cshtml"/>
+        <img id="photo" src="/images/profile-photo.jpg"/>
+        <a class="link" href="#" onclick="changeImage()">Change Image</a>
         <button class="btn-large" onclick="changePassword()">Change Password</button>
 
         <form id="edit-profile-form">
-            <input type="text" id="first-name" class="input-blue-white" placeholder="First Name" />
-            <input type="text" id="last-name" class="input-blue-white" placeholder="Last Name" />
+            <input type="text" id="first-name" class="input-blue-white" placeholder="First Name"/>
+            <input type="text" id="last-name" class="input-blue-white" placeholder="Last Name"/>
             <div>
                 <button type="reset" class="btn-small" onclick="openUserDashboard(@Model.Id)">Cancel</button>
                 <button type="reset" class="btn-small" onclick="editProfileSave(@Model.Id)">Save</button>

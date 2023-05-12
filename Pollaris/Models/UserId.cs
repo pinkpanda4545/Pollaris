@@ -16,6 +16,5 @@
 
         public int Id { get; set; }
         public bool Valid { get; set; }
-        public string? Photo { get; set; }
     }
 }

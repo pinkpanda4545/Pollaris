@@ -7,51 +7,29 @@ function closeChangePassword() {
     $("#change-password-popup").css("display", "none"); 
 }
 
-function changeImage(event,userId) {
-    var image = document.getElementById('photo');
-    var file = event.target.files;
-    var ext = file[0].type;
-    if (ext == "image/jpeg" || ext == "image/png") {
-        var filePath = URL.createObjectURL(file[0]);
-        image.src = filePath
-        $.ajax({
-            url: "/Members/ChangeProfilePhoto",
-            method: "POST",
-            data: {
-                userId: userId,
-                src: filePath
-            }
-        });
-    } else {
-        window.alert("File type not supported. Extension must be .png or .jpg");
-    }
+function changeImage() {
+
 }
 
 function editProfileSave(userId) {
     firstName = $("#first-name").val();
-    lastName = $("#last-name").val(); 
+    lastName = $("#last-name").val();
 
-    if (firstName == null || lastName == null) {
-        alert("You must enter both a first and last name.");
-    } else {
-        var datastring = { userId: userId, firstName: firstName, lastName: lastName };
+    var datastring = { userId: userId, firstName: firstName, lastName: lastName };
 
-        $.ajax({
-            url: "/Members/SaveProfileInformation",
-            method: "POST",
-            data: datastring
+    $.ajax({
+        url: "/Members/SaveProfileInformation",
+        method: "POST",
+        data: datastring
+    })
+        .done(function (result) {
+            if (result) {
+                window.location = "/Dashboard/UserDashboard?userId=" + userId;
+            }
         })
-            .done(function (result) {
-                if (result) {
-                    window.location = "/Dashboard/UserDashboard?userId=" + userId;
-                }
-            })
-            .fail(function () {
-                alert('ERROR - members.js, saveProfileInformation');
-            });
-    }
-
-    
+        .fail(function () {
+            alert('ERROR - members.js, saveProfileInformation');
+        });
 }
 
 function savePassword(userId) { 
