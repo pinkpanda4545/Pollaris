@@ -21,3 +21,8 @@
 .invalid-creation {
     color: red;
 }
+
+#empty-image {
+    border: 2px solid black;
+    background-color: #98CBB4;
+}

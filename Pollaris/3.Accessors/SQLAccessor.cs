@@ -287,6 +287,51 @@ namespace Pollaris._3.Accessors
             }
         }
 
+        
+        // Updates the profile photo of a specifed user in the database.
+        // Inputs:
+        //  - userId: the id of the user to get the username of
+        //  - src: string file path of the photo
+        // Returns: void
+        public void ChangeProfilePhoto(int userId, string src)
+        {
+            SqlConnection connection = getConnection();
+            connection.Open();
+
+            string query = "UPDATE Users SET photo = @photo WHERE user_id = @userId;";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@photo", src);
+            command.Parameters.AddWithValue("@userId", userId);
+
+            try
+            {
+                command.ExecuteNonQuery();
+            } catch (SqlException e)
+            {
+
+            }
+        }
+
+        
+        // Returns the username of the user with the given id
+        // Inputs:
+        //  - ids: the list of integer ids for rooms that need updating
+        //  - name: the new instructor name
+        // Returns: void
+        public void UpdateRoomInstructorName(List<int> ids, string name)
+        {
+            SqlConnection connection = getConnection();
+            connection.Open();
+
+            string query = "UPDATE Room SET instructor_name = @name WHERE room_id IN " + this.ListToSqlString(ids) + ";";
+            SqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@name", name);
+
+            int rowsAffected = command.ExecuteNonQuery();
+            connection.Close();
+        }
+
+  
         // Returns the username of the user with the given id
         // Inputs:
         //  - userId: the id of the user to get the username of

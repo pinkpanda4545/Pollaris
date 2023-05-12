@@ -99,6 +99,16 @@ namespace Pollaris.Managers
             return false;
         }
 
+        // Changes the profile photo for a user with the specified user ID.
+        // Inputs:
+        // - userId: int representing the ID of the user whose password is being changed
+        // - src: string file path of the photo
+        public void ChangeProfilePhoto(int userId, string src)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            sql.ChangeProfilePhoto(userId, src);
+        }
+  
         // Changes the password for a user with the specified user ID.
         // Inputs:
         // - userId: int representing the ID of the user whose password is being changed
