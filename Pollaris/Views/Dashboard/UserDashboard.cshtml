@@ -4,7 +4,12 @@
     <navbar>
         <div class="green-bar"></div>
         <div class="navbar-body  justify-content-between">
-            <h1>Dashboard</h1><img class="navbar-photo" src="/images/profile-photo.jpg"/>
+            <h1>Dashboard</h1>
+            @if (@Model.Photo != null && @Model.Photo != "") {
+                <img class="navbar-photo" src="@Model.Photo"/>
+            } else {
+                <img id="empty-image" class="navbar-photo"/>
+            }
         </div>
     </navbar>
     <div class="dashboard-page">
