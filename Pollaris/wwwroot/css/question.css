@@ -22,9 +22,9 @@
     padding: 25px 50px 25px 50px;
 }
 
-.grid-ranking {
+.grid-ranking-options {
     height: 90%;
-    width: 100%;
+    width: 50%;
     display: grid;
     row-gap: 30px;
     grid-template-columns: auto;
@@ -49,6 +49,7 @@
 }
 
 .div-option {
+    width: 100%;
     color: white; 
     font-size: 48px; 
     font-family: Arial; 
@@ -78,6 +79,12 @@
     font-size: 200px; 
     text-align: center; 
     cursor: pointer; 
+}
+
+.draggable-text {
+    width: 100%; 
+    height: 100%; 
+    text-align: center; 
 }
 
 .loading-screen {
