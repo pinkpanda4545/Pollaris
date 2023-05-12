@@ -1,4 +1,5 @@
-﻿using Pollaris.Models;
+﻿using Pollaris._3.Accessors;
+using Pollaris.Models;
 
 namespace Pollaris.Managers
 {
@@ -6,23 +7,9 @@ namespace Pollaris.Managers
     { 
         public List<SetInfo> GetSets(int roomId)
         {
-            //Should these return with the list of questions attached? 
-            //Or would that be a separate call to add them? 
-            List<SetInfo> result = new List<SetInfo>();
-            result.Add(new SetInfo(1, "1/2/03", "Launch", false));
-            result.Add(new SetInfo(2, "9/2/03", "Continue", true));
-            result.Add(new SetInfo(3, "Entrepreneurship Competition", "Reset", false));
-            result.Add(new SetInfo(4, "This Is Multiple Words", "Continue", false));
-            result.Add(new SetInfo(5, "Wise Words", "Launch", false));
-            return result;
-        }
-
-        public List<SetInfo> GetContinueSets(int roomId)
-        {
-            // only returns sets that have a status of "continue"
-            List<SetInfo> result = new List<SetInfo>();
-            result.Add(new SetInfo(1, "1/2/03", "Continue", false));
-            result.Add(new SetInfo(2, "9/2/03", "Continue", true));
+            SQLAccessor sql = new SQLAccessor();
+            List<int> ids = sql.GetSetIdsFromRoomId(roomId);
+            List<SetInfo> result = sql.GetSetsFromIds(ids);
             return result;
         }
 
@@ -34,6 +21,78 @@ namespace Pollaris.Managers
             }
 
             return null;
+        }
+
+        public SetInfo CreateSet(int roomId)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            SetInfo set = sql.CreateSet();
+            sql.ConnectSetAndRoom(set, roomId);
+            return set;
+        }
+
+        public void DeleteSet(int roomId, int setId)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            List<int> questionIds = sql.GetQuestionIdsFromSetId(setId);
+            List<int> optionIds = new List<int>(); 
+            foreach (int questionId in questionIds)
+            {
+                optionIds.AddRange(sql.GetOptionIdsFromQuestionId(questionId)); 
+            }
+            sql.DeleteOptionsFromQuestionOptions(optionIds);
+            sql.DeleteOptionsFromResponse(optionIds);
+            sql.DeleteOptionsFromIds(optionIds);
+            sql.DeleteQuestionsFromSet(questionIds);
+            sql.DeleteQuestionsFromIds(questionIds);
+            sql.RemoveSetFromRoom(roomId, setId);
+            sql.DeleteSet(setId);
+        }
+
+        public string GetSetNameFromId(int setId)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            SetInfo? set = sql.GetSetFromId(setId);
+            if (set != null)
+            {
+                return set.Name; 
+            }
+            return "";
+        }
+
+        public void ChangeStatus(int setId, string newStatus, bool makeActive)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            int roomId = sql.GetRoomIdFromSetId(setId);
+            if (makeActive)
+            {
+                sql.ChangeRoomActiveSet(roomId, setId);
+                sql.ChangeSetIsActive(setId, true); 
+            } else
+            {
+                sql.ChangeRoomActiveSet(roomId, null);
+                sql.ChangeSetIsActive(setId, false); 
+            }
+            sql.ChangeStatus(setId, newStatus);
+        }
+
+        //returns the new active question's index
+        public int ChangeActiveQuestion(int setId)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            List<int> ids = sql.GetQuestionIdsFromSetId(setId);
+            List<QuestionInfo> questions = sql.GetQuestionsFromIds(ids);
+            SetInfo set = sql.GetSetFromId(setId);
+            int activeQuestionId = (int)set.ActiveQuestionId;
+            int nextQuestionId = questions[questions.IndexOf(questions.Where(x => x.Id == activeQuestionId).First()) + 1].Id;
+            sql.ChangeActiveQuestion(setId, nextQuestionId);
+            return questions.IndexOf(questions.Where(x => x.Id == nextQuestionId).First());
+        }
+
+        public void ChangeSetName(int setId, string setName) 
+        {
+            SQLAccessor sql = new SQLAccessor();
+            sql.ChangeSetName(setId, setName); 
         }
     }
 }

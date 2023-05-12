@@ -4,7 +4,7 @@
     @if (Model.Question != null)
     {
         <div id="question-header">
-            <h3 class="question-header-small">Question @Model.CurrQuestion / @Model.SetSize</h3>
+            <h3 class="question-header-small">Question @(@Model.CurrQuestion + 1) / @Model.SetSize</h3>
             <h3 class="question-header-big">@Model.Question.Question</h3>
         </div>
 

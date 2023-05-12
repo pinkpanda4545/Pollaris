@@ -1,28 +1,125 @@
-﻿using Pollaris.Models;
+﻿using Pollaris._3.Accessors;
+using Pollaris.Models;
 
 namespace Pollaris.Managers
 {
     public class RoomManager
     {
+        private static string codeCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         public List<RoomInfo> GetRooms(int userId)
         {
-            //go get the classes for the user based on id. 
-            //put the RoomInfo creation here
-            //need to sort by Instructor, TA, then Student types. 
-            List<RoomInfo> rooms = new List<RoomInfo>();
-            rooms.Add(new RoomInfo("Software Engineering IV", "Firestone", 1, "Instructor"));
-            rooms.Add(new RoomInfo("Leadership", "Cooper", 2, "TA"));
-            rooms.Add(new RoomInfo("Finance", "Baugh", 3, "Student"));
-            rooms.Add(new RoomInfo("Machine Learning", "Bockmon", 4, "Student"));
-            rooms.Add(new RoomInfo("Campus Band", "Bush", 5, "Student"));
-            rooms.Add(new RoomInfo("Calculus AB", "Tomlinson", 6, "Student"));
-            rooms.Add(new RoomInfo("Calculus BC", "Tomlinson", 7, "Student"));
-
-            return rooms;
+            SQLAccessor sql = new SQLAccessor();
+            List<int> roomIds = sql.GetRoomIdsFromUserId(userId);
+            List<RoomInfo> rooms = sql.GetRoomsFromIds(roomIds); 
+            //ADD USERTYPE
+            for (int i = 0; i < rooms.Count; i++)
+            {
+                string userType = sql.GetRole(userId, rooms[i].Id);
+                rooms[i].UserType = userType; 
+            }
+            List<RoomInfo> result = SortRoomsByUserType(rooms);
+            return result;
         }
-        public RoomInfo GetRoomFromId(int roomId)
+
+        public List<RoomInfo> SortRoomsByUserType(List<RoomInfo> rooms)
         {
-            return new RoomInfo("Room Name Here", "ABC", roomId, "Student");
+            List<RoomInfo> result = new List<RoomInfo>();
+            foreach (RoomInfo room in rooms)
+            {
+                if (room.UserType == "I")
+                {
+                    result.Add(room);
+                }
+            }
+            foreach (RoomInfo room in rooms) { 
+                if (room.UserType == "TA")
+                {
+                    result.Add(room);
+                }
+            }
+            foreach (RoomInfo room in rooms)
+            {
+                if (room.UserType == "S")
+                {
+                    result.Add(room);
+                }
+            }
+            return result; 
+        }
+
+        public RoomInfo? GetRoomFromId(int userId, int roomId)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            RoomInfo? room = sql.GetRoomFromId(roomId); 
+            if (room != null)
+            {
+                string userType = sql.GetRole(userId, roomId); 
+            }
+            return room; 
+        }
+
+        public string GetRoomNameFromId(int roomId)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            RoomInfo? room = sql.GetRoomFromId(roomId); 
+            if ( room != null )
+            {
+                return room.Name; 
+            } else
+            {
+                return "";
+            }
+        }
+        public int ValidateRoomCode(string roomCode)
+        {
+            SQLAccessor sql = new SQLAccessor();
+             return sql.ValidateRoomCode(roomCode);
+        }
+
+        public bool PutUserInRoom(int userId, int roomId)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            List<int> ids = sql.GetMembersFromRoomId(roomId);
+            if (ids.Contains(userId)) return false;
+            return sql.UserRoomConnection(userId, roomId, "S"); 
+        }
+
+        public bool CreateRoom(int userId, string userName, string roomName) 
+        {
+            SQLAccessor sql = new SQLAccessor();
+            string newCode = RandomRoomCode();
+            while (sql.CodeNotAvailable(newCode))
+            {
+                newCode = RandomRoomCode();
+            }
+            int roomId = sql.CreateRoom(roomName, newCode, userId, userName);
+            if (roomId != 0)
+            {
+                return sql.UserRoomConnection(userId, roomId, "I");
+            }
+            return false; 
+        }
+
+        public string RandomRoomCode()
+        {
+            Random rand = new Random();
+            string code = "";
+            for (int i = 0; i < 3; i++)
+            {
+                code += codeCharacters[rand.Next(0, 36)];
+            }
+            code += "-";
+            for (int i = 0; i < 3; i++)
+            {
+                code += codeCharacters[rand.Next(0, 36)];
+            }
+            return code; 
+        }
+
+        public string GetRole(int userId, int roomId)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            return sql.GetRole(userId, roomId); 
         }
     }
 }

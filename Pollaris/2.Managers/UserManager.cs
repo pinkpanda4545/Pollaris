@@ -10,30 +10,21 @@ namespace Pollaris.Managers
         public bool ValidateUser(string email, string password)
         {
             SQLAccessor sql = new SQLAccessor();
-            SqlConnection connection = sql.getConnection();
-            SqlDataReader reader = sql.getReaderForSignInValidation(connection, email, password);
-            bool result = reader.HasRows;
-            connection.Close(); 
+            bool result = sql.SignInValidation(email, password);
             return result;
-
         }
 
         public bool IsEmailInDatabase(string email)
         {
             SQLAccessor sql = new SQLAccessor();
-            SqlConnection connection = sql.getConnection();
-            SqlDataReader reader = sql.getReaderToCheckIfEmailInDatabase(connection, email);
-            bool result = reader.HasRows;
-            connection.Close();
+            bool result = sql.CheckIfEmailInDatabase(email);
             return result;
         }
 
         public bool CreateUser(string firstName, string lastName, string email, string password)
         {
             SQLAccessor sql = new SQLAccessor();
-            SqlConnection connection = sql.getConnection();
-            int rowsAffected = sql.signUpValidation(connection, firstName, lastName, email, password);
-            connection.Close();
+            int rowsAffected = sql.SignUpValidation(firstName, lastName, email, password);
             if (rowsAffected > 0) return true; 
             return false;
         }
@@ -41,42 +32,65 @@ namespace Pollaris.Managers
         public int GetUserIdFromEmail(string email)
         {
             SQLAccessor sql = new SQLAccessor();
-            SqlConnection connection = sql.getConnection();
-            int result = sql.getUserIdFromEmail(connection, email);
-            connection.Close();
+            int result = sql.GetUserIdFromEmail(email);
             return result;
         }
 
         public List<UserInfo> GetUsersInRoom(int roomId)
         {
-            //Move this to a Manager. Have access to the room's name, instructor, id. 
-            List<UserInfo> result = new List<UserInfo>();
-            result.Add(new UserInfo(1, "TA", "Vaughn", "Thompson", "/images/profile-photo.jpg"));
-            result.Add(new UserInfo(2, "M", "Emily", "Nau", "/images/profile-photo.jpg"));
-            result.Add(new UserInfo(3, "I", "Tan", "Phan", "/images/profile-photo.jpg"));
-            result.Add(new UserInfo(4, "M", "Ellenna", "D", "/images/profile-photo.jpg"));
-            result.Add(new UserInfo(5, "M", "Justin", "Firestone", "/images/profile-photo.jpg"));
+            SQLAccessor sql = new SQLAccessor();
+            List<int> ids = sql.GetMembersFromRoomId(roomId); 
+            List<UserInfo> result = sql.GetUsersFromIds(ids);
             return result;
         }
          
-        public UserInfo GetUserFromId(int memberId)
+        public UserInfo? GetUserFromId(int memberId)
         {
-            return new UserInfo(6, "M", "Ryan", "Bockmon", "/images/profile-photo.jpg");
+            SQLAccessor sql = new SQLAccessor(); 
+            UserInfo? result = sql.GetUserFromId(memberId);
+            return result;
         }
 
         public bool ValidateStudentUser(int userId, int roomId)
         {
             SQLAccessor sql = new SQLAccessor();
-            RoomInfo room = sql.GetRoomFromId(roomId);
-
+            RoomInfo? room = sql.GetRoomFromId(roomId);
+            if (room == null) return false;
             if (room.InstructorId == userId) return false;
 
-            List<UserInfo> users = GetUsersInRoom(roomId); 
-            foreach (var member in users)
+            List<int> ids = sql.GetMembersFromRoomId(roomId); 
+            foreach (var id in ids)
             {
-                if (member.Id == userId) return true; 
+                if (id == userId) return true; 
             }
             return false; 
+        }
+
+        public bool ChangePassword(int userId, string oldPassword, string newPassword, string newPassword2)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            if (newPassword != newPassword2) return false; 
+            if (newPassword == oldPassword) return false;
+            string? currPassword = sql.GetPasswordFromUserId(userId);
+            if (currPassword == null) return false; 
+            if (currPassword != oldPassword) return false;
+            bool result = sql.ChangePassword(userId, newPassword);
+            return result;
+        }
+
+        public bool SaveProfileInfo(int userId, string firstName, string lastName)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            bool result = sql.SaveProfileInfo(userId, firstName, lastName);
+            List<int> ids = sql.GetRoomIdsFromUserId(userId); 
+            sql.UpdateRoomInstructorName(ids, firstName + " " + lastName); 
+            return result;
+        }
+
+        public string GetUserNameFromId(int userId) 
+        {
+            SQLAccessor sql = new SQLAccessor();
+            return sql.GetUserNameFromId(userId); 
         }
     }
 }

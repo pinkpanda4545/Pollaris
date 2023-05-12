@@ -8,112 +8,76 @@ namespace Pollaris.Controllers
     {
         public IActionResult CreateSet(int userId, int roomId)
         {
-            //Create new set in the SQL. 
-            //Return the setId. 
-            string roomName = "[ROOM NAME]";
-            int setId = 12345; 
-            EditSetInfo model = new EditSetInfo(userId, roomId, roomName, setId);
+            RoomManager rM = new RoomManager();
+            SetManager sM = new SetManager();
+            string roomName = rM.GetRoomNameFromId(roomId);
+            SetInfo set = sM.CreateSet(roomId); 
+            EditSetInfo model = new EditSetInfo(userId, roomId, roomName, set.Id);
             return View("EditSet", model);
         }
 
-        public IActionResult SaveSetEdits(int userId, int roomId, int setId)
+        public void ChangeSetName(int setId, string newName)
         {
-            //Add more params and save to sql]
-            RoomManager rM = new RoomManager();
-            RoomInfo room = rM.GetRoomFromId(roomId); 
-            RoomDashboardInfo model = new RoomDashboardInfo(userId, room); 
-            return RedirectToAction("RoomDashboard", "Dashboard", model);
+            SetManager sM = new SetManager();
+            sM.ChangeSetName(setId, newName); 
         }
 
         public IActionResult DeleteSet(int userId, int roomId, int setId)
         {
-            //Delete set from the database. 
-            //Update RoomDashboard. 
-            RoomManager rM = new RoomManager();
-            RoomInfo room = rM.GetRoomFromId(roomId);
-            RoomDashboardInfo model = new RoomDashboardInfo(userId, room);
-            return RedirectToAction("RoomDashboard", "Dashboard", model);
+            SetManager sM = new SetManager();
+            sM.DeleteSet(roomId, setId);
+            return Redirect("/Dashboard/RoomDashboard?userId=" + userId + "&roomId=" + roomId);
         }
         public IActionResult EditSet(int userId, int roomId, int setId)
         {
-            //SET NAME SHOULDN'T BE PARAMETER!!
             QuestionManager qM = new QuestionManager();
-            string roomName = "[ROOM NAME]";
-            EditSetInfo model = new EditSetInfo(userId, roomId, roomName, setId, "[SET NAME]");
+            RoomManager rM = new RoomManager();
+            SetManager sM = new SetManager();
+            string roomName = rM.GetRoomNameFromId(roomId);
+            string setName = sM.GetSetNameFromId(setId); 
+            EditSetInfo model = new EditSetInfo(userId, roomId, roomName, setId, setName);
             model.Questions = qM.GetQuestionsFromSetId(setId);
             return View(model);
         }
         public IActionResult ContinueStatusAndExit(int userId, int roomId, int setId)
         {
-            //Change set's status to continue
-
-            RoomManager rM = new RoomManager();
-            RoomInfo room = rM.GetRoomFromId(roomId);
-            RoomDashboardInfo model = new RoomDashboardInfo(userId, room);
-            return RedirectToAction("RoomDashboard", "Dashboard", model);
+            SetManager sM = new SetManager();
+            sM.ChangeStatus(setId, "C", false);
+            return Redirect("/Dashboard/RoomDashboard?userId=" + userId + "&roomId=" + roomId);
         }
 
         public IActionResult FinishStatusAndExit(int userId, int roomId, int setId) 
         {
-            //change set's status to reset
-
-            RoomManager rM = new RoomManager();
-            RoomInfo room = rM.GetRoomFromId(roomId);
-            RoomDashboardInfo model = new RoomDashboardInfo(userId, room);
-            return RedirectToAction("RoomDashboard", "Dashboard", model);
+            SetManager sM = new SetManager();
+            sM.ChangeStatus(setId, "R", false);
+            return Redirect("/Dashboard/RoomDashboard?userId=" + userId + "&roomId=" + roomId);
         }
 
-        public IActionResult LaunchSet(int userId, int roomId, int setId)
-        {
-            QuestionManager qM = new QuestionManager();
-            ResponsesManager rM = new ResponsesManager(); 
-            SetResponsesInfo model = new SetResponsesInfo(userId, roomId, setId); 
-            model.Questions = qM.GetQuestionsFromSetId(setId);
-            int questionId = model.Questions.Where(x => x.IsActive).First().Id; 
-            model.Responses = rM.GetResponsesFromQuestionId(questionId); 
-            return View("SetResponses", model);
-        }
-
-        public IActionResult ContinueSet(int userId, int roomId, int setId)
+        public IActionResult SetResponses(int userId, int roomId, int setId, string newStatus)
         {
             QuestionManager qM = new QuestionManager();
             ResponsesManager rM = new ResponsesManager();
-            SetResponsesInfo model = new SetResponsesInfo(userId, roomId, setId);
-            model.Questions = qM.GetQuestionsFromSetId(setId);
-            int questionId = model.Questions.Where(x => x.IsActive).First().Id;
-            model.Responses = rM.GetResponsesFromQuestionId(questionId);
-            return View("SetResponses", model);
+            SetManager sM = new SetManager();
+
+            sM.ChangeStatus(setId, newStatus, true);
+
+            List<SetInfo> sets = sM.GetSets(roomId);
+            SetInfo set = sets.Where(x => x.Id == setId).First();
+            List<QuestionInfo> questions = qM.GetQuestionsFromSetId(setId);
+            int activeQuestionIndex = questions.IndexOf(questions.Where(x => x.Id == set.ActiveQuestionId).First());
+            List<StudentResponseInfo> responses = rM.GetResponsesFromQuestionId((int)set.ActiveQuestionId, questions[activeQuestionIndex].Type);
+
+            SetResponsesInfo model = new SetResponsesInfo(userId, roomId, setId, activeQuestionIndex, questions, responses);
+            return View(model);
         }
 
-        public IActionResult ResetSet(int userId, int roomId, int setId)
+        public IActionResult ChangeQuestionAndReset (int userId, int roomId, int setId)
         {
-            QuestionManager qM = new QuestionManager();
             ResponsesManager rM = new ResponsesManager();
-            SetResponsesInfo model = new SetResponsesInfo(userId, roomId, setId);
-            model.Questions = qM.GetQuestionsFromSetId(setId);
-            int questionId = model.Questions.Where(x => x.IsActive).First().Id;
-            model.Responses = rM.GetResponsesFromQuestionId(questionId);
-            return View("SetResponses", model);
-        }
-
-        public IActionResult ChangeQuestionAndReset (int userId, int roomId, int setId, int questionId)
-        {
-            //SEND OFF SQL QUERY TO CHANGE THE ACTIVE QUESTION
-            //When the SQL Query returns, you could just return SetResponses(userId,...); 
-
-            //For now I'll do it manually. 
-            //QUESTION ID IS A TEMPORARY PARAMETER?
-
             QuestionManager qM = new QuestionManager();
-            List<QuestionInfo> newQuestions = qM.ChangeActiveQuestion(questionId);
-
-            ResponsesManager rM = new ResponsesManager();
-            SetResponsesInfo model = new SetResponsesInfo(userId, roomId, setId);
-            model.Questions = newQuestions;
-            model.Responses = rM.GetResponsesFromQuestionId(questionId + 1);
-            return View("SetResponses", model);
+            SetManager sM = new SetManager();
+            int activeQuestionIndex = sM.ChangeActiveQuestion(setId); 
+            return Redirect("/Set/SetResponses?userId=" + userId + "&roomId=" + roomId + "&setId=" + setId + "&newStatus=" + "C");
         }
-
-        
     }
 }

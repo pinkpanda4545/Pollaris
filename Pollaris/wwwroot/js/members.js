@@ -12,10 +12,10 @@ function changeImage() {
 }
 
 function editProfileSave(userId) {
-    firstName = $("#edit-profile-first-name").val();
-    lastName = $("#edit-profile-last-name").val();
+    firstName = $("#first-name").val();
+    lastName = $("#last-name").val();
 
-    var datastring = { firstName: firstName, lastName: lastName };
+    var datastring = { userId: userId, firstName: firstName, lastName: lastName };
 
     $.ajax({
         url: "/Members/SaveProfileInformation",
@@ -45,9 +45,8 @@ function savePassword(userId) {
         data: datastring
     })
         .done(function (result) {
-            if (result) {
-                closeChangePassword(); 
-            }
+            closeChangePassword();
+            openEditProfile(result); 
         })
         .fail(function () {
             alert('ERROR - members.js, savePassword');

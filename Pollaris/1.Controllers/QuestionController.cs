@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Pollaris._3.Accessors;
 using Pollaris.Managers;
 using Pollaris.Models; 
 
@@ -10,15 +11,23 @@ namespace Pollaris.Controllers
         {
             SetManager sM = new SetManager();
             QuestionManager qM = new QuestionManager();
-            List<SetInfo> continueSets = sM.GetContinueSets(roomId);
-            SetInfo? activeSet = sM.GetActiveSet(continueSets);
-            activeSet.Questions = qM.GetQuestionsFromSetId(activeSet.Id, roomId); //TAKE OUT THIS LINE WHEN CONNECTED
-            int setSize = activeSet.Questions.Count;
-            QuestionInfo? activeQuestion = qM.GetActiveQuestionFromSet(activeSet);
-            int? questionIndex = qM.GetActiveQuestionIndex(activeSet.Id, roomId) + 1;
-
-            AnswerQuestionInfo model = new AnswerQuestionInfo(userId, roomId, activeSet.Id, setSize, activeQuestion,  questionIndex);
-            return View(model);
+            List<SetInfo> sets = sM.GetSets(roomId);
+            SetInfo activeSet = sM.GetActiveSet(sets);
+            if (activeSet != null)
+            {
+                activeSet.Questions = qM.GetQuestionsFromSetId(activeSet.Id);
+                int setSize = activeSet.Questions.Count;
+                int activeQuestionId = (int)activeSet.ActiveQuestionId;
+                QuestionInfo activeQuestion = activeSet.Questions.Where(x => x.Id == activeQuestionId).First();
+                int questionIndex = activeSet.Questions.IndexOf(activeQuestion);
+                AnswerQuestionInfo model = new AnswerQuestionInfo(userId, roomId, activeSet.Id, setSize, activeQuestion, questionIndex);
+                return View(model);
+            }
+            else
+            {
+                AnswerQuestionInfo model = new AnswerQuestionInfo(userId, roomId, null, null, null, null);
+                return View(model);
+            }
         }
         public IActionResult CreateQuestion(int userId, int roomId, int setId)
         {
@@ -27,19 +36,18 @@ namespace Pollaris.Controllers
         }
         public IActionResult CreateThenEditQuestion(int userId, int roomId, int setId, string type)
         {
-            //Go create a new question in the set and return that here. 
-            //For now, I'll put in a dummy question
-            QuestionInfo question = new QuestionInfo(1, "Enter your question here.", type);
-            question.IsGraded = true;
-            if (type != "SA")
+            QuestionManager qM = new QuestionManager();
+            QuestionInfo initialQuestion = qM.CreateQuestion(setId, type);
+
+            if (type == "TF")
             {
-                List<OptionInfo> options = new List<OptionInfo>();
-                options.Add(new OptionInfo(1, "A", false));
-                options.Add(new OptionInfo(2,"B", false));
-                options.Add(new OptionInfo(3, "C", true));
-                options.Add(new OptionInfo(4, "D", false));
-                question.Options = options;
+                OptionManager oM = new OptionManager();
+                int trueOptionId = oM.CreateNewOption(initialQuestion.Id);
+                oM.ChangeOptionName(trueOptionId, "True");
+                int falseOptionId = oM.CreateNewOption(initialQuestion.Id);
+                oM.ChangeOptionName(falseOptionId, "False");
             }
+            QuestionInfo question = qM.GetQuestionFromId(initialQuestion.Id);
             EditQuestionInfo model = new EditQuestionInfo(userId, roomId, setId, question);
          
             return View("EditQuestion", model);
@@ -53,20 +61,45 @@ namespace Pollaris.Controllers
             return View(model);
         }
 
+        public void DeleteQuestion(int questionId)
+        {
+            QuestionManager qM = new QuestionManager();
+            qM.DeleteQuestion(questionId); 
+        }
+
         [HttpPost]
         [Route("/Question/SubmitStudentAnswer")]
-        public bool SubmitStudentAnswer(int userId, int roomId, int setId, int questionId, List<string> answers)
+        public bool SubmitStudentAnswer(int userId, int roomId, int questionId, List<string> answers)
         {
             if (answers == null || answers.Count < 1) return false; 
             UserManager uM = new UserManager(); 
             if (uM.ValidateStudentUser(userId, roomId))
             {
                 QuestionManager qM = new QuestionManager();
-                QuestionInfo question = qM.GetQuestionFromIds(roomId, setId, questionId);
+                QuestionInfo question = qM.GetQuestionFromId(questionId);
                 if (question == null || answers == null) return false;
-                return qM.SubmitAnswer(userId, roomId, setId, question, answers);
+                return qM.SubmitAnswer(userId, question, answers);
             }
             return false; 
         }
+
+        public void ChangeGraded(int questionId, bool isGraded)
+        {
+            QuestionManager qM = new QuestionManager();
+            qM.ChangeGraded(questionId, isGraded); 
+        }
+
+        public void ChangeAnonymous (int questionId, bool isAnonymous)
+        {
+            QuestionManager qM = new QuestionManager();
+            qM.ChangeAnonymous(questionId, isAnonymous); 
+        }
+
+        public void ChangeQuestionName(int questionId, string questionName)
+        {
+            QuestionManager qM = new QuestionManager();
+            qM.ChangeQuestionName(questionId, questionName); 
+        }
+
     }
 }
