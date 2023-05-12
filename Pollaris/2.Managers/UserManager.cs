@@ -66,6 +66,12 @@ namespace Pollaris.Managers
             return false; 
         }
 
+        public void ChangeProfilePhoto(int userId, string src)
+        {
+            SQLAccessor sql = new SQLAccessor();
+            sql.ChangeProfilePhoto(userId, src);
+        }
+
         public bool ChangePassword(int userId, string oldPassword, string newPassword, string newPassword2)
         {
             SQLAccessor sql = new SQLAccessor();
