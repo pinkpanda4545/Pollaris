@@ -138,6 +138,8 @@ namespace Pollaris.Managers
         {
             SQLAccessor sql = new SQLAccessor();
             bool result = sql.SaveProfileInfo(userId, firstName, lastName);
+            List<int> ids = sql.GetRoomIdsFromUserId(userId);
+            sql.UpdateRoomInstructorName(ids, firstName + " " + lastName);
             return result;
         }
 

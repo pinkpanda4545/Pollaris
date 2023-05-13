@@ -1364,7 +1364,7 @@ namespace Pollaris._3.Accessors
             SqlConnection connection = getConnection();
             connection.Open();
 
-            string query = "DELETE FROM Set WHERE set_id = @setId;";
+            string query = "DELETE FROM [Set] WHERE set_id = @setId;";
             SqlCommand command = new(query, connection);
             command.Parameters.AddWithValue("@setId", setId);
             command.ExecuteNonQuery();
@@ -1536,8 +1536,9 @@ namespace Pollaris._3.Accessors
         public void ChangeStatus(int setId, string newStatus)
         {
             SqlConnection connection = getConnection();
-            string query = "UPDATE [Set] SET status = @newStatus WHERE set_id = @setId;";
             connection.Open();
+            string query = "UPDATE [Set] SET status = @newStatus WHERE set_id = @setId;";
+
             SqlCommand command = new(query, connection);
             command.Parameters.AddWithValue("@setId", setId);
             command.Parameters.AddWithValue("@newStatus", newStatus);

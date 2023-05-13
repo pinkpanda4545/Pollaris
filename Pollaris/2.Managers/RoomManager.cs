@@ -22,8 +22,9 @@ namespace Pollaris.Managers
                 string userType = sql.GetRole(userId, rooms[i].Id);
                 rooms[i].UserType = userType;
             }
+
             List<RoomInfo> result = SortRoomsByUserType(rooms);
-            return rooms;
+            return result;
         }
 
         // Sort a list of RoomInfo objects by user type.
@@ -40,14 +41,14 @@ namespace Pollaris.Managers
                     result.Add(room);
                 }
             }
-            foreach (RoomInfo room in result)
+            foreach (RoomInfo room in rooms)
             {
                 if (room.UserType == "TA")
                 {
                     result.Add(room);
                 }
             }
-            foreach (RoomInfo room in result)
+            foreach (RoomInfo room in rooms)
             {
                 if (room.UserType == "S")
                 {
