@@ -13,7 +13,7 @@
             @foreach (var member in @Model.Users)
             {
                 <div class="single-member" onclick="openMemberPermissions(@Model.UserId, @Model.RoomId, @member.Id)">
-                    <img class="member-profile-photo" src="@member.ProfilePhoto" />
+                    <img class="member-profile-photo" src="@member.ProfilePhoto" alt="User Profile Photo"/>
                     <h2>@member.FirstName @member.LastName</h2>
                 </div>
             }

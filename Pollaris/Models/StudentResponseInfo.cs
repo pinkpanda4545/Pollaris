@@ -1,14 +1,26 @@
-﻿namespace Pollaris.Models
+﻿using Azure.Identity;
+
+namespace Pollaris.Models
 {
     public class StudentResponseInfo
     {
-        public StudentResponseInfo (int? id, string response)
+        public StudentResponseInfo (int userId, int optionId)
         {
-            Id = id;
-            Response = response;
+            UserId = userId;
+            OptionId = optionId;
         }
 
-        public int? Id { get; set; }
-        public string Response { get; set; }
+        public StudentResponseInfo (int userId, string response)
+        {
+            UserId = userId;
+            Response = response; 
+        }
+
+        public int UserId { get; set; }
+        public string? UserName { get; set; }
+        public int? OptionId { get; set; }
+        public string? OptionName { get; set; }
+        public int? RankIndex { get; set; }
+        public string? Response { get; set; }
     }
 }

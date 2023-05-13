@@ -7,7 +7,7 @@
                 <h1 id="h1-set-name">@Model.RoomName - @Model.SetName</h1>
                 <textarea id="txtarea-change-set-name"></textarea>
             <button id="btn-change-name" class="btn-change-set-name" onclick="changeName('@Model.RoomName', '@Model.SetName')">Change Name</button>
-            <button id="btn-submit-name" class="btn-change-set-name" onclick="submitNewName('@Model.RoomName')">Submit</button>
+            <button id="btn-submit-name" class="btn-change-set-name" onclick="submitNewName(@Model.SetId, '@Model.RoomName')">Submit</button>
         </div>
         </navbar>
 
@@ -36,7 +36,7 @@
                             <div id="qnb-@question.Id" class="question-name-bar">@question.Question</div>
                             <div id="qt-@question.Id" class="question-type">@question.Type</div>
                             <button id="bs-@question.Id" class="btn-small m-0" onclick="openEditQuestion(@Model.UserId, @Model.RoomId, @Model.SetId, @question.Id)">EDIT</button>
-                            <div id="bd-@question.Id" class="btn-delete" onclick="deleteQuestionLocal(@question.Id)">
+                            <div id="bd-@question.Id" class="btn-delete" onclick="deleteQuestion(@question.Id)">
                                 <img class="img-btn-delete" src="/images/trash.png" />
                             </div>
                             i++;
@@ -47,11 +47,11 @@
         </div>
 
         <div class="button-bar-3">
-                <button onclick="openRoomDashboard(@Model.UserId, @Model.RoomId)">Exit</button>
-                <div class="d-flex flex-row">
-                    <button class="btn-wide" onclick="openCreateQuestion(@Model.UserId, @Model.RoomId, @Model.SetId)">Add Question</button>
-                    <button class="btn-green" onclick="saveSetEdits(@Model.UserId, @Model.RoomId, @Model.SetId)">Save</button>
-                </div>
+            <button onclick="openRoomDashboard(@Model.UserId, @Model.RoomId)">Exit</button>
+            <div class="d-flex flex-row">
+                <button class="btn-wide" onclick="openCreateQuestion(@Model.UserId, @Model.RoomId, @Model.SetId)">Add Question</button>
+                <button class="btn-green" onclick="openRoomDashboard(@Model.UserId, @Model.RoomId)">Save</button>
+            </div>
         </div>
     </body>
 </html>

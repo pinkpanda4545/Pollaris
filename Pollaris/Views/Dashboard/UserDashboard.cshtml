@@ -4,7 +4,15 @@
     <navbar>
         <div class="green-bar"></div>
         <div class="navbar-body  justify-content-between">
-            <h1>Dashboard</h1><img class="navbar-photo" src="/images/profile-photo.jpg"/>
+            <h1>Dashboard</h1>
+            @if (@Model.Photo != null && @Model.Photo != "")
+            {
+                <img class="navbar-photo" src="@Model.Photo" />
+            }
+            else
+            {
+                <img id="empty-image" class="navbar-photo" />
+            }
         </div>
     </navbar>
     <div class="dashboard-page">
@@ -15,7 +23,7 @@
         <grid class="grid-container">
             @foreach (var room in Model.Rooms)
             {
-                @if (room.UserType == "Instructor")
+                @if (room.UserType == "I")
                 {
                     <div class="room-icon" onclick="openRoomDashboard(@Model.UserId, @room.Id)">
                         <div class="room-icon-header h-75">
@@ -34,16 +42,16 @@
                             <h3 class="room-icon-name">@room.Name</h3>
                             <h3 class="ta-icon">TA</h3>
                         </div>
-                        <div class="room-icon-instructor">INSTRUCTOR: @room.Instructor</div>
+                        <div class="room-icon-instructor">INSTRUCTOR: @room.InstructorName</div>
                     </div>
                 }
-                else if (room.UserType == "Student")
+                else if (room.UserType == "S")
                 {
                     <div class="room-icon" onclick="openAnswerQuestion(@Model.UserId, @room.Id)">
                         <div class="room-icon-header">
                             <h3 class="room-icon-name w-100">@room.Name</h3>
                         </div>
-                        <div class="room-icon-instructor">INSTRUCTOR: @room.Instructor</div>
+                        <div class="room-icon-instructor">INSTRUCTOR: @room.InstructorName</div>
                     </div>
                 }
             }

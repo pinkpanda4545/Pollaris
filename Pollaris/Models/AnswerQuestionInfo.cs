@@ -3,7 +3,7 @@ namespace Pollaris.Models
 {
     public class AnswerQuestionInfo
     {
-        public AnswerQuestionInfo(int userId, int roomId, int setId, int setSize, QuestionInfo? question, int? currQuestion)
+        public AnswerQuestionInfo(int userId, int roomId, int? setId, int? setSize, QuestionInfo? question, int? currQuestion)
         {
             UserId = userId;
             RoomId = roomId;
@@ -15,8 +15,8 @@ namespace Pollaris.Models
 
         public int UserId { get; set; }
         public int RoomId { get; set; }
-        public int SetId { get; set; }
-        public int SetSize { get; set; }
+        public int? SetId { get; set; }
+        public int? SetSize { get; set; }
         public QuestionInfo? Question { get; set; }
         public int? CurrQuestion { get; set; }
     }

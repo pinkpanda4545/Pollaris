@@ -13,5 +13,16 @@
         public int RoomId { get; set; }
         public int SetId { get; set; }
         public QuestionInfo Question { get; set; }
+
+        public string GetGridRowNumber()
+        {
+            if (this.Question.Options == null || this.Question.Options.Count == 0)
+            {
+                return "0";
+            } else
+            {
+                return this.Question.Options.Count.ToString();
+            }
+        }
     }
 }

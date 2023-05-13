@@ -2,31 +2,45 @@
 {
     public class RoomInfo
     {
-        public RoomInfo(string name, string instructor, int id, string userType)
+        public RoomInfo(int id, string name, int instructorId, string instructorName, string code)
         {
-            Name = name;
-            Instructor = instructor;
             Id = id;
-            Code = "A45-BH9";
-            UserType = userType;
+            Name = name;
+            InstructorId = instructorId;
+            InstructorName = instructorName;
+            Code = code;
+            UserType = "";
             Sets = new List<SetInfo>(); 
         }
 
-        public RoomInfo(string name, string instructor, int id, string userType, List<SetInfo> sets)
+        public RoomInfo(int id, string name, int instructorId, string instructorName, string code, List<SetInfo> sets)
         {
-            Name = name;
-            Instructor = instructor;
             Id = id;
-            Code = "A45-BH9";
-            UserType = userType;
+            Name = name;
+            InstructorId = instructorId;
+            InstructorName = instructorName;
+            Code = code;
+            UserType = "";
             Sets = sets;
         }
 
-        public string Name { get; set; }
-        public string Instructor { get; set; }
         public int Id { get; set; }
-        public string UserType { get; set; }
+        public string Name { get; set; }
+        public string InstructorName { get; set; }
+        public int InstructorId { get; set; }
         public string Code { get; set; }
+        public string? UserType { get; set; }
         public List<SetInfo> Sets { get; set; }
+
+        public void UserIdToUserType(int userId)
+        {
+            if (userId == this.InstructorId)
+            {
+                this.UserType = "I"; 
+            } else
+            {
+                this.UserType = "TA";
+            }
+        }
     }
 }

@@ -2,14 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\Pollaris",
-    "\\Pollaris\\2.Managers",
+    "\\Pollaris\\Models",
     "\\Pollaris\\Views",
     "\\Pollaris\\Views\\Dashboard",
     "\\Pollaris\\Views\\Home",
+    "\\Pollaris\\Views\\Question",
     "\\Pollaris\\wwwroot",
     "\\Pollaris\\wwwroot\\css",
     "\\Pollaris\\wwwroot\\js"
   ],
-  "SelectedNode": "\\Pollaris\\2.Managers\\UserManager.cs",
   "PreviewInSolutionExplorer": false
 }
