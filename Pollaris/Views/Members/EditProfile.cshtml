@@ -7,7 +7,7 @@
         <partial name="ChangePassword.cshtml" />
         @if (Model.Photo != null && Model.Photo != "")
         {
-            <img id="photo" src="@Model.Photo" />
+            <img id="photo" src="@Model.Photo" alt="User Profile Photo" />
         }
         else
         {
@@ -17,9 +17,10 @@
         <label class="link cursor-pointer" for="file">Change Image</label>
         <button class="btn-large" onclick="changePassword()">Change Password</button>
 
+
         <form id="edit-profile-form">
-            <input type="text" id="first-name" class="input-blue-white" placeholder="First Name"/>
-            <input type="text" id="last-name" class="input-blue-white" placeholder="Last Name"/>
+            <input type="text" id="first-name" class="input-blue-white" placeholder="First Name" />
+            <input type="text" id="last-name" class="input-blue-white" placeholder="Last Name" />
             <div>
                 <button type="reset" class="btn-small" onclick="openUserDashboard(@Model.Id)">Cancel</button>
                 <button type="reset" class="btn-small" onclick="editProfileSave(@Model.Id)">Save</button>

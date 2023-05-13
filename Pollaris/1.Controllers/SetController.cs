@@ -6,6 +6,11 @@ namespace Pollaris.Controllers
 {
     public class SetController : Controller
     {
+        // CreateSet function creates a new set for a room.
+        // Inputs:
+        // - userId: an integer representing the ID of the user
+        // - roomId: an integer representing the ID of the room
+        // Returns: IActionResult representing the edit set view for the created set
         public IActionResult CreateSet(int userId, int roomId)
         {
             RoomManager rM = new RoomManager();
@@ -16,18 +21,36 @@ namespace Pollaris.Controllers
             return View("EditSet", model);
         }
 
+        // ChangeSetName function changes the name of a set.
+        // Inputs:
+        // - setId: an integer representing the ID of the set
+        // - newName: a string representing the new name of the set
+        // Returns: void
         public void ChangeSetName(int setId, string newName)
         {
             SetManager sM = new SetManager();
             sM.ChangeSetName(setId, newName); 
         }
 
+        // DeleteSet function deletes a set from a room.
+        // Inputs:
+        // - userId: an integer representing the ID of the user
+        // - roomId: an integer representing the ID of the room
+        // - setId: an integer representing the ID of the set to delete
+        // Returns: IActionResult representing the room dashboard view
         public IActionResult DeleteSet(int userId, int roomId, int setId)
         {
             SetManager sM = new SetManager();
             sM.DeleteSet(roomId, setId);
             return Redirect("/Dashboard/RoomDashboard?userId=" + userId + "&roomId=" + roomId);
         }
+
+        // EditSet function displays the edit set view.
+        // Inputs:
+        // - userId: an integer representing the ID of the user
+        // - roomId: an integer representing the ID of the room
+        // - setId: an integer representing the ID of the set
+        // Returns: IActionResult representing the edit set view with the set information
         public IActionResult EditSet(int userId, int roomId, int setId)
         {
             QuestionManager qM = new QuestionManager();
@@ -39,6 +62,13 @@ namespace Pollaris.Controllers
             model.Questions = qM.GetQuestionsFromSetId(setId);
             return View(model);
         }
+
+        // ContinueStatusAndExit function changes the status of a set to "Continue" and redirects to the room dashboard view.
+        // Inputs:
+        // - userId: an integer representing the ID of the user
+        // - roomId: an integer representing the ID of the room
+        // - setId: an integer representing the ID of the set
+        // Returns: IActionResult representing the room dashboard view
         public IActionResult ContinueStatusAndExit(int userId, int roomId, int setId)
         {
             SetManager sM = new SetManager();
@@ -46,6 +76,12 @@ namespace Pollaris.Controllers
             return Redirect("/Dashboard/RoomDashboard?userId=" + userId + "&roomId=" + roomId);
         }
 
+        // FinishStatusAndExit function changes the status of a set to "Finished" and redirects to the room dashboard view.
+        // Inputs:
+        // - userId: an integer representing the ID of the user
+        // - roomId: an integer representing the ID of the room
+        // - setId: an integer representing the ID of the set
+        // Returns: IActionResult representing the room dashboard view
         public IActionResult FinishStatusAndExit(int userId, int roomId, int setId) 
         {
             SetManager sM = new SetManager();
@@ -53,6 +89,13 @@ namespace Pollaris.Controllers
             return Redirect("/Dashboard/RoomDashboard?userId=" + userId + "&roomId=" + roomId);
         }
 
+        // SetResponses function displays the set responses view.
+        // Inputs:
+        // - userId: an integer representing the ID of the user
+        // - roomId: an integer representing the ID of the room
+        // - setId: an integer representing the ID of the set
+        // - newStatus: a string representing the new status of the set
+        // Returns: IActionResult representing the set responses view
         public IActionResult SetResponses(int userId, int roomId, int setId, string newStatus)
         {
             QuestionManager qM = new QuestionManager();
@@ -71,6 +114,12 @@ namespace Pollaris.Controllers
             return View(model);
         }
 
+        // ChangeQuestionAndReset function changes the active question of a set and redirects to the set responses view.
+        // Inputs:
+        // - userId: an integer representing the ID of the user
+        // - roomId: an integer representing the ID of the room
+        // - setId: an integer representing the ID of the set
+        // Returns: IActionResult representing the set responses view
         public IActionResult ChangeQuestionAndReset (int userId, int roomId, int setId)
         {
             ResponsesManager rM = new ResponsesManager();

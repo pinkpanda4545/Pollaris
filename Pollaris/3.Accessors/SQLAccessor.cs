@@ -10,33 +10,43 @@ namespace Pollaris._3.Accessors
     {
         private static string connectionString = "Data Source=tcp:pollarissql.database.windows.net,1433;Initial Catalog=Pollaris;User Id=sqladmin;Password=iajdfij#29dfkjb(fj;";
 
+        // Returns a new instance of SqlConnection class with the connection string specified in the class constructor
         public SqlConnection getConnection()
         {
             return new SqlConnection(connectionString);
         }
 
+        // Converts a list of integer ids to a string formatted for use in an SQL query
+        // Inputs:
+        //  - ids: A List of integers representing ids to be used in the SQL query
+        // Returns: A string formatted for use in an SQL query with the given list of ids
         public string ListToSqlString(List<int> ids)
         {
             if (ids == null || ids.Count == 0)
             {
-                return "('0')"; 
+                return "('0')";
             }
-            string result = "("; 
+            string result = "(";
             for (int i = 0; i < ids.Count; i++)
             {
                 if (i < ids.Count - 1)
                 {
                     result += "'" + ids[i].ToString() + "',";
-                } else
+                }
+                else
                 {
                     result += "'" + ids[i].ToString() + "')";
                 }
             }
-            return result; 
+            return result;
         }
 
 
-        //USER MANAGER
+        // Validates whether a user's email and password match those stored in the database
+        // Inputs:
+        //  - email: A string representing the user's email
+        //  - password: A string representing the user's password
+        // Returns: A boolean indicating whether the email and password match a user in the database
         public bool SignInValidation(string email, string password)
         {
             SqlConnection connection = getConnection();
@@ -52,6 +62,10 @@ namespace Pollaris._3.Accessors
             return result;
         }
 
+        // Checks whether a given email exists in the database
+        // Inputs:
+        //  - email: A string representing the email to be checked
+        // Returns: A boolean indicating whether the email exists in the database
         public bool CheckIfEmailInDatabase(string email)
         {
             SqlConnection connection = getConnection();
@@ -67,6 +81,13 @@ namespace Pollaris._3.Accessors
             return result;
         }
 
+        // Inserts a new user into the database
+        // Inputs:
+        //  - firstName: A string representing the user's first name
+        //  - lastName: A string representing the user's last name
+        //  - email: A string representing the user's email
+        //  - password: A string representing the user's password
+        // Returns: An integer representing the number of rows affected by the insert statement
         public int SignUpValidation(string firstName, string lastName, string email, string password)
         {
             SqlConnection connection = getConnection();
@@ -85,6 +106,10 @@ namespace Pollaris._3.Accessors
             return result;
         }
 
+        // Retrieves a user's user_id from their email
+        // Inputs:
+        //  - email: A string representing the user's email
+        // Returns: An integer representing the user's ID
         public int GetUserIdFromEmail(string email)
         {
             SqlConnection connection = getConnection();
@@ -98,6 +123,10 @@ namespace Pollaris._3.Accessors
             return result;
         }
 
+        // Retrieves the password of the user with the given ID
+        // Inputs:
+        //   - userId: the ID of the user whose password to retrieve
+        // Returns: The password of the user with the given ID, or null if the user does not exist or has no password
         public string? GetPasswordFromUserId(int userId)
         {
             SqlConnection connection = getConnection();
@@ -111,6 +140,11 @@ namespace Pollaris._3.Accessors
             return result;
         }
 
+        // Changes the password of the user with the given ID
+        // Inputs:
+        //   - userId: the ID of the user whose password to change
+        //   - newPassword: the new password to set for the user
+        // Returns: True if the password was changed successfully, false otherwise
         public bool ChangePassword(int userId, string newPassword)
         {
             SqlConnection connection = getConnection();
@@ -133,6 +167,10 @@ namespace Pollaris._3.Accessors
             }
         }
 
+        // Retrieves the IDs of all users who are members of the room with the given ID
+        // Inputs:
+        //   - roomId: the ID of the room whose members to retrieve
+        // Returns: A list of the IDs of all users who are members of the room with the given ID
         public List<int> GetMembersFromRoomId(int roomId)
         {
             SqlConnection connection = getConnection();
@@ -153,6 +191,10 @@ namespace Pollaris._3.Accessors
             return result;
         }
 
+        // Retrieves information about users with the given IDs
+        // Inputs:
+        //   - ids: a list of user IDs whose information to retrieve
+        // Returns: A list of UserInfo objects, one for each user with an ID in the input list
         public List<UserInfo> GetUsersFromIds(List<int> ids)
         {
             SqlConnection connection = getConnection();
@@ -169,7 +211,7 @@ namespace Pollaris._3.Accessors
                 string firstName = reader.GetString("first_name");
                 string lastName = reader.GetString("last_name");
                 object photoValue = reader.GetValue("photo");
-                string photo = ""; 
+                string photo = "";
                 if (photoValue != null && photoValue != DBNull.Value)
                 {
                     photo = (string)photoValue;
@@ -182,6 +224,10 @@ namespace Pollaris._3.Accessors
             return result;
         }
 
+        // Returns the user info of the user with the given id
+        // Inputs:
+        //  - id: the user id to get the info of
+        // Returns: the user info (or null if the user does not exist)
         public UserInfo? GetUserFromId(int id)
         {
             SqlConnection connection = getConnection();
@@ -211,6 +257,12 @@ namespace Pollaris._3.Accessors
             return result;
         }
 
+        // Saves the user's profile info to the database
+        // Inputs:
+        //  - userId: the id of the user whose info to update
+        //  - firstName: the user's first name
+        //  - lastName: the user's last name
+        // Returns: true if the update was successful, false otherwise
         public bool SaveProfileInfo(int userId, string firstName, string lastName)
         {
             SqlConnection connection = getConnection();
@@ -235,6 +287,12 @@ namespace Pollaris._3.Accessors
             }
         }
 
+        
+        // Updates the profile photo of a specifed user in the database.
+        // Inputs:
+        //  - userId: the id of the user to get the username of
+        //  - src: string file path of the photo
+        // Returns: void
         public void ChangeProfilePhoto(int userId, string src)
         {
             SqlConnection connection = getConnection();
@@ -254,6 +312,12 @@ namespace Pollaris._3.Accessors
             }
         }
 
+        
+        // Returns the username of the user with the given id
+        // Inputs:
+        //  - ids: the list of integer ids for rooms that need updating
+        //  - name: the new instructor name
+        // Returns: void
         public void UpdateRoomInstructorName(List<int> ids, string name)
         {
             SqlConnection connection = getConnection();
@@ -267,6 +331,11 @@ namespace Pollaris._3.Accessors
             connection.Close();
         }
 
+  
+        // Returns the username of the user with the given id
+        // Inputs:
+        //  - userId: the id of the user to get the username of
+        // Returns: the username (or an empty string if the user does not exist)
         public string GetUserNameFromId(int userId)
         {
             SqlConnection connection = getConnection();
@@ -293,7 +362,10 @@ namespace Pollaris._3.Accessors
         }
 
 
-        //ROOM MANAGER (mostly)
+        // Retrieves a room's information based on its ID.
+        // Inputs:
+        //  - id: the integer ID of the room to retrieve.
+        // Returns: a nullable RoomInfo object containing the retrieved room's information.
         public RoomInfo? GetRoomFromId(int id)
         {
             SqlConnection connection = getConnection();
@@ -319,6 +391,10 @@ namespace Pollaris._3.Accessors
             return result;
         }
 
+        // Retrieves the IDs of all rooms associated with a given user.
+        // Inputs:
+        //  - userId: the integer ID of the user whose room IDs to retrieve.
+        // Returns: a List of integers representing the IDs of all rooms associated with the user.
         public List<int> GetRoomIdsFromUserId(int userId)
         {
             SqlConnection connection = getConnection();
@@ -339,6 +415,10 @@ namespace Pollaris._3.Accessors
             return result;
         }
 
+        // Retrieves the information for all rooms associated with a given set of IDs.
+        // Inputs:
+        //  - ids: a List of integers representing the IDs of the rooms to retrieve.
+        // Returns: a List of RoomInfo objects containing the information for all rooms associated with the given IDs.
         public List<RoomInfo> GetRoomsFromIds(List<int> ids)
         {
             SqlConnection connection = getConnection();
@@ -364,6 +444,10 @@ namespace Pollaris._3.Accessors
             return result;
         }
 
+        // Validates the room code passed as a parameter and returns the ID of the room if the code exists in the database
+        // Inputs:
+        //  - roomCode: string representing the room code to be validated
+        // Returns: integer representing the ID of the room if the code exists in the database, or 0 if it doesn't
         public int ValidateRoomCode(string roomCode)
         {
             SqlConnection connection = getConnection();
@@ -387,6 +471,12 @@ namespace Pollaris._3.Accessors
             }
         }
 
+        // Establishes a connection between a user and a room, with a specified role
+        // Inputs:
+        //  - userId: integer representing the ID of the user to be connected to the room
+        //  - roomId: integer representing the ID of the room to which the user will be connected
+        //  - role: string representing the role the user will have in the room
+        // Returns: boolean indicating whether the connection was successfully established
         public bool UserRoomConnection(int userId, int roomId, string role)
         {
             SqlConnection connection = getConnection();
@@ -411,13 +501,18 @@ namespace Pollaris._3.Accessors
                     connection.Close();
                     return false;
                 }
-            } catch (SqlException ex)
+            }
+            catch (SqlException ex)
             {
                 connection.Close();
-                return false; 
+                return false;
             }
         }
 
+        // Checks whether a new room code is already in use in the database
+        // Inputs:
+        //  - newCode: string representing the room code to be checked
+        // Returns: boolean indicating whether the code is already in use (true) or not (false)
         public bool CodeNotAvailable(string newCode)
         {
             SqlConnection connection = getConnection();
@@ -440,6 +535,13 @@ namespace Pollaris._3.Accessors
             }
         }
 
+        // Creates a new room in the database
+        // Inputs:
+        //  - roomName: string representing the name of the new room
+        //  - roomCode: string representing the code of the new room
+        //  - instructorId: int representing the id of the instructor of the new room
+        //  - instructorName: string representing the name of the instructor of the new room
+        // Returns: an int representing the id of the newly created room or 0 if the operation fails
         public int CreateRoom(string roomName, string roomCode, int instructorId, string instructorName)
         {
             SqlConnection connection = getConnection();
@@ -466,13 +568,19 @@ namespace Pollaris._3.Accessors
                     connection.Close();
                     return 0;
                 }
-            } catch (SqlException e)
+            }
+            catch (SqlException e)
             {
                 connection.Close();
-                return 0; 
+                return 0;
             }
         }
 
+        // Returns the role of a user in a given room
+        // Inputs:
+        //  - userId: int representing the id of the user
+        //  - roomId: int representing the id of the room
+        // Returns: a string representing the role of the user in the room, or an empty string if the operation fails
         public string GetRole(int userId, int roomId)
         {
             SqlConnection connection = getConnection();
@@ -489,15 +597,18 @@ namespace Pollaris._3.Accessors
                 string result = reader.GetString("role");
                 connection.Close();
                 return result;
-            } else
+            }
+            else
             {
                 connection.Close();
                 return "";
             }
         }
 
-        //QUESTION MANAGER
-
+        // Returns a list of question ids associated with a given set id
+        // Inputs:
+        //  - setId: int representing the id of the set
+        // Returns: a List<int> representing the ids of the questions associated with the set
         public List<int> GetQuestionIdsFromSetId(int setId)
         {
             SqlConnection connection = getConnection();
@@ -518,6 +629,10 @@ namespace Pollaris._3.Accessors
             return questionIds;
         }
 
+        // GetQuestionsFromIds retrieves a list of QuestionInfo objects for a given list of question ids.
+        // Inputs:
+        //  - questionIds: a List of integers representing the ids of the questions to retrieve
+        // Returns: a List of QuestionInfo objects for the questions with the given ids
         public List<QuestionInfo> GetQuestionsFromIds(List<int> questionIds)
         {
             SqlConnection connection = getConnection();
@@ -543,17 +658,21 @@ namespace Pollaris._3.Accessors
             return questions;
         }
 
+        // CreateQuestion creates a new question with the given type and returns its associated QuestionInfo object.
+        // Inputs:
+        //  - type: a string representing the type of question to create (e.g. "MC", "SA", "TF", or "R")
+        // Returns: a QuestionInfo object representing the newly created question, or null if creation was unsuccessful
         public QuestionInfo CreateQuestion(string type)
         {
             //Type == "MC", "SA", "TF", or "R" (i think)
             //SELECT SCOPE_IDENTITY();
             SqlConnection connection = getConnection();
             connection.Open();
-            string questionName = ""; 
+            string questionName = "";
 
             // Create Query
             string query = "INSERT INTO Question (question, question_type, is_graded, is_anonymous) VALUES (@question, @questionType, @isGraded, @isAnonymous) SELECT SCOPE_IDENTITY();";
- 
+
             SqlCommand command = new(query, connection);
             // Add parameters
             command.Parameters.AddWithValue("@question", questionName);
@@ -567,13 +686,19 @@ namespace Pollaris._3.Accessors
             if (questionId == 0)
             {
                 return null;
-            } else
+            }
+            else
             {
                 QuestionInfo question = new QuestionInfo(questionId, questionName, type, true, false);
-                return question; 
+                return question;
             }
         }
 
+        // SetQuestionConnection associates a question with a given set.
+        // Inputs:
+        //  - setId: an integer representing the id of the set to which to add the question
+        //  - questionId: an integer representing the id of the question to add to the set
+        // Returns: true if the association was successful, false otherwise
         public bool SetQuestionConnection(int setId, int questionId)
         {
             SqlConnection connection = getConnection();
@@ -597,14 +722,19 @@ namespace Pollaris._3.Accessors
                     connection.Close();
                     return false;
                 }
-            } catch (SqlException  e)
-            {
-                connection.Close(); 
-                return false; 
             }
-            
+            catch (SqlException e)
+            {
+                connection.Close();
+                return false;
+            }
+
         }
 
+        // Returns a list of option IDs that are associated with a given question ID
+        // Inputs:
+        //  - questionId: an integer representing the ID of the question
+        // Returns: A list of integers representing the IDs of the options associated with the question
         public List<int> GetOptionIdsFromQuestionId(int questionId)
         {
             SqlConnection connection = getConnection();
@@ -624,6 +754,10 @@ namespace Pollaris._3.Accessors
             return optionIds;
         }
 
+        // Returns a list of OptionInfo objects that correspond to the given option IDs
+        // Inputs:
+        //  - optionsIds: a list of integers representing the IDs of the options to retrieve
+        // Returns: A list of OptionInfo objects representing the retrieved options
         public List<OptionInfo> GetOptionsFromIds(List<int> optionsIds)
         {
             SqlConnection connection = getConnection();
@@ -659,6 +793,11 @@ namespace Pollaris._3.Accessors
             return options;
         }
 
+        // Changes the active question ID for a given set
+        // Inputs:
+        //  - setId: an integer representing the ID of the set to modify
+        //  - nextQuestionId: an integer representing the ID of the next question to make active
+        // Returns: A boolean indicating whether the active question was successfully updated in the database
         public bool ChangeActiveQuestion(int setId, int nextQuestionId)
         {
             SqlConnection connection = getConnection();
@@ -681,6 +820,10 @@ namespace Pollaris._3.Accessors
             }
         }
 
+        // Returns a QuestionInfo object from the database with the provided questionId
+        // Inputs:
+        //  - questionId: the ID of the question to retrieve from the database
+        // Returns: a QuestionInfo object representing the retrieved question, or null if no question was found
         public QuestionInfo? GetQuestionFromId(int questionId)
         {
             SqlConnection connection = getConnection();
@@ -706,6 +849,12 @@ namespace Pollaris._3.Accessors
             return question;
         }
 
+        // Submits a short answer response to the database for the provided user and question IDs
+        // Inputs:
+        //  - userId: the ID of the user submitting the response
+        //  - questionId: the ID of the question being responded to
+        //  - answer: the short answer response to be submitted
+        // Returns: true if the response was successfully submitted, false otherwise
         public bool SubmitSAResponse(int userId, int questionId, string answer)
         {
             SqlConnection connection = getConnection();
@@ -738,6 +887,11 @@ namespace Pollaris._3.Accessors
             }
         }
 
+        // Submits a multiple choice or true/false response to the database for the provided user and option IDs
+        // Inputs:
+        //  - userId: the ID of the user submitting the response
+        //  - optionId: the ID of the response option being submitted
+        // Returns: true if the response was successfully submitted, false otherwise
         public bool SubmitMCorTFResponse(int userId, int optionId)
         {
             SqlConnection connection = getConnection();
@@ -761,12 +915,19 @@ namespace Pollaris._3.Accessors
                     connection.Close();
                     return false;
                 }
-            } catch (SqlException e)
+            }
+            catch (SqlException e)
             {
-                return false; 
+                return false;
             }
         }
 
+        // Submits a user's ranking response for an option in a question
+        // Inputs:
+        //  - userId: int representing the id of the user submitting the response
+        //  - optionId: int representing the id of the option the user is ranking
+        //  - rankingChosen: int representing the ranking chosen by the user
+        // Returns: bool representing whether the response was successfully submitted or not
         public bool SubmitRankingResponse(int userId, int optionId, int rankingChosen)
         {
             SqlConnection connection = getConnection();
@@ -799,6 +960,11 @@ namespace Pollaris._3.Accessors
             }
         }
 
+        // Changes the isGraded field of a question
+        // Inputs:
+        //  - questionId: int representing the id of the question to modify
+        //  - isGraded: bool representing whether the question is graded or not
+        // Returns: bool representing whether the modification was successful or not
         public bool ChangeGraded(int questionId, bool isGraded)
         {
             //set question isGraded = isGraded
@@ -822,6 +988,11 @@ namespace Pollaris._3.Accessors
             }
         }
 
+        // Changes the isAnonymous field of a question
+        // Inputs:
+        //  - questionId: int representing the id of the question to modify
+        //  - isAnonymous: bool representing whether the question is anonymous or not
+        // Returns: bool representing whether the modification was successful or not
         public bool ChangeAnonymous(int questionId, bool isAnonymous)
         {
             SqlConnection connection = getConnection();
@@ -844,6 +1015,11 @@ namespace Pollaris._3.Accessors
             }
         }
 
+        // Updates the name of a given question in the database.
+        // Inputs:
+        //   - questionId: an integer representing the ID of the question to be updated.
+        //   - questionName: a string representing the new name for the question.
+        // Returns: void
         public void ChangeQuestionName(int questionId, string questionName)
         {
             SqlConnection connection = getConnection();
@@ -858,8 +1034,11 @@ namespace Pollaris._3.Accessors
             connection.Close();
         }
 
-        //OPTIONS MANAGER
-
+        // Updates the "is_correct" value of a given option in the database.
+        // Inputs:
+        //   - optionId: an integer representing the ID of the option to be updated.
+        //   - isCorrect: a boolean value representing whether or not the option is correct.
+        // Returns: a boolean value indicating whether or not the update was successful.
         public bool ChangeOptionCorrect(int optionId, bool isCorrect)
         {
             SqlConnection connection = getConnection();
@@ -882,6 +1061,11 @@ namespace Pollaris._3.Accessors
             }
         }
 
+        // Updates the name of a given option in the database.
+        // Inputs:
+        //   - optionId: an integer representing the ID of the option to be updated.
+        //   - optionName: a string representing the new name for the option.
+        // Returns: a boolean value indicating whether or not the update was successful.
         public bool ChangeOptionName(int optionId, string optionName)
         {
             SqlConnection connection = getConnection();
@@ -904,6 +1088,10 @@ namespace Pollaris._3.Accessors
             }
         }
 
+        // Creates a new Option and saves it to the database
+        // Inputs:
+        //  - None
+        // Returns: OptionInfo: A nullable OptionInfo object representing the created Option. Returns null if creation fails.
         public OptionInfo? CreateOption()
         {
             SqlConnection connection = getConnection();
@@ -931,6 +1119,11 @@ namespace Pollaris._3.Accessors
             }
         }
 
+        // Creates a connection between a Question and an Option in the database
+        // Inputs:
+        //  - questionId: An integer representing the ID of the Question
+        //  - optionId: An integer representing the ID of the Option
+        // Returns: void
         public void QuestionOptionConnection(int questionId, int optionId)
         {
             SqlConnection connection = getConnection();
@@ -945,6 +1138,10 @@ namespace Pollaris._3.Accessors
             connection.Close();
         }
 
+        // Deletes the connections between a list of Options and Questions in the database
+        // Inputs:
+        //  - ids: A List of integers representing the IDs of the Options to be deleted from the QuestionOption table
+        // Returns: void
         public void DeleteOptionsFromQuestionOptions(List<int> ids)
         {
             SqlConnection connection = getConnection();
@@ -957,6 +1154,10 @@ namespace Pollaris._3.Accessors
             connection.Close();
         }
 
+        // Deletes the connections between a list of Options and Responses in the database
+        // Inputs:
+        //  - ids: A List of integers representing the IDs of the Options to be deleted from the Response table
+        // Returns: void
         public void DeleteOptionsFromResponse(List<int> ids)
         {
             SqlConnection connection = getConnection();
@@ -969,6 +1170,10 @@ namespace Pollaris._3.Accessors
             connection.Close();
         }
 
+        // Deletes all options with the given IDs from the database.
+        // Inputs:
+        //  - ids: a list of integers representing the IDs of the options to be deleted
+        // Returns: void
         public void DeleteOptionsFromIds(List<int> ids)
         {
             SqlConnection connection = getConnection();
@@ -981,8 +1186,10 @@ namespace Pollaris._3.Accessors
             connection.Close();
         }
 
-        //RESPONSES MANAGER
-
+        // Retrieves all student responses for the given short answer question from the database.
+        // Inputs:
+        //  - questionId: an integer representing the ID of the short answer question to retrieve responses for
+        // Returns: a list of StudentResponseInfo objects representing the student responses for the given question
         public List<StudentResponseInfo> GetSAResponsesFromQuestionId(int questionId)
         {
             SqlConnection connection = getConnection();
@@ -999,13 +1206,17 @@ namespace Pollaris._3.Accessors
             {
                 int userId = reader.GetInt32("user_id");
                 string response = reader.GetString("response");
-                responses.Add(new StudentResponseInfo(userId, response)); 
+                responses.Add(new StudentResponseInfo(userId, response));
             }
 
             connection.Close();
             return responses;
         }
 
+        // Retrieves all student responses for the given multiple choice question options from the database.
+        // Inputs:
+        //  - optionIds: a list of integers representing the IDs of the multiple choice question options to retrieve responses for
+        // Returns: a list of StudentResponseInfo objects representing the student responses for the given options
         public List<StudentResponseInfo> GetResponsesFromOptions(List<int> optionIds)
         {
             SqlConnection connection = getConnection();
@@ -1034,8 +1245,10 @@ namespace Pollaris._3.Accessors
         }
 
 
-        //SET MANAGER
-
+        // Gets a list of set IDs associated with a room ID
+        // Inputs:
+        //  - roomId: an integer representing the ID of the room
+        // Returns: a List of integers representing the IDs of the sets associated with the room
         public List<int> GetSetIdsFromRoomId(int roomId)
         {
             SqlConnection connection = getConnection();
@@ -1056,6 +1269,10 @@ namespace Pollaris._3.Accessors
             return setIds;
         }
 
+        // Gets a list of SetInfo objects associated with a list of set IDs
+        // Inputs:
+        //  - setIds: a List of integers representing the IDs of the sets
+        // Returns: a List of SetInfo objects representing the information about the sets
         public List<SetInfo> GetSetsFromIds(List<int> setIds)
         {
             SqlConnection connection = getConnection();
@@ -1086,6 +1303,9 @@ namespace Pollaris._3.Accessors
             return result;
         }
 
+        // Creates a new SetInfo object in the database
+        // Inputs: none
+        // Returns: a nullable SetInfo object representing the newly created set or null if creation failed
         public SetInfo? CreateSet()
         {
             SqlConnection connection = getConnection();
@@ -1115,6 +1335,11 @@ namespace Pollaris._3.Accessors
             }
         }
 
+        // Connects a set with a room in the database
+        // Inputs:
+        //  - set: a SetInfo object that represents the set being connected to the room
+        //  - roomId: an integer representing the ID of the room to connect to the set
+        // Returns: void
         public void ConnectSetAndRoom(SetInfo set, int roomId)
         {
             SqlConnection connection = getConnection();
@@ -1130,6 +1355,10 @@ namespace Pollaris._3.Accessors
             connection.Close();
         }
 
+        // Deletes a set from the database
+        // Inputs:
+        //  - setId: an integer representing the ID of the set to be deleted
+        // Returns: void
         public void DeleteSet(int setId)
         {
             SqlConnection connection = getConnection();
@@ -1142,6 +1371,10 @@ namespace Pollaris._3.Accessors
             connection.Close();
         }
 
+        // Deletes questions from a set in the database
+        // Inputs:
+        //  - questionIds: a List of integers representing the IDs of the questions to be deleted
+        // Returns: void
         public void DeleteQuestionsFromSet(List<int> questionIds)
         {
             SqlConnection connection = getConnection();
@@ -1154,6 +1387,10 @@ namespace Pollaris._3.Accessors
             connection.Close();
         }
 
+        // Deletes questions from the database by their IDs
+        // Inputs:
+        //  - questionIds: a List of integers representing the IDs of the questions to be deleted
+        // Returns: void
         public void DeleteQuestionsFromIds(List<int> questionIds)
         {
             SqlConnection connection = getConnection();
@@ -1165,6 +1402,12 @@ namespace Pollaris._3.Accessors
             command.ExecuteNonQuery();
             connection.Close();
         }
+
+        // Remove a set from a room
+        // Inputs:
+        //  - roomId: An integer representing the ID of the room
+        //  - setId: An integer representing the ID of the set to remove
+        // Returns: void
         public void RemoveSetFromRoom(int roomId, int setId)
         {
             SqlConnection connection = getConnection();
@@ -1178,6 +1421,10 @@ namespace Pollaris._3.Accessors
             connection.Close();
         }
 
+        // Get set information from a set ID
+        // Inputs:
+        //  - setId: An integer representing the ID of the set to retrieve
+        // Returns: A SetInfo object representing the set information, or null if the set is not found
         public SetInfo? GetSetFromId(int setId)
         {
             SqlConnection connection = getConnection();
@@ -1210,6 +1457,11 @@ namespace Pollaris._3.Accessors
                 return result;
             }
         }
+
+        // Get room ID from a set ID
+        // Inputs:
+        //  - setId: An integer representing the ID of the set to retrieve the room ID from
+        // Returns: An integer representing the ID of the room that the set belongs to, or 0 if the set is not found in RoomSet table
         public int GetRoomIdFromSetId(int setId)
         {
             SqlConnection connection = getConnection();
@@ -1234,6 +1486,11 @@ namespace Pollaris._3.Accessors
             }
         }
 
+        // ChangeRoomActiveSet updates the active set id of a given room.
+        // Inputs:
+        //  - roomId: integer representing the room id to update
+        //  - setId: nullable integer representing the id of the new active set for the room
+        // Returns: void
         public void ChangeRoomActiveSet(int roomId, int? setId)
         {
             SqlConnection connection = getConnection();
@@ -1242,17 +1499,23 @@ namespace Pollaris._3.Accessors
             SqlCommand command = new(query, connection);
             command.Parameters.AddWithValue("@roomId", roomId);
             command.Parameters.AddWithValue("@setId", setId);
-            
+
             try
             {
                 object result = command.ExecuteScalar();
-            } catch (SqlException e)
+            }
+            catch (SqlException e)
             {
 
             }
             connection.Close();
         }
 
+        // ChangeRoomActiveSet updates the active set id of a given room.
+        // Inputs:
+        //  - roomId: integer representing the room id to update
+        //  - setId: nullable integer representing the id of the new active set for the room
+        // Returns: void
         public void ChangeSetIsActive(int setId, bool isActive)
         {
             SqlConnection connection = getConnection();
@@ -1265,21 +1528,30 @@ namespace Pollaris._3.Accessors
             connection.Close();
         }
 
+        // ChangeStatus updates the status field of a given set.
+        // Inputs:
+        //  - setId: integer representing the set id to update
+        //  - newStatus: string representing the new value for the status field
+        // Returns: void
         public void ChangeStatus(int setId, string newStatus)
         {
             SqlConnection connection = getConnection();
             connection.Open();
-
             string query = "UPDATE [Set] SET status = @newStatus WHERE set_id = @setId;";
-            SqlCommand command = new(query, connection);
 
+            SqlCommand command = new(query, connection);
             command.Parameters.AddWithValue("@setId", setId);
             command.Parameters.AddWithValue("@newStatus", newStatus);
 
-            command.ExecuteNonQuery();
+            object result = command.ExecuteNonQuery();
             connection.Close();
         }
 
+        // Changes the name of a Set in the database
+        // Inputs:
+        // - setId: an integer representing the ID of the Set to be modified
+        // - newName: a string representing the new name to be assigned to the Set
+        // Returns: a boolean value indicating whether the update was successful or not
         public bool ChangeSetName(int setId, string newName)
         {
             SqlConnection connection = getConnection();

@@ -8,6 +8,10 @@ namespace Pollaris.Controllers
 {
     public class DashboardController : Controller
     {
+        // UserDashboard function retrieves user-related information and displays a user dashboard view.
+        // Inputs:
+        // - userId: an integer representing the ID of the user
+        // Returns: IActionResult representing the user dashboard view
         [HttpGet]
         [Route("/Dashboard/UserDashboard")]
         public IActionResult UserDashboard(int userId)
@@ -20,6 +24,11 @@ namespace Pollaris.Controllers
             return View(model);
         }
 
+        // RoomDashboard function retrieves room-related information and displays a room dashboard view.
+        // Inputs:
+        // - userId: an integer representing the ID of the user
+        // - roomId: an integer representing the ID of the room
+        // Returns: IActionResult representing the room dashboard view
         [HttpGet]
         [Route("/Dashboard/RoomDashboard")]
         public IActionResult RoomDashboard(int userId, int roomId)

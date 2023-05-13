@@ -15,7 +15,12 @@ namespace Pollaris.Controllers
         {
             _logger = logger;
         }
-        
+
+        // ValidateUser function validates a user's credentials and redirects to the appropriate dashboard.
+        // Inputs:
+        // - email: a string representing the user's email
+        // - password: a string representing the user's password
+        // Returns: IActionResult representing the redirected view
         public IActionResult ValidateUser(string email, string password)
         {
             if (email == "1" && password == "1") {
@@ -35,6 +40,13 @@ namespace Pollaris.Controllers
             }
         }
 
+        // CreateUser function creates a new user and redirects to the user dashboard.
+        // Inputs:
+        // - firstName: a string representing the user's first name
+        // - lastName: a string representing the user's last name
+        // - email: a string representing the user's email
+        // - password: a string representing the user's password
+        // Returns: IActionResult representing the redirected view
         public IActionResult CreateUser(string firstName, string lastName, string email, string password) {
             UserManager uM = new UserManager();
             bool emailInDatabase = uM.IsEmailInDatabase(email);
@@ -61,17 +73,24 @@ namespace Pollaris.Controllers
             }
         }
 
+        // SignIn function displays the sign-in view.
+        // Returns: IActionResult representing the sign-in view
         public IActionResult SignIn()
         {
             SignInInfo model = new SignInInfo(true); 
             return View(model);
         }
+
+        // SignUp function displays the sign-up view.
+        // Returns: IActionResult representing the sign-up view
         public IActionResult SignUp()
         {
             SignUpInfo model = new SignUpInfo(true, true);
             return View(model);
         }
 
+        // Error function displays the error view.
+        // Returns: IActionResult representing the error view
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

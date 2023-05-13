@@ -2,15 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\Pollaris",
-    "\\Pollaris\\3.Accessors",
     "\\Pollaris\\Models",
     "\\Pollaris\\Views",
     "\\Pollaris\\Views\\Dashboard",
     "\\Pollaris\\Views\\Home",
+    "\\Pollaris\\Views\\Question",
     "\\Pollaris\\wwwroot",
     "\\Pollaris\\wwwroot\\css",
     "\\Pollaris\\wwwroot\\js"
   ],
-  "SelectedNode": "\\Pollaris\\3.Accessors\\SQLAccessor.cs",
   "PreviewInSolutionExplorer": false
 }

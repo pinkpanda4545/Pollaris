@@ -7,6 +7,11 @@ namespace Pollaris.Controllers
 {
     public class QuestionController : Controller
     {
+        // AnswerQuestion function retrieves the necessary information to answer a question and displays the answer question view.
+        // Inputs:
+        // - userId: an integer representing the ID of the user
+        // - roomId: an integer representing the ID of the room
+        // Returns: IActionResult representing the answer question view
         public IActionResult AnswerQuestion(int userId, int roomId)
         {
             SetManager sM = new SetManager();
@@ -29,11 +34,26 @@ namespace Pollaris.Controllers
                 return View(model);
             }
         }
+
+        // CreateQuestion function displays the create question view.
+        // Inputs:
+        // - userId: an integer representing the ID of the user
+        // - roomId: an integer representing the ID of the room
+        // - setId: an integer representing the ID of the set
+        // Returns: IActionResult representing the create question view
         public IActionResult CreateQuestion(int userId, int roomId, int setId)
         {
             CreateQuestionInfo model = new CreateQuestionInfo(userId, roomId, setId); 
             return View(model);
         }
+
+        // CreateThenEditQuestion function creates a new question and displays the edit question view for the newly created question.
+        // Inputs:
+        // - userId: an integer representing the ID of the user
+        // - roomId: an integer representing the ID of the room
+        // - setId: an integer representing the ID of the set
+        // - type: a string representing the type of the question ("TF" for True/False)
+        // Returns: IActionResult representing the edit question view
         public IActionResult CreateThenEditQuestion(int userId, int roomId, int setId, string type)
         {
             QuestionManager qM = new QuestionManager();
@@ -53,6 +73,13 @@ namespace Pollaris.Controllers
             return View("EditQuestion", model);
         }
 
+        // EditQuestion function displays the edit question view for an existing question.
+        // Inputs:
+        // - userId: an integer representing the ID of the user
+        // - roomId: an integer representing the ID of the room
+        // - setId: an integer representing the ID of the set
+        // - questionId: an integer representing the ID of the question
+        // Returns: IActionResult representing the edit question view
         public IActionResult EditQuestion(int userId, int roomId, int setId, int questionId)
         {
             QuestionManager qM = new QuestionManager();
@@ -61,12 +88,23 @@ namespace Pollaris.Controllers
             return View(model);
         }
 
+        // DeleteQuestion function deletes a question.
+        // Inputs:
+        // - questionId: an integer representing the ID of the question
+        // Returns: void
         public void DeleteQuestion(int questionId)
         {
             QuestionManager qM = new QuestionManager();
             qM.DeleteQuestion(questionId); 
         }
 
+        // SubmitStudentAnswer function submits a student's answer to a question.
+        // Inputs:
+        // - userId: an integer representing the ID of the user
+        // - roomId: an integer representing the ID of the room
+        // - questionId: an integer representing the ID of the question
+        // - answers: a list of strings representing the student's answers
+        // Returns: a boolean indicating whether the submission was successful or not
         [HttpPost]
         [Route("/Question/SubmitStudentAnswer")]
         public bool SubmitStudentAnswer(int userId, int roomId, int questionId, List<string> answers)
@@ -83,18 +121,33 @@ namespace Pollaris.Controllers
             return false; 
         }
 
+        // ChangeGraded function changes the graded status of a question.
+        // Inputs:
+        // - questionId: an integer representing the ID of the question
+        // - isGraded: a boolean indicating whether the question should be graded or not
+        // Returns: void
         public void ChangeGraded(int questionId, bool isGraded)
         {
             QuestionManager qM = new QuestionManager();
             qM.ChangeGraded(questionId, isGraded); 
         }
 
+        // ChangeAnonymous function changes the anonymous status of a question.
+        // Inputs:
+        // - questionId: an integer representing the ID of the question
+        // - isAnonymous: a boolean indicating whether the question should be anonymous or not
+        // Returns: void
         public void ChangeAnonymous (int questionId, bool isAnonymous)
         {
             QuestionManager qM = new QuestionManager();
             qM.ChangeAnonymous(questionId, isAnonymous); 
         }
 
+        // ChangeQuestionName function changes the name of a question.
+        // Inputs:
+        // - questionId: an integer representing the ID of the question
+        // - questionName: a string representing the new name of the question
+        // Returns: void
         public void ChangeQuestionName(int questionId, string questionName)
         {
             QuestionManager qM = new QuestionManager();

@@ -7,6 +7,11 @@ namespace Pollaris.Controllers
 {
     public class OptionController : Controller
     {
+        // MakeOptionCorrect function sets the correctness status of an option.
+        // Inputs:
+        // - optionId: an integer representing the ID of the option
+        // - isCorrect: a boolean indicating whether the option is correct or not
+        // Returns: void
         [HttpPost]
         [Route("/Option/MakeOptionCorrect")]
         public void MakeOptionCorrect(int optionId,bool isCorrect)
@@ -15,6 +20,10 @@ namespace Pollaris.Controllers
             oM.MakeOptionCorrect(optionId, isCorrect); 
         }
 
+        // CreateNewOption function creates a new option for a question.
+        // Inputs:
+        // - questionId: an integer representing the ID of the question
+        // Returns: an integer representing the ID of the newly created option
         [HttpPost]
         [Route("/Option/CreateNewOption")]
         public int CreateNewOption(int questionId)
@@ -23,6 +32,10 @@ namespace Pollaris.Controllers
             return oM.CreateNewOption(questionId); 
         }
 
+        // DeleteOption function deletes an option.
+        // Inputs:
+        // - optionId: an integer representing the ID of the option
+        // Returns: void
         [HttpPost]
         [Route("/Option/DeleteOption")]
         public void DeleteOption(int optionId)
@@ -31,6 +44,11 @@ namespace Pollaris.Controllers
             oM.DeleteOption(optionId);
         }
 
+        // ChangeOptionName function changes the name of an option.
+        // Inputs:
+        // - optionId: an integer representing the ID of the option
+        // - optionName: a string representing the new name of the option
+        // Returns: void
         [HttpPost]
         [Route("/Option/ChangeOptionName")]
         public void ChangeOptionName(int optionId, string optionName)
